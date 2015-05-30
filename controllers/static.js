@@ -1,3 +1,4 @@
+'use strict';
 var router = require("express").Router();
 
 router.get("/", function (req, res) {
@@ -5,8 +6,8 @@ router.get("/", function (req, res) {
 		console.warn(err.message);
 	}
 	else {
-		// layouts/public.html
-		res.status(200).redirect("/index.html");
+		// public/views/public.html
+		res.status(200).render('index.html');
 	}
 })
 

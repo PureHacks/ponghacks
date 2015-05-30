@@ -8,7 +8,7 @@ var getLeaderboard = function(req, res) {
 	}
 	else {
 		// layouts/public.html
-		res.status(200).redirect("/layouts/partials/leaderboard.html");
+		res.status(200).send("No Leaders yet");
 	};
 };
 router.get("/", getLeaderboard);

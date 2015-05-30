@@ -1,0 +1,30 @@
+<section>
+	<h2>Input game results</h2>
+	<ul>
+		<li ng-repeat="user in team">
+			<span>{{user.name}}</span>
+		</li>
+	</ul>
+	<div class="container">
+		<div class="half winner">
+			<h3>Winner</h3>
+			<img src="http://placesheen.com/200/200">
+			<form name="winner-data">
+				<select >
+					<option ng-model="winner.name" ng-repeat="user in team">{{user.name}}</option>
+				</select>
+				<span class="player-score" ng-model="winner.score">{{winner.score}}</span>
+			</form>
+		</div>
+		<div class="half loser">
+			<h3>Loser</h3>
+			<img src="http://placecage.com/200/200">
+			<form name="loser-data">
+				<select>
+					<option ng-model="loser.name" ng-repeat="user in team">{{user.name}}</option>
+				</select>
+				<input class="player-score" ng-model="loser.score" type="number" name="loserName"/>
+			</form>
+		</div>
+	</div>
+</section>
