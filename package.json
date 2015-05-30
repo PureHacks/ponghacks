@@ -1,0 +1,28 @@
+{
+  "name": "pongHacks",
+  "version": "1.0.0",
+  "description": "Ping Pong Leaderboard",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PureHacks/ponghacks.git"
+  },
+  "keywords": [
+    "pingpong"
+  ],
+  "author": "@PureHacks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PureHacks/ponghacks/issues"
+  },
+  "homepage": "https://github.com/PureHacks/ponghacks",
+  "dependencies": {
+    "express": "^4.12.4",
+    "body-parser": "^1.12.4",
+    "multer": "^0.1.8",
+    "mysql": "^2.7.0"
+  }
+}
