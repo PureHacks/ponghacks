@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pongApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>Pong Hacks</title>
+	    
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="assets/app.js"></script>
+	</head>
+	<body ng-controller="mainCtrl">
+		<div class="wrapper">
+			<header>
+				<h1>Pong Hacks</h1>
+			</header>
+			<div class="container">
+				<h2>Team</h2>
+				<ul>
+					<li ng-repeat="user in team">
+						<span>{{user.name}}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
