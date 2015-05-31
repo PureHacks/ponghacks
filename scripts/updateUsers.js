@@ -2,7 +2,7 @@ var request = require('request');
 var async = require("async");
 
 var key = require('../key');
-var database = require('../services/database');
+var db = require('../services/database');
 
 
 
@@ -38,7 +38,7 @@ request('https://hipchat.tor.razorfish.com/v2/user?max-results=1000&auth_token='
             return values;
         });
 
-        database.queryWithData('INSERT INTO User (userId, email, name, mentionName, avatarUrl) VALUES ?', userRows, function(err, rows, fields) {
+        db.queryByValue('INSERT INTO User (userId, email, name, mentionName, avatarUrl) VALUES ?', userRows, function(err, rows, fields) {
           if (err){
             process.exit(1);
           }

@@ -18,8 +18,8 @@ app.set('views', __dirname  + '/public/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-// /api/gameResults/inputScore
-app.use("/api/gameResults/inputScore", require("./controllers/api/gameResults/inputScore"));
+// /api/game
+app.use("/api/game", require("./controllers/api/game"));
 
 // /api/leaderboard
 app.use("/api/leaderboard", require("./controllers/api/leaderboard"));
@@ -28,7 +28,7 @@ app.use("/api/leaderboard", require("./controllers/api/leaderboard"));
 app.use("/api/getUsers", require("./controllers/api/getUsers"));
 
 // /api/user
-app.use("/user", require("./controllers/api/user"));
+app.use("/api/user", require("./controllers/api/user"));
 
 app.use("/", require("./controllers/static"));
 
