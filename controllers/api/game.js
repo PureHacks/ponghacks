@@ -8,7 +8,7 @@ var addGame = function(req, res) {
 			res.status(500).json({"error": "Error adding game."});
 		}
 		else {
-			res.status(200).json({id: result.insertId});)
+			res.status(200).json({id: result.insertId});
 		}
 	});
 };
