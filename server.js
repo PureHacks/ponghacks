@@ -27,6 +27,9 @@ app.use("/api/leaderboard", require("./controllers/api/leaderboard"));
 // /api/getUsers
 app.use("/api/getUsers", require("./controllers/api/getUsers"));
 
+// /api/user
+app.use("/user", require("./controllers/api/user"));
+
 app.use("/", require("./controllers/static"));
 
 var server = app.listen(port, function() {
