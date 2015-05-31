@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/PureHacks/ponghacks",
   "dependencies": {
-    "express": "^4.12.4",
+    "async": "^1.0.0",
     "body-parser": "^1.12.4",
+    "express": "^4.12.4",
     "multer": "^0.1.8",
-    "mysql": "^2.7.0"
+    "mysql": "^2.7.0",
+    "request": "^2.56.0"
   }
 }
