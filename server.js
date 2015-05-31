@@ -33,5 +33,5 @@ app.use("/api/user", require("./controllers/api/user"));
 app.use("/", require("./controllers/static"));
 
 var server = app.listen(port, function() {
-	console.log("listening on localhost:" + port);
+	console.log("Ping ponging on port: " + port);
 });
