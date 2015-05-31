@@ -21,13 +21,14 @@ pongAppControllers.controller('inputScoreCtrl', ['$scope', '$http', '$routeParam
 		$scope.submitScore = function() {
 			var game = {
 				winner: { id : $scope.winner.userId,
-						  score: $scope.loser.score
+						  score: $scope.winner.score
 						},
 				loser : { id : $scope.loser.userId,
 						  score: $scope.loser.score
 						}
 			};
 
+			//TODO: build service
 			$http({
 				method: "POST",
 				url:"/api/gameResults/inputScore",
