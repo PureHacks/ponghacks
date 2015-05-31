@@ -1,4 +1,6 @@
 <section>
-	<h2>Leaderboard</h2>
-	<p>{{1+1}}</p>
+	<h2>Recent games</h2>
+	<ul ng-repeat="game in recentGameMessages track by $index">
+  		{{game}}
+	</ul>
 </section>

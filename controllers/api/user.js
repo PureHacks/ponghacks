@@ -17,7 +17,7 @@ var getUser = function(req, res) {
 		if (error){
 			res.status(500).json({"error": "Error fetching user."});
 		}
-		if (rows.length == 0 || error){
+		else if (rows.length == 0){
 	  		res.status(404).json({"error": "User with id " + req.params.userId + " not found."});
 	  	}
 	  	else {

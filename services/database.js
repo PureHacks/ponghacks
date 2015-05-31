@@ -31,3 +31,7 @@ exports.insertObject = function(tableName, obj, callback) {
     callback(err, result, fields);
   });
 };
+
+exports.escape = function(input) {
+  return pool.escape(input);
+};

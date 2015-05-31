@@ -4,9 +4,28 @@
 
 var pongAppControllers = angular.module('pongAppControllers', []);
 
-pongAppControllers.controller('leaderboardCtrl', ['$scope', '$http',
-	function($scope, $http) {
+pongAppControllers.controller('leaderboardCtrl', ['$scope', '$http', 'socket',
+	function($scope, $http, socket) {
+		var NUM_RECENT_GAMES = 5;
+
+		$scope.recentGameMessages = [];
 		
+		var getGameMessage = function(game){
+			return game.winnerName + " beat " + game.loserName + " " + game.winnerScore + " - " + game.loserScore;
+		};
+
+		$http.get('/api/game/recent/' + NUM_RECENT_GAMES).success(function(games) {
+			var messages = games.map(function(game){ return getGameMessage(game) });
+			$scope.recentGameMessages = messages;
+    	});
+
+		socket.on('new-game', function(game){
+            $scope.recentGameMessages.unshift(getGameMessage(game));
+            if ($scope.recentGameMessages.length > NUM_RECENT_GAMES){
+            	$scope.recentGameMessages.pop();
+            }
+	        //TODO: also refresh leaderboards here
+		});
 	}
 ]);
 
@@ -26,7 +45,6 @@ pongAppControllers.controller('inputScoreCtrl', ['$scope', '$http', '$routeParam
 				loserScore: $scope.loser.score,
 			};
 
-			//TODO: build service
 			$http({
 				method: "POST",
 				url:"/api/game",
