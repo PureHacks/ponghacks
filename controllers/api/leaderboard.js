@@ -1,7 +1,7 @@
 var router = require("express").Router();
 
 var getLeaderboard = function(req, res) {
-	console.log("get that leaderboard", req.body);
+	console.log("getLeaderboard Request:", req.body);
 
 	if (req.err){
 		console.warn(err.message);
