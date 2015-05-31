@@ -6,6 +6,9 @@ var express = require('express'),
 	multer = require("multer"),
 	app = express();
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 var	port = process.env.PORT || 8888;
 
 app.use(bodyParser.json()); // for parsing application/json
@@ -19,7 +22,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 // /api/game
-app.use("/api/game", require("./controllers/api/game"));
+app.use("/api/game", require("./controllers/api/game")(io));
 
 // /api/leaderboard
 app.use("/api/leaderboard", require("./controllers/api/leaderboard"));
@@ -30,8 +33,11 @@ app.use("/api/getUsers", require("./controllers/api/getUsers"));
 // /api/user
 app.use("/api/user", require("./controllers/api/user"));
 
+// /api/stats
+app.use("/api/stats", require("./controllers/api/stats"));
+
 app.use("/", require("./controllers/static"));
 
-var server = app.listen(port, function() {
-	console.log("Ping ponging on port: " + port);
+http.listen(port, function(){
+  console.log('Ping ponging on port: ' + port);
 });
