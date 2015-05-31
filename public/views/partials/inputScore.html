@@ -6,7 +6,7 @@
 		</li>
 	</ul>
 	<div class="container">
-		<form ng->
+		<form>
 			<div class="half winner">
 				<h3>Winner</h3>
 				<div>
@@ -15,8 +15,10 @@
 				<select ng-model="winner" ng-options="user.name for user in team" ng-init="form.type=typeOptions[0].value">
 					<option style="display:none" value="0">Select a Player</option>
 				</select>
-				<span class="player-score">{{winningScore}}</span>
-				<span>{{winner.mentionName}}</span>
+				<span class="player-score">{{winner.score}}</span>
+				<div>
+					<input class="player-score" ng-model="winner.score" ng-init="winner.score=21" type="number" name="winnerName"/>
+				</div>
 			</div>
 			<div class="half loser">
 				<h3>Loser</h3>
@@ -26,11 +28,13 @@
 				<select ng-model="loser" ng-options="user.name for user in team" ng-init="form.type=typeOptions[0].value">
 					<option style="display:none" value="0">Select a Player</option>
 				</select>
-				<input class="player-score" ng-model="loser.score" type="number" name="loserName"/>
-				<span>{{winner.mentionName}}</span>
+				<span class="player-score">{{loser.score}}</span>
+				<div>
+					<input class="player-score" ng-model="loser.score" ng-init="loser.score=0" type="number" name="loserName"/>
+				</div>
+
 			</div>	
+			<button ng-click="submitScore()">Enter Score</button>
 		</form>
-		
 	</div>
-	<button ng-click="submitScore()">Enter Score</button>
 </section>

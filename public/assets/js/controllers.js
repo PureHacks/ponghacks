@@ -12,7 +12,6 @@ pongAppControllers.controller('leaderboardCtrl', ['$scope', '$http',
 
 pongAppControllers.controller('inputScoreCtrl', ['$scope', '$http', '$routeParams',
 	function($scope, $http, $routeParams) {
-		$scope.winningScore = 21;
 		
 		$http.get('/api/getUsers/').success(function(data) {
 			console.log(data);
@@ -21,9 +20,12 @@ pongAppControllers.controller('inputScoreCtrl', ['$scope', '$http', '$routeParam
 
 		$scope.submitScore = function() {
 			var game = {
-				winner: { id : $scope.winner.userId},
-				loser : { id : $scope.winner.userId,
-						  score: $scope.loser.score }
+				winner: { id : $scope.winner.userId,
+						  score: $scope.loser.score
+						},
+				loser : { id : $scope.loser.userId,
+						  score: $scope.loser.score
+						}
 			};
 
 			$http({
@@ -35,7 +37,6 @@ pongAppControllers.controller('inputScoreCtrl', ['$scope', '$http', '$routeParam
 			.success(function(data, status, headers, config) {
 				$scope.winner = {},
 				$scope.loser = {};
-				console.log("WON");
 			})
 			.error(function(data, status, headers, config) {
 				console.error(data.error);

@@ -7,6 +7,8 @@ var inputScore = function(req, res) {
 
 	console.log("winner:", winner);
 	console.log("loser:", loser);
+
+	res.sendStatus(200);
 	
 };
 
