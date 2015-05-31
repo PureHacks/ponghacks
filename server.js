@@ -24,6 +24,9 @@ app.use("/api/gameResults/inputScore", require("./controllers/api/gameResults/in
 // /api/leaderboard
 app.use("/api/leaderboard", require("./controllers/api/leaderboard"));
 
+// /api/getUsers
+app.use("/api/getUsers", require("./controllers/api/getUsers"));
+
 app.use("/", require("./controllers/static"));
 
 var server = app.listen(port, function() {

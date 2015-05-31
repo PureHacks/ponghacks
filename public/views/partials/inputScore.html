@@ -6,25 +6,31 @@
 		</li>
 	</ul>
 	<div class="container">
-		<div class="half winner">
-			<h3>Winner</h3>
-			<img src="http://placesheen.com/200/200">
-			<form name="winner-data">
-				<select >
-					<option ng-model="winner.name" ng-repeat="user in team">{{user.name}}</option>
+		<form ng->
+			<div class="half winner">
+				<h3>Winner</h3>
+				<div>
+					<img ng-src="{{winner.avatarUrl}}"/>				
+				</div>
+				<select ng-model="winner" ng-options="user.name for user in team" ng-init="form.type=typeOptions[0].value">
+					<option style="display:none" value="0">Select a Player</option>
 				</select>
-				<span class="player-score" ng-model="winner.score">{{winner.score}}</span>
-			</form>
-		</div>
-		<div class="half loser">
-			<h3>Loser</h3>
-			<img src="http://placecage.com/200/200">
-			<form name="loser-data">
-				<select>
-					<option ng-model="loser.name" ng-repeat="user in team">{{user.name}}</option>
+				<span class="player-score">{{winningScore}}</span>
+				<span>{{winner.mentionName}}</span>
+			</div>
+			<div class="half loser">
+				<h3>Loser</h3>
+				<div>
+					<img ng-src="{{loser.avatarUrl}}"/>
+				</div>				
+				<select ng-model="loser" ng-options="user.name for user in team" ng-init="form.type=typeOptions[0].value">
+					<option style="display:none" value="0">Select a Player</option>
 				</select>
 				<input class="player-score" ng-model="loser.score" type="number" name="loserName"/>
-			</form>
-		</div>
+				<span>{{winner.mentionName}}</span>
+			</div>	
+		</form>
+		
 	</div>
+	<button ng-click="submitScore()">Enter Score</button>
 </section>
