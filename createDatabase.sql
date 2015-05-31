@@ -17,6 +17,32 @@ CREATE  TABLE IF NOT EXISTS `PongHacks`.`User` (
   PRIMARY KEY (`userId`) )
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `PongHacks`.`Game`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `PongHacks`.`Game` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `winnerUserId` INT NOT NULL ,
+  `winnerScore` INT NOT NULL ,
+  `loserUserId` INT NOT NULL ,
+  `loserScore` INT NOT NULL ,
+  `date` DATETIME NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `winnerUserId` (`winnerUserId` ASC) ,
+  INDEX `loserUserId` (`loserUserId` ASC) ,
+  CONSTRAINT `winnerUserId`
+    FOREIGN KEY (`winnerUserId` )
+    REFERENCES `PongHacks`.`User` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `loserUserId`
+    FOREIGN KEY (`loserUserId` )
+    REFERENCES `PongHacks`.`User` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
 USE `PongHacks` ;
 
 

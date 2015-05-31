@@ -1,16 +1,28 @@
 var router = require("express").Router();
 var userService = require('../../services/userService');
-var requestUtil = require('../../utils/requestUtil');
 
 var getAllUsers = function(req, res) {
 	userService.getAllUsers(function(error, users){
-		requestUtil.jsonResponse(req, res, users);
+		if (error){
+			res.status(500).json({"error": "Error fetching users."});
+		}
+		else {
+			res.status(200).json(users);
+		}
 	});
 };
 
 var getUser = function(req, res) {
-	userService.getUser(req.params.userId, function(error, user){
-		requestUtil.jsonResponse(req, res, user);
+	userService.getUser(req.params.userId, function(error, rows){
+		if (error){
+			res.status(500).json({"error": "Error fetching user."});
+		}
+		if (rows.length == 0 || error){
+	  		res.status(404).json({"error": "User with id " + req.params.userId + " not found."});
+	  	}
+	  	else {
+	  		res.status(200).json(rows[0]);
+	  	}
 	});
 };
 

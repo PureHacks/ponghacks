@@ -13,25 +13,23 @@ pongAppControllers.controller('leaderboardCtrl', ['$scope', '$http',
 pongAppControllers.controller('inputScoreCtrl', ['$scope', '$http', '$routeParams',
 	function($scope, $http, $routeParams) {
 		
-		$http.get('/api/getUsers/').success(function(data) {
+		$http.get('/api/user/list').success(function(data) {
 			console.log(data);
 			$scope.team = data;
     	});
 
 		$scope.submitScore = function() {
 			var game = {
-				winner: { id : $scope.winner.userId,
-						  score: $scope.winner.score
-						},
-				loser : { id : $scope.loser.userId,
-						  score: $scope.loser.score
-						}
+				winnerUserId: $scope.winner.userId,
+				winnerScore: $scope.winner.score,
+				loserUserId: $scope.loser.userId,
+				loserScore: $scope.loser.score,
 			};
 
 			//TODO: build service
 			$http({
 				method: "POST",
-				url:"/api/gameResults/inputScore",
+				url:"/api/game",
 				data: game,
 				headers: { 'Content-type': 'application/json'}
 			})
