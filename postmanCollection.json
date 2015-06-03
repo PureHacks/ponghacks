@@ -86,7 +86,7 @@
 		{
 			"id": "0b978025-3116-3eb5-7d47-4fc273d38c9b",
 			"headers": "Content-Type: application/json\n",
-			"url": "https://{{hipchatDomain}}/v2/user/matt.mcfadyen@nurun.com/message?auth_token={{auth_token}}",
+			"url": "https://{{hipchatDomain}}/v2/user/matt.mcfadyen@nurun.com/message?auth_token={{personal_auth_token}}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -235,7 +235,7 @@
 		{
 			"id": "85f18981-8047-ae56-903e-1e9a69db6685",
 			"headers": "Content-Type: application/json\n",
-			"url": "https://{{hipchatDomain}}/v2/user/matt.mcfadyen@nurun.com?auth_token={{auth_token}}",
+			"url": "https://{{hipchatDomain}}/v2/user/matt.mcfadyen@nurun.com?auth_token={{personal_auth_token}}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -298,7 +298,7 @@
 		{
 			"id": "bbcdef57-d50c-1500-409d-b73d7bfc60b1",
 			"headers": "Content-Type: application/json\n",
-			"url": "https://{{hipchatDomain}}/v2/user?max-results=1000&auth_token={{auth_token}}",
+			"url": "https://{{hipchatDomain}}/v2/user?max-results=1000&auth_token={{personal_auth_token}}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
