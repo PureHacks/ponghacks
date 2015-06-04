@@ -1,6 +1,6 @@
 var router = require("express").Router();
 
-var mockUsers = require("../../mockData/users.js");
+var mockUsers = require("../../../mockData/users.js");
 
 var getUsers = function(req, res) {
 	if (req.err){

@@ -1,28 +1,34 @@
-# Pong hacks :fire:
+# Pong Hacks
 
 ## Stack
 
 * MySQL
-
 * Express
-
 * Angular
-
 * Node
+
+### Tools & Libraries
+
+* [GulpJS](https://github.com/gulpjs/gulp)
+* [Socket.io](https://github.com/Automattic/socket.io)
+* [AsyncJS](https://github.com/caolan/async)
 
 ## Getting started
 
-* install dependencies
+* Install dependencies
+
 	```
 	sudo npm install
 	```
 
-* start node server
+* Start node server
+
 	```
-	node server.js
+	node server/server.js
 	```
 
-* open browser
+* Open browser
+
 	```
 	localhost:8888
 	```
@@ -31,29 +37,29 @@
 
 * Start a MAMP server with MySQL on port 8889
 
-* Open phpMyAdmin
-	```
-	http://localhost/MAMP/index.php?page=phpmyadmin&language=English
-	```
+* Open [phpMyAdmin](http://localhost/MAMP/index.php?page=phpmyadmin&language=English)
 
 * In the SQL tab paste the contents of `createDatabase.sql` and hit "Go"
 
 * Reload the navigation panel and verify PongHacks has been created
 
-* Parse the users from Razorfish hipchat server
-
-	```
-	node services/updateUsers.js
-	```
-
-* Create `key.js` in root directory with the following contents:
+* Create `key.js` in the `/server` directory with the following contents:
 
 	```
 	module.exports = {auth_token: "XXXXXXX-PersonalAPIkey"};
 	```
 
-	Your personal token can be retrieved from `https://hipchat.tor.razorfish.com/account/api`
+	Your personal token can be retrieved from [your Razorfish Hipchat account](https://hipchat.tor.razorfish.com/account/api)
 
+* Parse the users from Razorfish hipchat server and populate the MySQL DB
+
+	```
+	node services/updateUsers.js
+	```
+
+	You need a valid `/server/key.js` file for this step to work.
+
+* Verify that the `User` table was created and populated in the DB on phpMyAdmin
 
 ### Postman Setup
 

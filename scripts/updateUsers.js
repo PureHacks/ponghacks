@@ -1,8 +1,8 @@
 var request = require('request');
 var async = require("async");
 
-var key = require('../key');
-var db = require('../services/database');
+var key = require('../server/key');
+var db = require('../server/services/database');
 
 
 
