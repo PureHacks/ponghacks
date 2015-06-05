@@ -1,14 +1,15 @@
-'use strict';
+"use strict";
+
 var router = require("express").Router();
 
 router.get("/", function (req, res) {
-	if (req.err){
-		console.warn(err.message);
+	if (req.error){
+		console.warn(req.error);
 	}
 	else {
-		// public/views/public.html
-		res.status(200).render('index.html');
+		// public/views/index.html
+		res.status(200).render("index.html");
 	}
-})
+});
 
 module.exports = router;

@@ -1,9 +1,11 @@
-var db = require('./database');
+"use strict";
+
+var db = require("./database");
 var exports = module.exports = {};
 
 exports.getAppStats = function(callback) {
-	db.query("SELECT COUNT(*) as numGames, SUM(winnerScore + loserScore) as totalPoints FROM GAME", function(err, rows) {
-	  callback(err, rows);
+	db.query("SELECT COUNT(*) as numGames, SUM(winnerScore + loserScore) as totalPoints FROM GAME", function(error, rows) {
+	  callback(error, rows);
 	});
 };
 
@@ -34,8 +36,8 @@ exports.getUserStats = function(userId, callback) {
 	      WHERE loserUserId  =  " + userId + " \
 	    ) AS losingPoints";
 
-	db.query(query, function(err, rows) {
-	  callback(err, rows);
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
 	});
 };
 
@@ -77,7 +79,7 @@ exports.getUserMatchup = function(userId, opponentUserId, callback) {
 	    ) AS opponentLosingPoints \
 	";
 
-	db.query(query, function(err, rows) {
-	  callback(err, rows);
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
 	});
 };

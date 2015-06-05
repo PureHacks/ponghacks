@@ -21,10 +21,12 @@
 	sudo npm install
 	```
 
-* Start node server
+* Start node server via Gulp
+	
+	Gulp is used to build the client, start the server, and watch for file changes. The default Gulp task will do this all. Install the [Chrome Plugin for Auto Reload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
 
 	```
-	node server/server.js
+	gulp
 	```
 
 * Open browser
@@ -41,7 +43,7 @@
 
 * In the SQL tab paste the contents of `createDatabase.sql` and hit "Go"
 
-* Reload the navigation panel and verify PongHacks has been created
+* Reload the navigation panel and verify that the `PongHacks` DB has been created
 
 * Create `key.js` in the `/server` directory with the following contents:
 
@@ -54,7 +56,7 @@
 * Parse the users from Razorfish hipchat server and populate the MySQL DB
 
 	```
-	node services/updateUsers.js
+	node scripts/updateUsers.js
 	```
 
 	You need a valid `/server/key.js` file for this step to work.

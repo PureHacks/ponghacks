@@ -1,15 +1,15 @@
+"use strict";
+
 var router = require("express").Router();
 
 var getLeaderboard = function(req, res) {
-	console.log("getLeaderboard Request:", req.body);
-
-	if (req.err){
-		console.warn(err.message);
+	if (req.error){
+		console.warn(req.error);
 	}
 	else {
 		// layouts/public.html
 		res.status(200).send("No Leaders yet");
-	};
+	}
 };
 router.get("/", getLeaderboard);
 

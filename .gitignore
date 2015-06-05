@@ -19,3 +19,7 @@ tmp
 
 # hipchat auth token
 key.js
+
+
+# distributed css
+client/public/assets/css/*.css
