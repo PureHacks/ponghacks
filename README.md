@@ -21,10 +21,12 @@
 	sudo npm install
 	```
 
-* Start node server
+* Start node server via Gulp
+	
+	Gulp is used to build the client, start the server, and watch for file changes. The default Gulp task will do this all. Install the [Chrome Plugin for Auto Reload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
 
 	```
-	node server/server.js
+	gulp
 	```
 
 * Open browser
