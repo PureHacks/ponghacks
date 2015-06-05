@@ -1,11 +1,13 @@
-var db = require('./database');
+"use strict";
+
+var db = require("./database");
 var exports = module.exports = {};
 
 exports.addGame = function(game, callback) {
  	game.date = new Date();
 
-	db.insertObject("Game", game, function(err, rows) {
-	  callback(err, rows);
+	db.insertObject("Game", game, function(error, rows) {
+	  callback(error, rows);
 	});
 };
 
@@ -21,8 +23,8 @@ exports.getGame = function(gameId, callback) {
 		WHERE id = " + db.escape(gameId) + " \
 		ORDER BY date DESC LIMIT 1";
 
-	db.query(query, function(err, rows) {
-	  callback(err, rows);
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
 	});
 };
 
@@ -38,8 +40,8 @@ exports.getUserGames = function(userId, numResults, offset, callback) {
         WHERE (winnerUserId = " + db.escape(userId) + " OR loserUserId = " + db.escape(userId) + ") \
 		ORDER BY date DESC LIMIT " + offset + ", " + numResults;
 
-	db.query(query, function(err, rows) {
-	  callback(err, rows);
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
 	});
 };
 
@@ -54,8 +56,8 @@ exports.getRecent = function(numGames, callback) {
 			ON loserUserId = loser.userId \
 		ORDER BY date DESC LIMIT " + numGames;
 
-	db.query(query, function(err, rows) {
-	  callback(err, rows);
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
 	});
 };
 
@@ -72,7 +74,7 @@ exports.getVersusGames = function(userId, opponentUserId, numResults, offset, ca
         	OR (winnerUserId = " + db.escape(opponentUserId) + " AND loserUserId = " + db.escape(userId) + ")) \
 		ORDER BY date DESC LIMIT " + offset + ", " + numResults;
 
-	db.query(query, function(err, rows) {
-	  callback(err, rows);
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
 	});
 };

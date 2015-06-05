@@ -1,5 +1,7 @@
+"use strict";
+
 var router = require("express").Router();
-var statsService = require('../../services/statsService');
+var statsService = require("../../services/statsService");
 
 var getAppStats = function(req, res) {
 	statsService.getAppStats(function(error, rows){

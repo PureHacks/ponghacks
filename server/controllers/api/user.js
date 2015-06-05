@@ -1,5 +1,7 @@
+"use strict";
+
 var router = require("express").Router();
-var userService = require('../../services/userService');
+var userService = require("../../services/userService");
 
 var getAllUsers = function(req, res) {
 	userService.getAllUsers(function(error, users){
@@ -17,7 +19,7 @@ var getUser = function(req, res) {
 		if (error){
 			res.status(500).json({"error": "Error fetching user."});
 		}
-		else if (rows.length == 0){
+		else if (rows.length === 0){
 	  		res.status(404).json({"error": "User with id " + req.params.userId + " not found."});
 	  	}
 	  	else {

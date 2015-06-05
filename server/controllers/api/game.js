@@ -1,7 +1,9 @@
-module.exports = function(io){
+"use strict";
+
+module.exports = function(io) {
 
 	var router = require("express").Router();
-	var gameService = require('../../services/gameService');
+	var gameService = require("../../services/gameService");
 
 
 	var addGame = function(req, res) {
@@ -10,8 +12,10 @@ module.exports = function(io){
 				res.status(500).json({"error": "Error adding game."});
 			}
 			else {
-				gameService.getGame(result.insertId, function(error, results){
-					if (results.length > 0) io.emit('new-game', results[0]);
+				gameService.getGame(result.insertId, function(error, results) {
+					if (results.length > 0) {
+						io.emit("new-game", results[0]);
+					}
 				});
 				res.status(200).json({id: result.insertId});
 			}
@@ -19,11 +23,11 @@ module.exports = function(io){
 	};
 
 	var getGame = function(req, res) {
-		gameService.getGame(req.params.gameId, function(error, rows){
-			if (error){
+		gameService.getGame(req.params.gameId, function(error, rows) {
+			if (error) {
 				res.status(500).json({"error": "Error getting game."});
 			}
-			else if (rows.length == 0){
+			else if (rows.length === 0) {
 		  		res.status(404).json({"error": "Game with id " + req.params.gameId + " not found."});
 		  	}
 			else {
@@ -36,7 +40,7 @@ module.exports = function(io){
 		var numResults = parseInt(req.query.numResults) || 25;
 		var offset = parseInt(req.query.offset) || 0;
 
-		gameService.getUserGames(req.params.userId, numResults, offset, function(error, result){
+		gameService.getUserGames(req.params.userId, numResults, offset, function(error, result) {
 			if (error){
 				res.status(500).json({"error": "Error getting users games."});
 			}
@@ -50,7 +54,7 @@ module.exports = function(io){
 		var numGames = parseInt(req.params.numGames) || 5;
 
 		gameService.getRecent(numGames, function(error, result){
-			if (error){
+			if (error) {
 				res.status(500).json({"error": "Error getting recent games."});
 			}
 			else {
@@ -63,7 +67,7 @@ module.exports = function(io){
 		var numResults = parseInt(req.query.numResults) || 25;
 		var offset = parseInt(req.query.offset) || 0;
 
-		gameService.getVersusGames(req.params.userId, req.params.opponentUserId, numResults, offset, function(error, result){
+		gameService.getVersusGames(req.params.userId, req.params.opponentUserId, numResults, offset, function(error, result) {
 			if (error){
 				res.status(500).json({"error": "Error getting versus games."});
 			}
@@ -81,4 +85,4 @@ module.exports = function(io){
 	router.get("/recent/:numGames", getRecent);
 
 	return router;
-}
+};
