@@ -41,7 +41,7 @@
 
 * In the SQL tab paste the contents of `createDatabase.sql` and hit "Go"
 
-* Reload the navigation panel and verify PongHacks has been created
+* Reload the navigation panel and verify that the `PongHacks` DB has been created
 
 * Create `key.js` in the `/server` directory with the following contents:
 
@@ -54,7 +54,7 @@
 * Parse the users from Razorfish hipchat server and populate the MySQL DB
 
 	```
-	node services/updateUsers.js
+	node scripts/updateUsers.js
 	```
 
 	You need a valid `/server/key.js` file for this step to work.
