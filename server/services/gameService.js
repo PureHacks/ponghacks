@@ -77,7 +77,7 @@ exports.getVersusGames = function(userId, opponentUserId, numResults, offset, ca
 	db.query(query, function(error, rows) {
 	  callback(error, rows);
 	});
-}
+};
 
 exports.getTotalNumGames = function(callback) {
 	db.query("SELECT COUNT(*) as gameCount FROM Game", function(error, rows) {

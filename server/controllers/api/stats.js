@@ -51,7 +51,7 @@ var getWeeklyStandings = function(req, res) {
 
 var getLongestWinStreak = function(req, res) {
 	statsService.getLongestWinStreak(function(error, rows){
-		if (error || rows.length == 0){
+		if (error || rows.length === 0){
 			res.status(500).json({"error": "Error getting longest winning streak."});
 		}
 	  	else {
@@ -62,7 +62,7 @@ var getLongestWinStreak = function(req, res) {
 
 var getLongestLosingStreak = function(req, res) {
 	statsService.getLongestLosingStreak(function(error, rows){
-		if (error || rows.length == 0){
+		if (error || rows.length === 0){
 			res.status(500).json({"error": "Error getting longest losing streak."});
 		}
 	  	else {
@@ -73,7 +73,7 @@ var getLongestLosingStreak = function(req, res) {
 
 var getLargestScoreDifference = function(req, res) {
 	statsService.getLargestScoreDifference(function(error, rows){
-		if (error || rows.length == 0){
+		if (error || rows.length === 0){
 			res.status(500).json({"error": "Error getting largest score difference."});
 		}
 	  	else {

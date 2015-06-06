@@ -6,8 +6,12 @@ app.config(["$routeProvider",
 	function($routeProvider) {
 		$routeProvider
 			.when("/", {
-				templateUrl: "partials/inputScore.html",
-				controller: "inputScoreCtrl"
+				templateUrl: "partials/dashboard.html",
+				controller: "dashboardCtrl"
+			})
+			.when("/dashboard", {
+				templateUrl: "partials/dashboard.html",
+				controller: "dashboardCtrl"
 			})
 			.when("/leaderboard", {
 				templateUrl: "partials/leaderboard.html",

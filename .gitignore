@@ -16,9 +16,14 @@ node_modules
 
 bower_components
 tmp
+creative/
 
 # hipchat auth token
 key.js
+
+# distributed css
+client/public/assets/css/main.css
+
 
 # Android ignore files
 .gradle

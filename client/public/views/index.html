@@ -10,17 +10,34 @@
 		<script src="assets/js/app.js"></script>
 		<script src="assets/js/controllers.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/css/wmt-grid.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	</head>
 	<body>
-		<div class="wrapper">
-			<div class="content-wrapper">
-				<header>
-					<h1>Pong Hacks</h1>
-				</header>
-				<div class="view-container" ng-view>
-				</div>
-			</div>
+		<div class="top-nav">
+			<nav class="row">
+				<ul class="wgrid-12of12">
+					<li class="nav-link">
+						<a href="#/dashboard">Dashboard</a>
+					</li>
+					<li class="nav-link">
+						<a href="#/leaderboard">Matches</a>
+					</li>
+					<li class="nav-link">
+						<a href="#">Stats</a>
+					</li>
+					<li class="nav-link">
+						<a href="#">Players</a>
+					</li>
+					<li class="nav-link">
+						<a href="#/inputScore">Add Match</a>
+					</li>
+				</ul>
+			</nav>
 		</div>
+		<div class="content-wrapper">
+			<div class="view-container" ng-view>
+			</div>
+		</div> <!-- content-wrapper -->
 	</body>
 </html>

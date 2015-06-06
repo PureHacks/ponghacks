@@ -1,0 +1,93 @@
+.dashboard
+	width 100%
+	margin 0 auto
+	
+	.most-recent-game
+		margin-top 20px
+		background url("/assets/img/dashboard-bg.png")  no-repeat
+		background-size cover
+		color $white
+		section
+			height 200px
+			padding 30px 200px
+			
+			img 
+				border solid 5px $white
+				width 125px
+				height 125px
+				border-radius 50%
+			
+			.winner, .time-score, .loser
+				float left
+				text-align center
+			
+			.winner, .loser
+				width: 30%
+			
+			.time-score
+				width: 40%
+				padding 50px 10px
+	.dashboard-breakdown
+		section
+			border 1px solid $white
+			background-color $section-bg-white
+			
+			div
+				padding 10px
+			
+			.section-header
+				background-color $header-bg-grey
+				h3 
+					font-size 14px
+
+		.left-column, .right-column
+			margin-top 20px
+			
+		.elo-ranking, .recent-games
+			height 265px
+		
+		.weekly-standings
+			height 190px
+			
+		.random-stats
+			height 475px
+
+		.elo-ranking
+			ol
+				counter-reset:li
+				padding 0 15px
+				li
+					position relative
+					padding 13px
+					list-style none
+					border-bottom 1px solid $header-bg-grey
+					&:before
+						position absolute
+						top 15px
+						left 20px
+						width 20px
+						content counter(li)
+						counter-increment:li
+					&:last-child
+						border-bottom none
+						
+					p
+						margin-left -40px
+						text-align center
+					
+		.recent-games
+			ul li
+				.recent-game
+					padding 0
+					.game-info, .game-score
+						float left
+						padding 5px
+					
+					.game-info
+						width 80%
+					.game-score
+						width 20%
+				
+		.weekly-standings
+			margin-top 20px
+		

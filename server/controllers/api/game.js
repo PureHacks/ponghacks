@@ -79,7 +79,7 @@ module.exports = function(io) {
 
 	var getTotalNumGames = function(req, res) {
 		gameService.getTotalNumGames(function(error, rows) {
-			if (error || rows.length == 0){
+			if (error || rows.length === 0){
 				res.status(500).json({"error": "Error getting game count."});
 			}
 			else {
