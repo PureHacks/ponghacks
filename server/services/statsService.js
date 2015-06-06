@@ -83,3 +83,35 @@ exports.getUserMatchup = function(userId, opponentUserId, callback) {
 	  callback(error, rows);
 	});
 };
+
+
+exports.getWeeklyStandings = function(numResults, callback) {
+	var query = " \
+ 		SELECT winner.userId, winner.name, winCount, loseCount, winCount/(winCount + loseCount) * 100 as winRate FROM \
+		( \
+			SELECT name, userId, COUNT(*) winCount \
+			FROM Game \
+			INNER JOIN User \
+				ON winnerUserId = userId \
+			WHERE YEARWEEK(date) = YEARWEEK(NOW()) \
+			GROUP BY winnerUserId \
+		) as winner \
+		\
+		INNER JOIN \
+		( \
+			SELECT name, userId, COUNT(*) loseCount \
+			FROM Game \
+			INNER JOIN User \
+				ON loserUserId = userId \
+			WHERE YEARWEEK(date) = YEARWEEK(NOW()) \
+			GROUP BY loserUserId \
+		) as loser \
+		USING(userId) \
+		ORDER BY winRate DESC \
+		\
+		LIMIT " + db.escape(numResults);
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};

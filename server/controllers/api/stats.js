@@ -36,8 +36,22 @@ var getUserMatchup = function(req, res) {
 	});
 };
 
+var getWeeklyStandings = function(req, res) {
+	var numResults = parseInt(req.query.numResults) || 5;
+
+	statsService.getWeeklyStandings(numResults, function(error, rows){
+		if (error){
+			res.status(500).json({"error": "Error fetching weekly standings."});
+		}
+	  	else {
+	  		res.status(200).json(rows);
+	  	}
+	});
+};
+
 router.get("/app", getAppStats);
 router.get("/user/:userId", getUserStats);
 router.get("/user/:userId/matchup/:opponentUserId", getUserMatchup);
+router.get("/standings/weekly", getWeeklyStandings);
 
 module.exports = router;
