@@ -36,8 +36,58 @@ var getUserMatchup = function(req, res) {
 	});
 };
 
+var getWeeklyStandings = function(req, res) {
+	var numResults = parseInt(req.query.numResults) || 5;
+
+	statsService.getWeeklyStandings(numResults, function(error, rows){
+		if (error){
+			res.status(500).json({"error": "Error fetching weekly standings."});
+		}
+	  	else {
+	  		res.status(200).json(rows);
+	  	}
+	});
+};
+
+var getLongestWinStreak = function(req, res) {
+	statsService.getLongestWinStreak(function(error, rows){
+		if (error || rows.length === 0){
+			res.status(500).json({"error": "Error getting longest winning streak."});
+		}
+	  	else {
+	  		res.status(200).json(rows[0]);
+	  	}
+	});
+};
+
+var getLongestLosingStreak = function(req, res) {
+	statsService.getLongestLosingStreak(function(error, rows){
+		if (error || rows.length === 0){
+			res.status(500).json({"error": "Error getting longest losing streak."});
+		}
+	  	else {
+	  		res.status(200).json(rows[0]);
+	  	}
+	});
+};
+
+var getLargestScoreDifference = function(req, res) {
+	statsService.getLargestScoreDifference(function(error, rows){
+		if (error || rows.length === 0){
+			res.status(500).json({"error": "Error getting largest score difference."});
+		}
+	  	else {
+	  		res.status(200).json(rows[0]);
+	  	}
+	});
+};
+
 router.get("/app", getAppStats);
 router.get("/user/:userId", getUserStats);
 router.get("/user/:userId/matchup/:opponentUserId", getUserMatchup);
+router.get("/standings/weekly", getWeeklyStandings);
+router.get("/streak/wins/top", getLongestWinStreak);
+router.get("/streak/losses/top", getLongestLosingStreak);
+router.get("/largest-score-difference", getLargestScoreDifference);
 
 module.exports = router;

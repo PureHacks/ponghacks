@@ -83,3 +83,95 @@ exports.getUserMatchup = function(userId, opponentUserId, callback) {
 	  callback(error, rows);
 	});
 };
+
+
+exports.getWeeklyStandings = function(numResults, callback) {
+	var query = " \
+ 		SELECT winner.userId, winner.name, winCount, loseCount, winCount/(winCount + loseCount) * 100 as winRate FROM \
+		( \
+			SELECT name, userId, COUNT(*) winCount \
+			FROM Game \
+			INNER JOIN User \
+				ON winnerUserId = userId \
+			WHERE YEARWEEK(date) = YEARWEEK(NOW()) \
+			GROUP BY winnerUserId \
+		) as winner \
+		\
+		INNER JOIN \
+		( \
+			SELECT name, userId, COUNT(*) loseCount \
+			FROM Game \
+			INNER JOIN User \
+				ON loserUserId = userId \
+			WHERE YEARWEEK(date) = YEARWEEK(NOW()) \
+			GROUP BY loserUserId \
+		) as loser \
+		USING(userId) \
+		ORDER BY winRate DESC \
+		\
+		LIMIT " + db.escape(numResults);
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};
+
+exports.getLongestWinStreak = function(callback) {
+	var query = " \
+ 		SELECT userId, name, streak FROM  \
+		( \
+			SELECT winnerUserId as userId, COUNT(*) as streak \
+			FROM Game as a \
+			WHERE date > (SELECT MAX(date) \
+					      FROM GAME \
+						  WHERE loserUserId = a.winnerUserId \
+					      ) \
+			GROUP BY winnerUserId \
+			ORDER BY streak DESC \
+			LIMIT 1 \
+		) as streaks \
+		INNER JOIN USER \
+		USING(userId)";
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};
+
+exports.getLongestLosingStreak = function(callback) {
+	var query = " \
+ 		SELECT userId, name, streak FROM  \
+		( \
+			SELECT loserUserId as userId, COUNT(*) as streak \
+			FROM Game as a \
+			WHERE date > (SELECT MAX(date) \
+					      FROM GAME \
+						  WHERE winnerUserId = a.loserUserId \
+					      ) \
+			GROUP BY loserUserId \
+			ORDER BY streak DESC \
+			LIMIT 1 \
+		) as streaks \
+		INNER JOIN USER \
+		USING(userId)";
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};
+
+exports.getLargestScoreDifference = function(callback) {
+	var query = " \
+ 		SELECT winnerUserId, winnerUser.name as winnerName, winnerScore, loserUserId, loserUser.name as loserName, loserScore \
+		FROM GAME \
+		INNER JOIN User winnerUser \
+			ON winnerUserId = winnerUser.userId \
+		INNER JOIN User loserUser \
+			ON loserUserId = loserUser.userId \
+		ORDER BY winnerScore - loserScore DESC \
+		LIMIT 1";
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};

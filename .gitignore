@@ -16,16 +16,13 @@ node_modules
 
 bower_components
 tmp
+creative/
 
 # hipchat auth token
 key.js
 
-
 # distributed css
 client/public/assets/css/*.css
-
-
-creative/
 
 
 # Android ignore files
