@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("pongApp", ["ngRoute", "pongAppControllers"]);
+var app = angular.module("pongApp", ["ngRoute", "pongAppControllers", "filters"]);
 
 app.config(["$routeProvider",
 	function($routeProvider) {
@@ -46,6 +46,18 @@ app.config(["$routeProvider",
 					}
 				});
 			});
+		}
+	};
+});
+
+angular.module("filters", []).filter("shortFullName", function() {
+	return function(fullName) {
+		console.log(fullName);
+		if (fullName) {
+			var name = fullName.split(" ")
+			return name[0] + " " + name[1][0] + ".";
+		} else {
+			return "";
 		}
 	};
 });

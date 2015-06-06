@@ -3,7 +3,7 @@
 		<section class="clearfix">
 			<div class="winner">
 				<img src="{{mostRecentGame.winnerAvatarUrl}}">
-				<h4>{{mostRecentGame.winnerName}}</h4>
+				<h4>{{mostRecentGame.winnerName | shortFullName}}</h4>
 			</div>
 			<div class="time-score">
 				<p>{{mostRecentGame.date | date:'medium'}}</p>
@@ -11,7 +11,7 @@
 			</div>			
 			<div class="loser">
 				<img src="{{mostRecentGame.loserAvatarUrl}}">
-				<h4>{{mostRecentGame.loserName}}</h4>
+				<h4>{{mostRecentGame.loserName | shortFullName}}</h4>
 			</div>
 		</section>
 	</div>
@@ -49,7 +49,7 @@
 							<div class="recent-game clearfix">
 								<div class="game-info">
 									<p>{{game.date | date:'medium'}}</p>
-									<p><span class="winner-name">{{game.winnerName}}</span> won against <span class="loser-name">{{game.loserName}}</span></p>
+									<p><span class="winner-name">{{game.winnerName | shortFullName}}</span> won against <span class="loser-name">{{game.loserName | shortFullName}}</span></p>
 								</div>
 								<div class="game-score">
 									<span>{{game.winnerScore}} - {{game.loserScore}}</span>
@@ -70,7 +70,7 @@
 							<th class="win-rate">Win Rate</th>
 						</thead>
 						<tr ng-repeat="playerStats in weeklyStandings">
-							<td class="name">{{playerStats.name}}</td>
+							<td class="name">{{playerStats.name | shortFullName}}</td>
 							<td class="games">12</td>
 							<td class="wins">{{playerStats.winCount}}</td>
 							<td class="losses">{{playerStats.loseCount}}</td>
@@ -87,16 +87,16 @@
 				</div>
 				<div class="stat win-streak">
 					<h4>Longest winning streak</h4>
-					<p><span>{{winStreak.streak}}</span> {{winStreak.name}}</p>
+					<p><span>{{winStreak.streak}}</span> {{winStreak.name | shortFullName}}</p>
 				</div>
 				<div class="stat losing-streak">
 					<h4>Most consecutive losses</h4>
-					<p><span>{{losingStreak.streak}}</span> {{losingStreak.name}}</p>
+					<p><span>{{losingStreak.streak}}</span> {{losingStreak.name | shortFullName}}</p>
 				</div>
 				<div class="stat sweeping-score">
 					<h4>Largest sweeping score</h4>
 					<p class="score"><span class="winner-score">{{sweepingScore.winnerScore}}</span> - {{sweepingScore.loserScore}}</p>
-					<p class="players"><span class="winner-name">{{sweepingScore.winnerName}}</span> vs. <span class="loser-score">{{sweepingScore.loserName}}</span></p>
+					<p class="players"><span class="winner-name">{{sweepingScore.winnerName | shortFullName}}</span> vs. <span class="loser-score">{{sweepingScore.loserName | shortFullName}}</span></p>
 				</div>
 				<div class="stat total-games-played">
 					<h4>Total games played</h4>

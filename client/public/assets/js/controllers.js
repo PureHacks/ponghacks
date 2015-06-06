@@ -24,13 +24,12 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http",
     		});
     		$http.get("/api/stats/largest-score-difference").success(function(score) {
     			$scope.sweepingScore = score;
-    			console.log(score);
     		});
     		$http.get("/api/game/total").success(function(total) {
     			$scope.totalGames = total;
-    			console.log(total);
     		});
 		};
+		
 		$scope.mostRecentGame = [{}];
 		$scope.recentGames = [{},{},{},{}];
 		$scope.eloRanking = [{},{},{},{},{}];
