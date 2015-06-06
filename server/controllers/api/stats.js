@@ -71,11 +71,23 @@ var getLongestLosingStreak = function(req, res) {
 	});
 };
 
+var getLargestScoreDifference = function(req, res) {
+	statsService.getLargestScoreDifference(function(error, rows){
+		if (error || rows.length == 0){
+			res.status(500).json({"error": "Error getting largest score difference."});
+		}
+	  	else {
+	  		res.status(200).json(rows[0]);
+	  	}
+	});
+};
+
 router.get("/app", getAppStats);
 router.get("/user/:userId", getUserStats);
 router.get("/user/:userId/matchup/:opponentUserId", getUserMatchup);
 router.get("/standings/weekly", getWeeklyStandings);
 router.get("/streak/wins/top", getLongestWinStreak);
 router.get("/streak/losses/top", getLongestLosingStreak);
+router.get("/largest-score-difference", getLargestScoreDifference);
 
 module.exports = router;

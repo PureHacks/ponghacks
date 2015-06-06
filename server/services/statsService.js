@@ -159,3 +159,19 @@ exports.getLongestLosingStreak = function(callback) {
 	  callback(error, rows);
 	});
 };
+
+exports.getLargestScoreDifference = function(callback) {
+	var query = " \
+ 		SELECT winnerUserId, winnerUser.name as winnerName, winnerScore, loserUserId, loserUser.name as loserName, loserScore \
+		FROM GAME \
+		INNER JOIN User winnerUser \
+			ON winnerUserId = winnerUser.userId \
+		INNER JOIN User loserUser \
+			ON loserUserId = loserUser.userId \
+		ORDER BY winnerScore - loserScore DESC \
+		LIMIT 1";
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};
