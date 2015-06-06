@@ -54,7 +54,8 @@
 				"bf808a32-422b-567f-f6c6-44dfd5b6ab26",
 				"7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c",
 				"82b73897-bed8-2061-a42f-6f1a0657a1f3",
-				"a88f9d45-a005-4b6a-8f92-b17b0c59d512"
+				"a88f9d45-a005-4b6a-8f92-b17b0c59d512",
+				"d9fa0c41-45e6-f033-3b24-838d24dbdc4b"
 			],
 			"collection_name": "PongHacks",
 			"collection_owner": 0,
@@ -472,6 +473,28 @@
 			"responses": [],
 			"synced": false,
 			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1"
+		},
+		{
+			"id": "d9fa0c41-45e6-f033-3b24-838d24dbdc4b",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://{{server}}/api/stats/largest-score-difference",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get Largest Score Difference",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1433620272494,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
+			"synced": false
 		},
 		{
 			"id": "ec14f267-9334-bb08-b5ef-ba2692619ee4",
