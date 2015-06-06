@@ -115,3 +115,47 @@ exports.getWeeklyStandings = function(numResults, callback) {
 	  callback(error, rows);
 	});
 };
+
+exports.getLongestWinStreak = function(callback) {
+	var query = " \
+ 		SELECT userId, name, streak FROM  \
+		( \
+			SELECT winnerUserId as userId, COUNT(*) as streak \
+			FROM Game as a \
+			WHERE date > (SELECT MAX(date) \
+					      FROM GAME \
+						  WHERE loserUserId = a.winnerUserId \
+					      ) \
+			GROUP BY winnerUserId \
+			ORDER BY streak DESC \
+			LIMIT 1 \
+		) as streaks \
+		INNER JOIN USER \
+		USING(userId)";
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};
+
+exports.getLongestLosingStreak = function(callback) {
+	var query = " \
+ 		SELECT userId, name, streak FROM  \
+		( \
+			SELECT loserUserId as userId, COUNT(*) as streak \
+			FROM Game as a \
+			WHERE date > (SELECT MAX(date) \
+					      FROM GAME \
+						  WHERE winnerUserId = a.loserUserId \
+					      ) \
+			GROUP BY loserUserId \
+			ORDER BY streak DESC \
+			LIMIT 1 \
+		) as streaks \
+		INNER JOIN USER \
+		USING(userId)";
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};

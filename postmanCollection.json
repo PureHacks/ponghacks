@@ -52,7 +52,9 @@
 				"10bfa9e2-cfb7-795e-1389-fc4275bbfdc0",
 				"97d6c8f6-c779-0347-0963-1b71b3239296",
 				"bf808a32-422b-567f-f6c6-44dfd5b6ab26",
-				"7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c"
+				"7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c",
+				"82b73897-bed8-2061-a42f-6f1a0657a1f3",
+				"a88f9d45-a005-4b6a-8f92-b17b0c59d512"
 			],
 			"collection_name": "PongHacks",
 			"collection_owner": 0,
@@ -281,6 +283,28 @@
 			"collectionRequestId": "7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c"
 		},
 		{
+			"id": "82b73897-bed8-2061-a42f-6f1a0657a1f3",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://{{server}}/api/stats/streak/losses/top",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get Longest Losing Streak",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1433619370018,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
+			"synced": false
+		},
+		{
 			"id": "85f18981-8047-ae56-903e-1e9a69db6685",
 			"headers": "Content-Type: application/json\n",
 			"url": "https://{{hipchatDomain}}/v2/user/matt.mcfadyen@nurun.com?auth_token={{auth_token}}",
@@ -341,6 +365,28 @@
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "a88f9d45-a005-4b6a-8f92-b17b0c59d512",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://{{server}}/api/stats/streak/wins/top",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get Longest Winning Streak",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1433619381593,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
 			"synced": false
 		},
 		{

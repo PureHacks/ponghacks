@@ -49,9 +49,33 @@ var getWeeklyStandings = function(req, res) {
 	});
 };
 
+var getLongestWinStreak = function(req, res) {
+	statsService.getLongestWinStreak(function(error, rows){
+		if (error || rows.length == 0){
+			res.status(500).json({"error": "Error getting longest winning streak."});
+		}
+	  	else {
+	  		res.status(200).json(rows[0]);
+	  	}
+	});
+};
+
+var getLongestLosingStreak = function(req, res) {
+	statsService.getLongestLosingStreak(function(error, rows){
+		if (error || rows.length == 0){
+			res.status(500).json({"error": "Error getting longest losing streak."});
+		}
+	  	else {
+	  		res.status(200).json(rows[0]);
+	  	}
+	});
+};
+
 router.get("/app", getAppStats);
 router.get("/user/:userId", getUserStats);
 router.get("/user/:userId/matchup/:opponentUserId", getUserMatchup);
 router.get("/standings/weekly", getWeeklyStandings);
+router.get("/streak/wins/top", getLongestWinStreak);
+router.get("/streak/losses/top", getLongestLosingStreak);
 
 module.exports = router;
