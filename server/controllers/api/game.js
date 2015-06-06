@@ -77,8 +77,20 @@ module.exports = function(io) {
 		});
 	};
 
+	var getTotalNumGames = function(req, res) {
+		gameService.getTotalNumGames(function(error, rows) {
+			if (error || rows.length == 0){
+				res.status(500).json({"error": "Error getting game count."});
+			}
+			else {
+				res.status(200).json(rows[0]);
+			}
+		});
+	};
+
 
 	router.post("/", addGame);
+	router.get("/total", getTotalNumGames);
 	router.get("/:gameId", getGame);
 	router.get("/:userId/versus/:opponentUserId", getVersusGames);
 	router.get("/user/:userId", getUserGames);
