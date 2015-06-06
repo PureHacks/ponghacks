@@ -36,10 +36,6 @@ public class ScoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.player_entry, container, false);
 
-        ImageButton imageButton = (ImageButton) v.findViewById(R.id.imageButton);
-
-        imageButton.setImageResource(R.drawable.dickbutt);
-
         final EditText editText = (EditText) v.findViewById(R.id.editText2);
         Button subButton = (Button) v.findViewById(R.id.button2);
         Button addButton = (Button) v.findViewById(R.id.button3);
@@ -47,6 +43,7 @@ public class ScoreFragment extends Fragment {
         InputFilterMinMax inputFilterMinMax = new InputFilterMinMax("0","99");
 
         editText.setFilters(new InputFilter[]{inputFilterMinMax});
+        editText.setText(String.valueOf(defaultScore));
 
         subButton.setOnClickListener(new View.OnClickListener() {
             @Override
