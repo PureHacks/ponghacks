@@ -162,6 +162,7 @@ exports.getTopRankings = function(numResults, callback) {
 	var query = " \
  		SELECT userId, name \
 		FROM User \
+		WHERE userId IN (SELECT userId from activeUsers) \
 		ORDER BY eloRanking DESC \
 		LIMIT " + numResults;
 
