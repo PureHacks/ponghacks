@@ -87,28 +87,15 @@ exports.getUserMatchup = function(userId, opponentUserId, callback) {
 
 exports.getWeeklyStandings = function(numResults, callback) {
 	var query = " \
- 		SELECT winner.userId, winner.name, winCount, loseCount, winCount/(winCount + loseCount) * 100 as winRate FROM \
+ 		SELECT userId, name, wins, losses, wins + losses as gameCount, wins/(wins + losses) * 100 as winRate FROM \
 		( \
-			SELECT name, userId, COUNT(*) winCount \
-			FROM Game \
-			INNER JOIN User \
-				ON winnerUserId = userId \
-			WHERE YEARWEEK(date) = YEARWEEK(NOW()) \
-			GROUP BY winnerUserId \
-		) as winner \
-		\
-		INNER JOIN \
-		( \
-			SELECT name, userId, COUNT(*) loseCount \
-			FROM Game \
-			INNER JOIN User \
-				ON loserUserId = userId \
-			WHERE YEARWEEK(date) = YEARWEEK(NOW()) \
-			GROUP BY loserUserId \
-		) as loser \
-		USING(userId) \
+			SELECT name, userId, \
+				(SELECT COUNT(*) FROM Game WHERE userId = winnerUserId AND YEARWEEK(date) = YEARWEEK(NOW())) as wins, \
+				(SELECT COUNT(*) FROM Game WHERE userId = loserUserId AND YEARWEEK(date) = YEARWEEK(NOW())) as losses  \
+			FROM USER  \
+			GROUP BY userId \
+		) as standings WHERE (wins != 0 OR losses != 0) \
 		ORDER BY winRate DESC \
-		\
 		LIMIT " + db.escape(numResults);
 
 	db.query(query, function(error, rows) {
@@ -122,7 +109,7 @@ exports.getLongestWinStreak = function(callback) {
 		( \
 			SELECT winnerUserId as userId, COUNT(*) as streak \
 			FROM Game as a \
-			WHERE date > (SELECT MAX(date) \
+			WHERE date > (SELECT IFNULL(MAX(date), 0) \
 					      FROM GAME \
 						  WHERE loserUserId = a.winnerUserId \
 					      ) \
@@ -144,7 +131,7 @@ exports.getLongestLosingStreak = function(callback) {
 		( \
 			SELECT loserUserId as userId, COUNT(*) as streak \
 			FROM Game as a \
-			WHERE date > (SELECT MAX(date) \
+			WHERE date > (SELECT IFNULL(MAX(date), 0) \
 					      FROM GAME \
 						  WHERE winnerUserId = a.loserUserId \
 					      ) \
