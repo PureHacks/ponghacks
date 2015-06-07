@@ -20,6 +20,12 @@
 	```
 	sudo npm install
 	```
+	
+* Install Gulp globally
+	
+	```
+	sudo npm install gulp -g
+	```
 
 * Start node server via Gulp
 	
