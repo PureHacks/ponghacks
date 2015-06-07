@@ -1,5 +1,5 @@
 <div class="profile row clearfix" ng-init="init()">
-	<h2>{{user.name}}</h2>
+	<h2>{{stats.name}}</h2>
 	<div class="game-history wgrid-6of12">
 		<section>
 			<div class="section-header">
@@ -26,16 +26,16 @@
 				<h3>Player Stats</h3>
 			</div>
 			<div class="stat total-games-played">
-				<h4><span class="total-games">{{stats.totGames}}</span> Total games played</h4>
+				<h4><span class="total-games">{{stats.gameCount}}</span> Total games played</h4>
 			</div>
 			<div class="stat win-streak">
-				<h4>Longest winning streak: <span>{{stats.streak}}</span></h4>
+				<h4>Longest winning streak: <span>{{stats.longestWinningStreak}}</span></h4>
 			</div>
 			<div class="stat tot-win">
 				<h4><span>{{stats.wins}}</span> Wins</h4>
 			</div>
 			<div class="stat losing-streak">
-				<h4>Most consecutive losses: <span>{{stats.streak}}</span></h4>
+				<h4>Most consecutive losses: <span>{{stats.longestLosingStreak}}</span></h4>
 			</div>
 			<div class="stat tot-loss">
 				<h4><span>{{stats.losses}}</span> Losses</h4>

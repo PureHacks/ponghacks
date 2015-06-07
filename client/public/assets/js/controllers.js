@@ -87,19 +87,13 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
 pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams", 
 	function($scope, $http, $routeParams) {
 		$scope.user = {};
+		$scope.stats = {};
 		$scope.gameHistory = {};
 		$scope.init = function() {
 			if ($routeParams.id) {
-				$http.get("/api/user/" + $routeParams.id)
-					.success(function(user){
-						$scope.user = user;
-					})
-					.error(function(data, status, headers, config) {
-						console.error(data.error);
-					});
-
 				$http.get("/api/game/user/" + $routeParams.id)
 					.success(function(gameHistory){
+						
 						$scope.gameHistory = gameHistory;
 					})
 					.error(function(data, status, headers, config) {
@@ -108,16 +102,14 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 
 				$http.get("/api/stats/user/" + $routeParams.id)
 					.success(function(stats){
+						console.log("stats:",stats);
 						$scope.stats = stats;
-						$scope.stats.totGames = stats.wins + stats.losses;
 					})
 					.error(function(data, status, headers, config) {
 						console.error(data.error);
 					});
 			}
 		};
-
-		$scope.gameHistory = [{}];
 	}
 ]);
 
