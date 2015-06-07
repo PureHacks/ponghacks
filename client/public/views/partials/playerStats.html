@@ -19,7 +19,7 @@
 				<th class="win-rate">Compare</th>
 			</thead>
 			<tr ng-repeat="player in allUserStats">
-				<td class="name"><a href="#/api/user/{{player.userId}}"><image src="http://placesheen.com/55/55"/><span>{{player.name | shortFullName}}</span></a></td>
+				<td class="name"><a href="#/api/user/{{player.userId}}"><image src="{{player.avatarUrl}}"/><span>{{player.name | shortFullName}}</span></a></td>
 				<td class="games">{{player.gameCount}}</td>
 				<td class="wins">{{player.wins}}</td>
 				<td class="losses">{{player.losses}}</td>
