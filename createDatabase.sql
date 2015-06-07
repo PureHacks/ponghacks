@@ -77,7 +77,7 @@ BEGIN
 
     DECLARE maxStreak INT DEFAULT 0;
     DECLARE b, streakCounter, winnerId INT;
-    DECLARE curWinnerIds CURSOR FOR SELECT winnerUserID FROM Game WHERE winnerUserId = 70 or loserUserId = 70 ORDER BY date ASC;
+    DECLARE curWinnerIds CURSOR FOR SELECT winnerUserID FROM Game WHERE winnerUserId = userId or loserUserId = userId ORDER BY date ASC;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
     OPEN curWinnerIds;
     
@@ -116,7 +116,7 @@ BEGIN
 
     DECLARE maxStreak INT DEFAULT 0;
     DECLARE b, streakCounter, loserId INT;
-    DECLARE curLoserIds CURSOR FOR SELECT loserUserId FROM Game WHERE winnerUserId = 70 or loserUserId = 70 ORDER BY date ASC;
+    DECLARE curLoserIds CURSOR FOR SELECT loserUserId FROM Game WHERE winnerUserId = userId or loserUserId = userId ORDER BY date ASC;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
     OPEN curLoserIds;
     
