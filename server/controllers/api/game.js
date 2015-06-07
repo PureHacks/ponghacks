@@ -54,10 +54,10 @@ module.exports = function(io) {
 		});
 	};
 
-	var getRecent = function(req, res) {
+	var getGames = function(req, res) {
 		var numGames = parseInt(req.params.numGames) || 5;
 
-		gameService.getRecent(numGames, function(error, result){
+		gameService.getGames(numGames, function(error, result){
 			if (error) {
 				res.status(500).json({"error": "Error getting recent games."});
 			}
@@ -98,7 +98,7 @@ module.exports = function(io) {
 	router.get("/:gameId", getGame);
 	router.get("/:userId/versus/:opponentUserId", getVersusGames);
 	router.get("/user/:userId", getUserGames);
-	router.get("/recent/:numGames", getRecent);
+	router.get("/history/:numGames", getGames);
 
 	return router;
 };
