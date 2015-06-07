@@ -13,7 +13,7 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http",
 				$scope.mostRecentGame = games.shift();
 				$scope.recentGames = games;
     		});
-    		$http.get("/api/stats/standings/weekly").success(function(standing) {
+    		$http.get("/api/stats/standings/weekly?numResults=4").success(function(standing) {
 				$scope.weeklyStandings = standing;
     		});
     		$http.get("/api/stats/streak/wins/top").success(function(player) {

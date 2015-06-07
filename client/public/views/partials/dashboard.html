@@ -71,9 +71,9 @@
 						</thead>
 						<tr ng-repeat="playerStats in weeklyStandings">
 							<td class="name">{{playerStats.name | shortFullName}}</td>
-							<td class="games">12</td>
-							<td class="wins">{{playerStats.winCount}}</td>
-							<td class="losses">{{playerStats.loseCount}}</td>
+							<td class="games">{{playerStats.gameCount}}</td>
+							<td class="wins">{{playerStats.wins}}</td>
+							<td class="losses">{{playerStats.losses}}</td>
 							<td class="win-rate">{{playerStats.winRate | number : 1}}</td>
 						</tr>
 					</table>

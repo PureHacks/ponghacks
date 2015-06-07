@@ -74,8 +74,8 @@ angular.module("filters", [])
 					dateMonth = date.getMonth(),
 					time = date.toLocaleTimeString().split(":");
 					time = time[0] + ":" + time[1] + time[2].substr(time[2].length-2, 2).toLowerCase();
-					console.log(day, dateDay);
-				if (day == dateDay && month == dateMonth) {
+
+				if (day === dateDay && month === dateMonth) {
 					return "Today " + time;
 				} else if (day - dateDay === 1) {
 					return "Yesterday " + time;
@@ -93,4 +93,4 @@ angular.module("filters", [])
 			}
 
 		}
-	})
+	});
