@@ -1,0 +1,45 @@
+<div class="profile row clearfix" ng-init="init()">
+	<h2>{{user.name}}</h2>
+	<div class="game-history wgrid-6of12">
+		<section>
+			<div class="section-header">
+				<h3>Game History</h3>
+			</div>
+			<ul>
+				<li ng-repeat="game in gameHistory">
+					<div class="recent-game clearfix">
+						<div class="game-info">
+							<p>{{game.date | smartDate}}</p>
+							<p><span class="winner-name">{{game.winnerName | shortFullName}}</span> won against <span class="loser-name">{{game.loserName | shortFullName}}</span></p>
+						</div>
+						<div class="game-score">
+							<span>{{game.winnerScore}} - {{game.loserScore}}</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<div class="player-stats wgrid-6of12">
+		<section>
+			<div class="section-header">
+				<h3>Player Stats</h3>
+			</div>
+			<div class="stat total-games-played">
+				<h4><span class="total-games">{{stats.totGames}}</span> Total games played</h4>
+			</div>
+			<div class="stat win-streak">
+				<h4>Longest winning streak: <span>{{stats.streak}}</span></h4>
+			</div>
+			<div class="stat tot-win">
+				<h4><span>{{stats.wins}}</span> Wins</h4>
+			</div>
+			<div class="stat losing-streak">
+				<h4>Most consecutive losses: <span>{{stats.streak}}</span></h4>
+			</div>
+			<div class="stat tot-loss">
+				<h4><span>{{stats.losses}}</span> Losses</h4>
+			</div>
+		</section>
+	</div>
+</div>

@@ -3,7 +3,7 @@
 		<section class="clearfix">
 			<div class="winner">
 				<img src="{{mostRecentGame.winnerAvatarUrl}}">
-				<h4>{{mostRecentGame.winnerName | shortFullName}}</h4>
+				<h4><a href="#/api/user/{{mostRecentGame.winnerUserId}}">{{mostRecentGame.winnerName | shortFullName}}</a></h4>
 			</div>
 			<div class="time-score">
 				<p>{{mostRecentGame.date | smartDate}}</p>

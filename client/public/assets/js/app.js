@@ -9,6 +9,10 @@ app.config(["$routeProvider",
 				templateUrl: "partials/dashboard.html",
 				controller: "dashboardCtrl"
 			})
+			.when("/api/user/:id", {
+				templateUrl: "partials/profile.html",
+				controller: "profileCtrl"
+			})
 			.when("/dashboard", {
 				templateUrl: "partials/dashboard.html",
 				controller: "dashboardCtrl"
