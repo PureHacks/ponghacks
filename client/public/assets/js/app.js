@@ -17,7 +17,7 @@ app.config(["$routeProvider",
 				templateUrl: "partials/dashboard.html",
 				controller: "dashboardCtrl"
 			})
-			.when("/inputScore", {
+			.when("/input-score", {
 				templateUrl: "partials/inputScore.html",
 				controller: "inputScoreCtrl"
 			})
