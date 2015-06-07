@@ -1,0 +1,33 @@
+.game-history
+
+	margin 0 auto
+	section
+		border 1px solid $white
+		background-color $section-bg-white
+		
+		div
+			padding 10px
+		
+		.section-header
+			background-color $header-bg-grey
+			h3 
+				font-size 14px
+	
+		ul li
+			border-bottom 1px solid $header-bg-grey
+			.recent-game
+				height inherit
+				.game-info, .game-score
+					float left
+					padding 0
+				.game-info
+					width 80%
+					.winner-name
+						color $accent-red
+					.loser-name
+						color $accent-dark-grey
+				.game-score
+					width 20%
+					span
+						font-size 22px
+						color $accent-dark-grey

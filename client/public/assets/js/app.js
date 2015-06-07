@@ -21,6 +21,10 @@ app.config(["$routeProvider",
 				templateUrl: "partials/playerStats.html",
 				controller: "playerStatsCtrl"
 			})
+			.when("/game-history", {
+				templateUrl: "partials/gameHistory.html",
+				controller: "gameHistoryCtrl"
+			})
 			.when("/input-score", {
 				templateUrl: "partials/inputScore.html",
 				controller: "inputScoreCtrl"

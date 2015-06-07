@@ -146,16 +146,13 @@ pongAppControllers.controller("gameHistoryCtrl", ["$scope", "$http",
 		$scope.gameHistory = {};
 
 		$scope.init = function() {
-			console.log("TODO: add all player stats route");
-			// $http.get("/api/history/9999/")
-			// 	.success(function(stats){
-			// 		console.log(stats);
-			// 		$scope.stats = stats;
-			// 		$scope.stats.totGames = stats.wins + stats.losses;
-			// 	})
-			// 	.error(function(data, status, headers, config) {
-			// 		console.error(data.error);
-			// 	});
+			$http.get("/api/game/history/99")
+				.success(function(gameHist) {
+					$scope.gameHistory = gameHist;
+	    		})
+				.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
 		};
 	}
 ]);
