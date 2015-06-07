@@ -16,7 +16,7 @@ require "colors"
 # rename    = require "gulp-rename"
 # uglify    = require "gulp-uglify"
 # filter    = require "gulp-filter"
-# minifyCSS = require "gulp-minify-css"
+minifyCSS = require "gulp-minify-css"
 
 
 jsFiles = ["./client/**/*.js", "./server/**/*.js", "./scripts/updateUsers.js"]
@@ -25,6 +25,8 @@ stylusMain = ["./client/stylus/main.styl"]
 
 # jsDist = "./client/public/assets/js/"
 cssDist = "./client/public/assets/css/"
+cssFiles = cssDist + "*.css"
+
 
 
 ## --- JavaScript
@@ -44,6 +46,12 @@ gulp.task "stylesheets", ->
   console.log "Compiling".underline.cyan, "Stylus".bgGreen
   gulp.src stylusMain
     .pipe stylus()
+    .pipe gulp.dest cssDist
+
+
+gulp.task "minify", ->
+  gulp.src cssFiles
+    .pipe minifyCSS()
     .pipe gulp.dest cssDist
 
 
