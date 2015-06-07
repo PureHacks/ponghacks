@@ -54,7 +54,10 @@
 * Create `key.js` in the `/server` directory with the following contents:
 
 	```
-	module.exports = {auth_token: "XXXXXXX-PersonalAPIkey"};
+	module.exports = {
+	    hc_auth_token_user: "XXXXXXXX-HipChat-User-API-Token",
+	    hc_auth_token_room: "XXXXXXXX-HipChat-Room-API-Token"
+    };
 	```
 
 	Your personal token can be retrieved from [your Razorfish Hipchat account](https://hipchat.tor.razorfish.com/account/api)
