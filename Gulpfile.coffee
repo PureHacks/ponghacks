@@ -28,6 +28,9 @@ cssDist = "./client/public/assets/css/"
 cssFiles = cssDist + "*.css"
 
 
+htmlFiles = "./client/public/views/**/*.html"
+
+
 
 ## --- JavaScript
 ## ------------------
@@ -37,6 +40,7 @@ gulp.task "scripts", ->
     .pipe jshint() 
     .pipe jshint.reporter "default"
     .pipe jshint.reporter "fail"
+    .pipe livereload()
 
 
 
@@ -47,12 +51,17 @@ gulp.task "stylesheets", ->
   gulp.src stylusMain
     .pipe stylus()
     .pipe gulp.dest cssDist
+    .pipe livereload()
 
 
 gulp.task "minify", ->
   gulp.src cssFiles
     .pipe minifyCSS()
     .pipe gulp.dest cssDist
+
+gulp.task "html", ->
+  gulp.src htmlFiles
+    .pipe livereload()
 
 
 
@@ -64,15 +73,13 @@ gulp.task "server", ->
 
   options = 
     script: "server/server.js"
-    ext: "html js styl"
+    ext: "js"
+    watch: "server/**/*.js"
 
   nodemon options
     .on "start", ->
       console.log "--------".america, "STARTED NODEMON!".green, "--------".america
     .on "restart", ->
-      gulp.src "server/server.js"
-        .pipe livereload()
-
       console.log "--------".america, "RESTARTED NODEMON!".green, "--------".america
 
 
@@ -86,6 +93,9 @@ gulp.task "watch", ->
   
   console.log "Watching".underline.cyan, "JS".black.bgYellow
   gulp.watch jsFiles, ["scripts"]
+
+  console.log "Watching".underline.cyan, "HTML".black.bgYellow
+  gulp.watch htmlFiles, ["html"]
 
 
 
