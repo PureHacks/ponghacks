@@ -6,7 +6,7 @@
 				<h4>{{mostRecentGame.winnerName | shortFullName}}</h4>
 			</div>
 			<div class="time-score">
-				<p>{{mostRecentGame.date | date:'medium'}}</p>
+				<p>{{mostRecentGame.date | smartDate}}</p>
 				<p class="score"><span>{{mostRecentGame.winnerScore}}</span> - {{mostRecentGame.loserScore}}</p>
 			</div>			
 			<div class="loser">
@@ -48,7 +48,7 @@
 						<li ng-repeat="game in recentGames">
 							<div class="recent-game clearfix">
 								<div class="game-info">
-									<p>{{game.date | date:'medium'}}</p>
+									<p>{{game.date | smartDate}}</p>
 									<p><span class="winner-name">{{game.winnerName | shortFullName}}</span> won against <span class="loser-name">{{game.loserName | shortFullName}}</span></p>
 								</div>
 								<div class="game-score">
