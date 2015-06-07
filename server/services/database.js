@@ -9,7 +9,8 @@ var pool = mysql.createPool({
 	user     : "root",
 	password : "root",
 	port: 8889,
-	database: "PongHacks"
+	database: "PongHacks",
+	multipleStatements: true
 	//,debug: true
 });
 

@@ -16,11 +16,11 @@ var getAppStats = function(req, res) {
 
 var getUserStats = function(req, res) {
 	statsService.getUserStats(req.params.userId, function(error, rows){
-		if (error){
+		if (error || rows.length < 3 || rows[2].length < 1){
 			res.status(500).json({"error": "Error fetching user stats."});
 		}
 	  	else {
-	  		res.status(200).json(rows[0]);
+	  		res.status(200).json(rows[2][0]);
 	  	}
 	});
 };

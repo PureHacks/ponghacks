@@ -11,11 +11,11 @@
 			"write": true,
 			"order": [
 				"d38d8c0f-82a5-676e-a935-4f3a157965ca",
-				"724a7419-d82f-de22-fa15-7022bf6913f7",
 				"d8ca7daf-16d6-7688-24b8-37acfe02c02c",
+				"724a7419-d82f-de22-fa15-7022bf6913f7",
+				"0bb45e31-e246-77fd-faf6-3ab6433f2f39",
 				"ec14f267-9334-bb08-b5ef-ba2692619ee4",
-				"13dcd448-ec66-b23a-b1f5-a64efa79e3be",
-				"0bb45e31-e246-77fd-faf6-3ab6433f2f39"
+				"13dcd448-ec66-b23a-b1f5-a64efa79e3be"
 			],
 			"collection_name": "PongHacks",
 			"collection_owner": 0,
@@ -30,11 +30,11 @@
 			"description": "",
 			"write": true,
 			"order": [
-				"bbcdef57-d50c-1500-409d-b73d7bfc60b1",
 				"85f18981-8047-ae56-903e-1e9a69db6685",
-				"0b978025-3116-3eb5-7d47-4fc273d38c9b",
+				"bbcdef57-d50c-1500-409d-b73d7bfc60b1",
 				"6fb30802-1b97-2716-d70b-737a3595e3cb",
-				"2a0dcbc4-31c9-926d-c688-a6b829aeaaa2"
+				"2a0dcbc4-31c9-926d-c688-a6b829aeaaa2",
+				"0b978025-3116-3eb5-7d47-4fc273d38c9b"
 			],
 			"collection_name": "PongHacks",
 			"collection_owner": 0,
@@ -49,19 +49,22 @@
 			"description": "",
 			"write": true,
 			"order": [
-				"10bfa9e2-cfb7-795e-1389-fc4275bbfdc0",
-				"97d6c8f6-c779-0347-0963-1b71b3239296",
 				"bf808a32-422b-567f-f6c6-44dfd5b6ab26",
-				"7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c",
+				"d7e042b5-632a-2a66-371c-61b2b5a545c6",
+				"d9fa0c41-45e6-f033-3b24-838d24dbdc4b",
 				"82b73897-bed8-2061-a42f-6f1a0657a1f3",
 				"a88f9d45-a005-4b6a-8f92-b17b0c59d512",
-				"d9fa0c41-45e6-f033-3b24-838d24dbdc4b"
+				"dfe8b632-3315-e326-0c61-162c9250c479",
+				"10bfa9e2-cfb7-795e-1389-fc4275bbfdc0",
+				"97d6c8f6-c779-0347-0963-1b71b3239296",
+				"7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c"
 			],
 			"collection_name": "PongHacks",
 			"collection_owner": 0,
 			"collection_id": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"collection": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
-			"owner": 0
+			"owner": 0,
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5"
 		},
 		{
 			"id": "13cdce52-18ae-6787-6ccc-a42336f89bb8",
@@ -69,8 +72,8 @@
 			"description": "",
 			"write": true,
 			"order": [
-				"147cb9ad-1bf8-07a5-6e98-176a29f9256f",
-				"8726a1af-7860-25bb-7978-0bf128f9b447"
+				"8726a1af-7860-25bb-7978-0bf128f9b447",
+				"147cb9ad-1bf8-07a5-6e98-176a29f9256f"
 			],
 			"collection_name": "PongHacks",
 			"collection_owner": 0,
@@ -80,13 +83,12 @@
 		}
 	],
 	"timestamp": 1433017706486,
-	"synced": false,
 	"owner": 0,
-	"sharedWithTeam": false,
-	"subscribed": false,
 	"remoteLink": "",
 	"public": false,
-	"write": true,
+	"createdAt": null,
+	"updatedAt": null,
+	"synced": false,
 	"requests": [
 		{
 			"id": "0b978025-3116-3eb5-7d47-4fc273d38c9b",
@@ -108,7 +110,8 @@
 			"responses": [],
 			"synced": false,
 			"folder": "b6fd0c1b-c7f2-1950-f762-1f1289cbbfc6",
-			"rawModeData": "{\n    \"message\": \"sup motha fucka\"\n}"
+			"rawModeData": "{\n    \"message\": \"sup motha fucka\"\n}",
+			"owner": 0
 		},
 		{
 			"id": "0bb45e31-e246-77fd-faf6-3ab6433f2f39",
@@ -130,7 +133,8 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1",
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "10bfa9e2-cfb7-795e-1389-fc4275bbfdc0",
@@ -150,7 +154,9 @@
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671"
 		},
 		{
 			"id": "13dcd448-ec66-b23a-b1f5-a64efa79e3be",
@@ -171,7 +177,8 @@
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
 			"synced": false,
-			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1"
+			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1",
+			"owner": 0
 		},
 		{
 			"id": "147cb9ad-1bf8-07a5-6e98-176a29f9256f",
@@ -194,12 +201,12 @@
 			"synced": false,
 			"folder": "13cdce52-18ae-6787-6ccc-a42336f89bb8",
 			"isFromCollection": true,
-			"collectionRequestId": "147cb9ad-1bf8-07a5-6e98-176a29f9256f"
+			"owner": 0
 		},
 		{
 			"id": "2a0dcbc4-31c9-926d-c688-a6b829aeaaa2",
 			"headers": "Content-Type: application/json\n",
-			"url": "https://{{hipchatDomain}}/v2/room/134/notification?auth_token={{auth_token}}",
+			"url": "https://{{hipchatDomain}}/v2/room/134/notification?auth_token={{auth_token_ranking}}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -209,7 +216,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1433108116647,
+			"time": 1433650199061,
 			"name": "Message Group HTML",
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
@@ -220,7 +227,7 @@
 		{
 			"id": "6fb30802-1b97-2716-d70b-737a3595e3cb",
 			"headers": "Content-Type: application/json\n",
-			"url": "https://{{hipchatDomain}}/v2/room/134/notification?auth_token={{auth_token}}",
+			"url": "https://{{hipchatDomain}}/v2/room/134/notification?auth_token={{auth_token_game}}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -230,7 +237,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1433107416494,
+			"time": 1433650211182,
 			"name": "Message Group Text",
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
@@ -257,7 +264,8 @@
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
 			"synced": false,
-			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1"
+			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1",
+			"owner": 0
 		},
 		{
 			"id": "7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c",
@@ -281,7 +289,7 @@
 			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
 			"synced": false,
 			"isFromCollection": true,
-			"collectionRequestId": "7547ea71-c2d1-1c4d-6caf-94fbc3c0c57c"
+			"owner": 0
 		},
 		{
 			"id": "82b73897-bed8-2061-a42f-6f1a0657a1f3",
@@ -303,7 +311,8 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "85f18981-8047-ae56-903e-1e9a69db6685",
@@ -323,7 +332,9 @@
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "b6fd0c1b-c7f2-1950-f762-1f1289cbbfc6"
 		},
 		{
 			"id": "8726a1af-7860-25bb-7978-0bf128f9b447",
@@ -346,7 +357,7 @@
 			"synced": false,
 			"folder": "13cdce52-18ae-6787-6ccc-a42336f89bb8",
 			"isFromCollection": true,
-			"collectionRequestId": "8726a1af-7860-25bb-7978-0bf128f9b447"
+			"owner": 0
 		},
 		{
 			"id": "97d6c8f6-c779-0347-0963-1b71b3239296",
@@ -366,7 +377,9 @@
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671"
 		},
 		{
 			"id": "a88f9d45-a005-4b6a-8f92-b17b0c59d512",
@@ -388,7 +401,8 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "bbcdef57-d50c-1500-409d-b73d7bfc60b1",
@@ -409,7 +423,8 @@
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
 			"synced": false,
-			"folder": "b6fd0c1b-c7f2-1950-f762-1f1289cbbfc6"
+			"folder": "b6fd0c1b-c7f2-1950-f762-1f1289cbbfc6",
+			"owner": 0
 		},
 		{
 			"id": "bf808a32-422b-567f-f6c6-44dfd5b6ab26",
@@ -429,7 +444,9 @@
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671"
 		},
 		{
 			"id": "d38d8c0f-82a5-676e-a935-4f3a157965ca",
@@ -444,14 +461,35 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1433102019686,
+			"time": 1433644714511,
 			"name": "Add Game",
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
 			"synced": false,
-			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1",
-			"rawModeData": "{\n\t\"winnerUserId\": 70,\n\t\"winnerScore\": 21,\n\t\"loserUserId\": 64,\n\t\"loserScore\": 12,\n\t\"date\": \"Sun May 31 2015 15:53:21 GMT-0400 (EDT)\"\n}"
+			"rawModeData": "{\n\t\"winnerUserId\": 70,\n\t\"winnerScore\": 21,\n\t\"loserUserId\": 64,\n\t\"loserScore\": 12\n}"
+		},
+		{
+			"id": "d7e042b5-632a-2a66-371c-61b2b5a545c6",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://{{server}}/api/stats/user/all",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get All User Stats",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1433649764729,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
+			"synced": false
 		},
 		{
 			"id": "d8ca7daf-16d6-7688-24b8-37acfe02c02c",
@@ -472,7 +510,8 @@
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
 			"synced": false,
-			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1"
+			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1",
+			"owner": 0
 		},
 		{
 			"id": "d9fa0c41-45e6-f033-3b24-838d24dbdc4b",
@@ -488,6 +527,29 @@
 			"description": "",
 			"descriptionFormat": "html",
 			"time": 1433620272494,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
+			"synced": false,
+			"owner": 0
+		},
+		{
+			"id": "dfe8b632-3315-e326-0c61-162c9250c479",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://{{server}}/api/stats/top-rankings?numResults=10",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get Top Rankings",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1433646196287,
 			"version": 2,
 			"responses": [],
 			"tests": "",
@@ -515,7 +577,8 @@
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
 			"synced": false,
-			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1"
+			"folder": "b0fc290a-8efd-aa00-3356-c1b9e19d14c1",
+			"owner": 0
 		}
 	]
 }
