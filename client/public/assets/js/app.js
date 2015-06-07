@@ -54,7 +54,7 @@ angular.module("filters", [])
 	.filter("shortFullName", function() {
 		return function(fullName) {
 			if (fullName) {
-				var name = fullName.split(" ")
+				var name = fullName.split(" ");
 				return name[0] + " " + name[1][0] + ".";
 			} else {
 				return "";
@@ -81,16 +81,14 @@ angular.module("filters", [])
 					return "Yesterday " + time;
 				} else if ((day - dateDay < 7 && dateMonth === month) || dateMonth - month === 1 && (day + 30) - dateDay < 7 ) {
 					return dayOfWeek[date.getDay()] +" " + time;
-				} else if(day - dateDay >= 7 && day - dateDay < 14 
-					 || (month - dateMonth === 1) && (day - (dateDay - 30) >= 7  && day - (dateDay - 30) < 14  ) ){
+				} else if(day - dateDay >= 7 && day - dateDay < 14 || (month - dateMonth === 1) && (day - (dateDay - 30) >= 7  && day - (dateDay - 30) < 14  ) ){
 					return "Last Week";
 				}
 				else {
-					return "Awhile ago"
+					return "Awhile ago";
 				}
 			} else {
 				return "";
 			}
-
-		}
+		};
 	});
