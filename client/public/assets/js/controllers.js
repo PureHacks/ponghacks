@@ -11,7 +11,7 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
 
 		$scope.dataRefresh = function(refresh) {
 			if (!refresh) {
-				$http.get("/api/game/recent/5")
+				$http.get("/api/game/history/5")
 					.success(function(games) {
 						$scope.mostRecentGame = games.shift();
 						$scope.recentGames = games;
@@ -57,7 +57,6 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
 				});
     		$http.get("/api/stats/top-rankings")
     			.success(function(rankings) {
-    				console.log(rankings);
     				$scope.eloRanking = rankings || $scope.eloRanking;
     			})
     			.error(function(data, status, headers, config) {
@@ -120,6 +119,44 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 		};
 
 		$scope.gameHistory = [{}];
+	}
+]);
+
+pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", 
+	function($scope, $http) {
+		$scope.allPlayerStats = {};
+
+		$scope.init = function() {
+			console.log("TODO: add all player stats route");
+			// $http.get("/api/stats/user/")
+			// 	.success(function(stats){
+			// 		console.log(stats);
+			// 		$scope.stats = stats;
+			// 		$scope.stats.totGames = stats.wins + stats.losses;
+			// 	})
+			// 	.error(function(data, status, headers, config) {
+			// 		console.error(data.error);
+			// 	});
+		};
+	}
+]);
+
+pongAppControllers.controller("gameHistoryCtrl", ["$scope", "$http", 
+	function($scope, $http) {
+		$scope.gameHistory = {};
+
+		$scope.init = function() {
+			console.log("TODO: add all player stats route");
+			// $http.get("/api/history/9999/")
+			// 	.success(function(stats){
+			// 		console.log(stats);
+			// 		$scope.stats = stats;
+			// 		$scope.stats.totGames = stats.wins + stats.losses;
+			// 	})
+			// 	.error(function(data, status, headers, config) {
+			// 		console.error(data.error);
+			// 	});
+		};
 	}
 ]);
 

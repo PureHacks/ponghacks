@@ -134,7 +134,7 @@ exports.getUserGames = function(userId, numResults, offset, callback) {
     });
 };
 
-exports.getRecent = function(numGames, callback) {
+exports.getGames = function(numGames, callback) {
     var query = " \
 		SELECT winnerUserId, winner.name as winnerName, winnerScore, winner.avatarUrl as winnerAvatarUrl, loserUserId, \
 			loser.name as loserName, loser.avatarUrl as loserAvatarUrl, loserScore, date  \

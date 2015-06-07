@@ -241,7 +241,7 @@
 		{
 			"id": "724a7419-d82f-de22-fa15-7022bf6913f7",
 			"headers": "Content-Type: application/json\n",
-			"url": "http://{{server}}/api/game/recent/5",
+			"url": "http://{{server}}/api/game/history/5",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -252,7 +252,7 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"time": 1433102081096,
-			"name": "Get Recent Games",
+			"name": "Get Game History #numGames",
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
