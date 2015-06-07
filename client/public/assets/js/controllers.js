@@ -9,32 +9,60 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
 	function($scope, $http, socket, $routeParams) {
 		var NUM_RECENT_GAMES = 5;
 
-		$scope.dataRefresh = function(refresh){
+		$scope.dataRefresh = function(refresh) {
 			if (!refresh) {
-				$http.get("/api/game/recent/5").success(function(games) {
-					$scope.mostRecentGame = games.shift();
-					$scope.recentGames = games;
-	    		});
+				$http.get("/api/game/recent/5")
+					.success(function(games) {
+						$scope.mostRecentGame = games.shift();
+						$scope.recentGames = games;
+		    		})
+					.error(function(data, status, headers, config) {
+						console.error(data.error);
+					});
 			}
-    		$http.get("/api/stats/standings/weekly?numResults=4").success(function(standing) {
-				$scope.weeklyStandings = standing;
-    		});
-    		$http.get("/api/stats/streak/wins/top").success(function(player) {
-				$scope.winStreak = player;
-    		});
-    		$http.get("/api/stats/streak/losses/top").success(function(player) {
-				$scope.losingStreak = player;
-    		});
-    		$http.get("/api/stats/largest-score-difference").success(function(score) {
-    			$scope.sweepingScore = score;
-    		});
-    		$http.get("/api/game/total").success(function(total) {
-    			$scope.totalGames = total;
-    		});
-    		$http.get("/api/stats/top-rankings").success(function(rankings) {
-    			console.log(rankings);
-    			$scope.eloRanking = rankings || $scope.eloRanking;
-    		});
+    		$http.get("/api/stats/standings/weekly?numResults=4")
+	    		.success(function(standing) {
+					$scope.weeklyStandings = standing;
+	    		})
+				.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
+    		$http.get("/api/stats/streak/wins/top")
+	    		.success(function(player) {
+					$scope.winStreak = player;
+	    		})
+				.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
+    		$http.get("/api/stats/streak/losses/top")
+	    		.success(function(player) {
+					$scope.losingStreak = player;
+	    		})
+				.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
+    		$http.get("/api/stats/largest-score-difference")
+	    		.success(function(score) {
+	    			$scope.sweepingScore = score;
+	    		})
+				.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
+    		$http.get("/api/game/total")
+	    		.success(function(total) {
+	    			$scope.totalGames = total;
+	    		})
+				.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
+    		$http.get("/api/stats/top-rankings")
+    			.success(function(rankings) {
+    				console.log(rankings);
+    				$scope.eloRanking = rankings || $scope.eloRanking;
+    			})
+    			.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
 		};
 		
 		$scope.mostRecentGame = {};
@@ -57,33 +85,41 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
 	}
 ]);
 
+pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams", 
+	function($scope, $http, $routeParams) {
+		$scope.user = {};
+		$scope.gameHistory = {};
+		$scope.init = function() {
+			if ($routeParams.id) {
+				$http.get("/api/user/" + $routeParams.id)
+					.success(function(user){
+						$scope.user = user;
+					})
+					.error(function(data, status, headers, config) {
+						console.error(data.error);
+					});
 
+				$http.get("/api/game/user/" + $routeParams.id)
+					.success(function(gameHistory){
+						$scope.gameHistory = gameHistory;
+					})
+					.error(function(data, status, headers, config) {
+						console.error(data.error);
+					});
 
-pongAppControllers.controller("leaderboardCtrl", ["$scope", "$http", "socket",
-	function($scope, $http, socket) {
-		var NUM_RECENT_GAMES = 5;
-
-		$scope.recentGameMessages = [];
-		
-		var getGameMessage = function(game){
-			return game.winnerName + " beat " + game.loserName + " " + game.winnerScore + " - " + game.loserScore;
+				$http.get("/api/stats/user/" + $routeParams.id)
+					.success(function(stats){
+						console.log(stats);
+						$scope.stats = stats;
+						$scope.stats.totGames = stats.wins + stats.losses;
+					})
+					.error(function(data, status, headers, config) {
+						console.error(data.error);
+					});
+			}
 		};
 
-		$http.get("/api/game/recent/" + NUM_RECENT_GAMES).success(function(games) {
-			var messages = games.map(function(game){
-				console.log(game);
-				return getGameMessage(game);
-			});
-			$scope.recentGameMessages = messages;
-		});
-
-		socket.on("new-game", function(game) {
-			$scope.recentGameMessages.unshift(getGameMessage(game));
-			if ($scope.recentGameMessages.length > NUM_RECENT_GAMES){
-				$scope.recentGameMessages.pop();
-			}
-			//TODO: also refresh leaderboards here
-		});
+		$scope.gameHistory = [{}];
 	}
 ]);
 

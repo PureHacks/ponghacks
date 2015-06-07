@@ -26,12 +26,6 @@ app.set("view engine", "html");
 /* /api/game */
 app.use("/api/game", require("./controllers/api/game")(io));
 
-/* /api/leaderboard */
-app.use("/api/leaderboard", require("./controllers/api/leaderboard"));
-
-/* /api/getUsers */
-app.use("/api/getUsers", require("./controllers/api/getUsers"));
-
 /* /api/user */
 app.use("/api/user", require("./controllers/api/user"));
 
