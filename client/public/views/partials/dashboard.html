@@ -1,17 +1,17 @@
-<div class="dashboard row clearfix">
+<div class="dashboard row clearfix" ng-init="init()">
 	<div class="most-recent-game wgrid-12of12">
 		<section class="clearfix">
 			<div class="winner">
-				<img src="http://placecage.com/125/125">
-				<h5>Mike R. *</h5>
+				<img src="{{mostRecentGame.winnerAvatarUrl}}">
+				<h4>{{mostRecentGame.winnerName | shortFullName}}</h4>
 			</div>
 			<div class="time-score">
-				<p>Today 2:45pm</p>
-				<p class="score"><span>21</span> - 4</p>
+				<p>{{mostRecentGame.date | smartDate}}</p>
+				<p class="score"><span>{{mostRecentGame.winnerScore}}</span> - {{mostRecentGame.loserScore}}</p>
 			</div>			
 			<div class="loser">
-				<img src="http://nicenicejpg.com/125/125">
-				<h5>Matt M.</h5>
+				<img src="{{mostRecentGame.loserAvatarUrl}}">
+				<h4>{{mostRecentGame.loserName | shortFullName}}</h4>
 			</div>
 		</section>
 	</div>
@@ -20,7 +20,7 @@
 			<div class="row">
 				<section class="elo-ranking wgrid-3wAny marg-l-0">
 					<div class="section-header">
-						<h3>Ranking <span class="arrow">-></span></h3>
+						<h3>Ranking <span class="arrow">&#10140;</span></h3>
 					</div>
 					<ol>
 						<li>
@@ -42,61 +42,17 @@
 				</section>
 				<section class="recent-games wgrid-5wAny marg-r-0">
 					<div class="section-header">
-						<h3>Recent Games <span class="arrow">-></span></h3>
+						<h3>Recent Games <span class="arrow">&#10140;</span></h3>
 					</div>
 					<ul>
-						<li class="clearfix">
-							<div class="recent-game">
+						<li ng-repeat="game in recentGames">
+							<div class="recent-game clearfix">
 								<div class="game-info">
-									<p>Today 12:13pm</p>
-									<p>Matt M. Won against Tim L.</p>
+									<p>{{game.date | smartDate}}</p>
+									<p><span class="winner-name">{{game.winnerName | shortFullName}}</span> won against <span class="loser-name">{{game.loserName | shortFullName}}</span></p>
 								</div>
 								<div class="game-score">
-									21 - 6
-								</div>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="recent-game">
-								<div class="game-info">
-									<p>Today 12:13pm</p>
-									<p>Matt M. Won against Tim L.</p>
-								</div>
-								<div class="game-score">
-									21 - 6
-								</div>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="recent-game">
-								<div class="game-info">
-									<p>Today 12:13pm</p>
-									<p>Matt M. Won against Tim L.</p>
-								</div>
-								<div class="game-score">
-									21 - 6
-								</div>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="recent-game">
-								<div class="game-info">
-									<p>Today 12:13pm</p>
-									<p>Matt M. Won against Tim L.</p>
-								</div>
-								<div class="game-score">
-									21 - 6
-								</div>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="recent-game">
-								<div class="game-info">
-									<p>Today 12:13pm</p>
-									<p>Matt M. Won against Tim L.</p>
-								</div>
-								<div class="game-score">
-									21 - 6
+									<span>{{game.winnerScore}} - {{game.loserScore}}</span>
 								</div>
 							</div>
 						</li>
@@ -113,40 +69,12 @@
 							<th class="losses">Losses</th>
 							<th class="win-rate">Win Rate</th>
 						</thead>
-						<tr>
-							<td class="name">Chris H.</td>
-							<td class="games">12</td>
-							<td class="wins">6</td>
-							<td class="losses">6</td>
-							<td class="win-rate">50%</td>
-						</tr>
-						<tr>
-							<td class="name">Chris H.</td>
-							<td class="games">12</td>
-							<td class="wins">6</td>
-							<td class="losses">6</td>
-							<td class="win-rate">50%</td>
-						</tr>
-						<tr>
-							<td class="name">Chris H.</td>
-							<td class="games">12</td>
-							<td class="wins">6</td>
-							<td class="losses">6</td>
-							<td class="win-rate">50%</td>
-						</tr>
-						<tr>
-							<td class="name">Chris H.</td>
-							<td class="games">12</td>
-							<td class="wins">6</td>
-							<td class="losses">6</td>
-							<td class="win-rate">50%</td>
-						</tr>
-						<tr>
-							<td class="name">Chris H.</td>
-							<td class="games">12</td>
-							<td class="wins">6</td>
-							<td class="losses">6</td>
-							<td class="win-rate">50%</td>
+						<tr ng-repeat="playerStats in weeklyStandings">
+							<td class="name">{{playerStats.name | shortFullName}}</td>
+							<td class="games">{{playerStats.gameCount}}</td>
+							<td class="wins">{{playerStats.wins}}</td>
+							<td class="losses">{{playerStats.losses}}</td>
+							<td class="win-rate">{{playerStats.winRate | number : 1}}</td>
 						</tr>
 					</table>
 				</section>	
@@ -157,20 +85,22 @@
 				<div class="section-header">
 					<h3>Player Stats</h3>
 				</div>
-				<div class="win-streak">
+				<div class="stat win-streak">
 					<h4>Longest winning streak</h4>
-					<p><span>14</span> Name</p>
+					<p><span>{{winStreak.streak}}</span> {{winStreak.name | shortFullName}}</p>
 				</div>
-				<div class="losing-streak">
+				<div class="stat losing-streak">
 					<h4>Most consecutive losses</h4>
-					<p><span>8</span> Name</p>
+					<p><span>{{losingStreak.streak}}</span> {{losingStreak.name | shortFullName}}</p>
 				</div>
-				<div class="sweeping-score">
+				<div class="stat sweeping-score">
 					<h4>Largest sweeping score</h4>
+					<p class="score"><span class="winner-score">{{sweepingScore.winnerScore}}</span> - {{sweepingScore.loserScore}}</p>
+					<p class="players"><span class="winner-name">{{sweepingScore.winnerName | shortFullName}}</span> vs. <span class="loser-score">{{sweepingScore.loserName | shortFullName}}</span></p>
 				</div>
-				<div class="total games played">
+				<div class="stat total-games-played">
 					<h4>Total games played</h4>
-					<p>465</p>
+					<p class="total-games">{{totalGames.gameCount}}</p>
 				</div>
 			</section>
 		</div>

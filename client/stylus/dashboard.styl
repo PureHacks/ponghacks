@@ -11,11 +11,24 @@
 			height 200px
 			padding 30px 200px
 			
+			h4
+				font-size 24px
+				
+			.time-score
+				.score
+					font-size 65px
+					span
+						color $accent-red
+			
 			img 
 				border solid 5px $white
 				width 125px
 				height 125px
 				border-radius 50%
+			.winner
+				img
+					border-color $accent-red
+				color $accent-red
 			
 			.winner, .time-score, .loser
 				float left
@@ -39,6 +52,14 @@
 				background-color $header-bg-grey
 				h3 
 					font-size 14px
+					position relative
+					.arrow
+						color $accent-red
+						position absolute
+						right 5px
+						top -2px
+						content "&#10140;"
+						font-size 20px
 
 		.left-column, .right-column
 			margin-top 20px
@@ -51,6 +72,45 @@
 			
 		.random-stats
 			height 475px
+			.stat
+				text-align center
+				height 100px
+				padding-top 25px
+				h4
+					font-size 14px
+				border-bottom 1px solid $header-bg-grey
+				
+				&.total-games-played
+					border-bottom none
+			.win-streak, .losing-streak
+				p
+					font-size 34px
+			.win-streak
+				p
+					span
+						color $accent-red
+			.losing-streak
+				p
+					span
+						color $accent-grey
+			.sweeping-score
+				padding-top 20px
+				height 145px
+				p
+					.winner-score, .winner-name
+							color $accent-red
+					&.score
+						font-size 50px
+						color $accent-grey
+					&.players
+						font-size 22px
+						color $accent-grey
+			.total-games-played
+				padding-top 10px
+				.total-games
+					font-size 60px
+					color $accent-dark-grey
+
 
 		.elo-ranking
 			ol
@@ -58,36 +118,63 @@
 				padding 0 15px
 				li
 					position relative
-					padding 13px
+					padding 10px
 					list-style none
 					border-bottom 1px solid $header-bg-grey
 					&:before
 						position absolute
-						top 15px
-						left 20px
-						width 20px
+						top 10px
+						left 8px
 						content counter(li)
 						counter-increment:li
+						font-size 22px
+					&:first-child
+						color $accent-red
 					&:last-child
 						border-bottom none
-						
 					p
-						margin-left -40px
+						font-size 20px
 						text-align center
 					
 		.recent-games
 			ul li
+				border-bottom 1px solid $header-bg-grey
 				.recent-game
-					padding 0
+					height inherit
 					.game-info, .game-score
 						float left
-						padding 5px
-					
+						padding 0
 					.game-info
 						width 80%
+						.winner-name
+							color $accent-red
+						.loser-name
+							color $accent-dark-grey
 					.game-score
 						width 20%
-				
+						span
+							font-size 22px
+							color $accent-dark-grey
 		.weekly-standings
 			margin-top 20px
-		
+			margin-bottom 20px
+			table
+				width 100%
+				thead
+					background-color $header-bg-grey
+					th
+						padding 10px 10px 8px 15px
+						&:first-child
+							text-align left
+						text-align center
+					
+				tr
+					&:last-child td
+						border-bottom none
+					td
+						&:first-child
+							text-align left
+						text-align center
+						padding 10px 10px 9px 15px
+						border-bottom 1px solid $header-bg-grey
+				

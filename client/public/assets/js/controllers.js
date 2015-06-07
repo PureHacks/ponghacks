@@ -8,15 +8,36 @@ var pongAppControllers = angular.module("pongAppControllers", []);
 pongAppControllers.controller("dashboardCtrl", ["$scope", "$http",
 	function($scope, $http, $routeParams) {
 
-		var game = {};
+		$scope.init = function(){
+			$http.get("/api/game/recent/5").success(function(games) {
+				$scope.mostRecentGame = games.shift();
+				$scope.recentGames = games;
+    		});
+    		$http.get("/api/stats/standings/weekly?numResults=4").success(function(standing) {
+				$scope.weeklyStandings = standing;
+    		});
+    		$http.get("/api/stats/streak/wins/top").success(function(player) {
+				$scope.winStreak = player;
+    		});
+    		$http.get("/api/stats/streak/losses/top").success(function(player) {
+				$scope.losingStreak = player;
+    		});
+    		$http.get("/api/stats/largest-score-difference").success(function(score) {
+    			$scope.sweepingScore = score;
+    		});
+    		$http.get("/api/game/total").success(function(total) {
+    			$scope.totalGames = total;
+    		});
+		};
 		
-		$scope.recentGames = [{},{},{}];
-		$scope.eloRanking = [{},{},{}];
-		$scope.weeklyStandings = [{},{},{}];
+		$scope.mostRecentGame = [{}];
+		$scope.recentGames = [{},{},{},{}];
+		$scope.eloRanking = [{},{},{},{},{}];
+		$scope.weeklyStandings = [{},{},{},{}];
 		$scope.winStreak = {};
 		$scope.losingStreak = {};
 		$scope.sweepingScore = {};
-		$scope.totalGames = 465;
+		$scope.totalGames = 0;
 	}
 ]);
 
@@ -38,7 +59,7 @@ pongAppControllers.controller("leaderboardCtrl", ["$scope", "$http", "socket",
 				return getGameMessage(game);
 			});
 			$scope.recentGameMessages = messages;
-    	});
+		});
 
 		socket.on("new-game", function(game){
             $scope.recentGameMessages.unshift(getGameMessage(game));
