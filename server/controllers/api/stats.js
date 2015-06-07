@@ -95,7 +95,19 @@ var getTopRankings = function(req, res) {
 	});
 };
 
+var getAllUserStats = function(req, res) {
+	statsService.getAllUserStats(function(error, rows){
+		if (error || rows.length === 0){
+			res.status(500).json({"error": "Error getting all user stats."});
+		}
+	  	else {
+	  		res.status(200).json(rows);
+	  	}
+	});
+};
+
 router.get("/app", getAppStats);
+router.get("/user/all", getAllUserStats);
 router.get("/user/:userId", getUserStats);
 router.get("/user/:userId/matchup/:opponentUserId", getUserMatchup);
 router.get("/standings/weekly", getWeeklyStandings);

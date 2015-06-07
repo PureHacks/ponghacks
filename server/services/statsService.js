@@ -174,3 +174,19 @@ exports.getTopRankings = function(numResults, callback) {
 	  callback(error, rows);
 	});
 };
+
+exports.getAllUserStats = function(callback) {
+	var query = " \
+ 		SELECT userId, name, \
+		(SELECT COUNT(*) FROM Game WHERE winnerUserId = b.userId) as wins, \
+		(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId) as losses, \
+		(SELECT wins + losses) as gameCount, \
+		(SELECT wins/gameCount * 100) as winRate, \
+		(1 + (SELECT count(*) from User a WHERE a.eloRanking > b.eloRanking)) as rank \
+		FROM User b \
+		ORDER BY name";
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};
