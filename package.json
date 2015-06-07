@@ -30,6 +30,7 @@
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.0",
     "gulp-livereload": "^3.8.0",
+    "gulp-minify-css": "^1.1.6",
     "gulp-nodemon": "^2.0.3",
     "gulp-stylus": "^2.0.3",
     "gulp-watch": "^4.2.4",
