@@ -18,67 +18,13 @@
 				<th class="rank">Rank</th>
 				<th class="win-rate">Compare</th>
 			</thead>
-			<tr>
-				<td class="name"><a href="#/api/user/{{playerStats.userId}}"><image src="http://placesheen.com/55/55"/><span>{{"Matt McFadyen" | shortFullName}}</span></a></td>
-				<td class="games">30</td>
-				<td class="wins">28</td>
-				<td class="losses">2</td>
-				<td class="win-rate">93%</td>
-				<td class="rank">1</td>
-				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td class="name"><a href="#/api/user/{{playerStats.userId}}"><image src="http://placesheen.com/55/55"/><span>{{"Matt McFadyen" | shortFullName}}</span></a></td>
-				<td class="games">30</td>
-				<td class="wins">28</td>
-				<td class="losses">2</td>
-				<td class="win-rate">93%</td>
-				<td class="rank">2</td>
-				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td class="name"><a href="#/api/user/{{playerStats.userId}}"><image src="http://placesheen.com/55/55"/><span>{{"Matt McFadyen" | shortFullName}}</span></a></td>
-				<td class="games">30</td>
-				<td class="wins">28</td>
-				<td class="losses">2</td>
-				<td class="win-rate">93%</td>
-				<td class="rank">3</td>
-				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td class="name"><a href="#/api/user/{{playerStats.userId}}"><image src="http://placesheen.com/55/55"/><span>{{"Matt McFadyen" | shortFullName}}</span></a></td>
-				<td class="games">30</td>
-				<td class="wins">28</td>
-				<td class="losses">2</td>
-				<td class="win-rate">93%</td>
-				<td class="rank">4</td>
-				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td class="name"><a href="#/api/user/{{playerStats.userId}}"><image src="http://placesheen.com/55/55"/><span>{{"Matt McFadyen" | shortFullName}}</span></a></td>
-				<td class="games">30</td>
-				<td class="wins">28</td>
-				<td class="losses">2</td>
-				<td class="win-rate">93%</td>
-				<td class="rank">5</td>
-				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td class="name"><a href="#/api/user/{{playerStats.userId}}"><image src="http://placesheen.com/55/55"/><span>{{"Matt McFadyen" | shortFullName}}</span></a></td>
-				<td class="games">30</td>
-				<td class="wins">28</td>
-				<td class="losses">2</td>
-				<td class="win-rate">93%</td>
-				<td class="rank">6</td>
-				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td class="name"><a href="#/api/user/{{playerStats.userId}}"><image src="http://placesheen.com/55/55"/><span>{{"Matt McFadyen" | shortFullName}}</span></a></td>
-				<td class="games">30</td>
-				<td class="wins">28</td>
-				<td class="losses">2</td>
-				<td class="win-rate">93%</td>
-				<td class="rank">7</td>
+			<tr ng-repeat="player in allUserStats">
+				<td class="name"><a href="#/api/user/{{player.userId}}"><image src="http://placesheen.com/55/55"/><span>{{player.name | shortFullName}}</span></a></td>
+				<td class="games">{{player.gameCount}}</td>
+				<td class="wins">{{player.wins}}</td>
+				<td class="losses">{{player.losses}}</td>
+				<td class="win-rate">{{player.winRate}}</td>
+				<td class="rank">{{player.rank}}</td>
 				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
 			</tr>
 		</table>
