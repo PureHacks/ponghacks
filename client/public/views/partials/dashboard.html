@@ -11,7 +11,7 @@
 			</div>			
 			<div class="loser">
 				<img src="{{mostRecentGame.loserAvatarUrl}}">
-				<h4><a href="#/api/user{{mostRecentGame.loserUserId}}">{{mostRecentGame.loserName | shortFullName}}</a></h4>
+				<h4><a href="#/api/user/{{mostRecentGame.loserUserId}}">{{mostRecentGame.loserName | shortFullName}}</a></h4>
 			</div>
 		</section>
 	</div>
@@ -24,7 +24,7 @@
 					</div>
 					<ol>
 						<li ng-repeat="player in eloRanking">
-							<p><a href="#/api/user{{player.userId}}">{{player.name | shortFullName}}</a></p>
+							<p><a href="#/api/user/{{player.userId}}">{{player.name | shortFullName}}</a></p>
 						</li>
 					</ol>
 				</section>
@@ -37,7 +37,7 @@
 							<div class="recent-game clearfix">
 								<div class="game-info">
 									<p>{{game.date | smartDate}}</p>
-									<p><span class="winner-name"><a href="#/api/user{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/api/user{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
+									<p><span class="winner-name"><a href="#/api/user{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/api/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
 								</div>
 								<div class="game-score">
 									<span>{{game.winnerScore}} - {{game.loserScore}}</span>
@@ -58,7 +58,7 @@
 							<th class="win-rate">Win Rate</th>
 						</thead>
 						<tr ng-repeat="playerStats in weeklyStandings">
-							<td class="name"><a href="#/api/user{{playerStats.userId}}">{{playerStats.name | shortFullName}}</a></td>
+							<td class="name"><a href="#/api/user/{{playerStats.userId}}">{{playerStats.name | shortFullName}}</a></td>
 							<td class="games">{{playerStats.gameCount}}</td>
 							<td class="wins">{{playerStats.wins}}</td>
 							<td class="losses">{{playerStats.losses}}</td>
@@ -75,16 +75,16 @@
 				</div>
 				<div class="stat win-streak">
 					<h4>Longest winning streak</h4>
-					<p><span>{{winStreak.streak}}</span> <a href="#/api/user{{winStreak.userId}}">{{winStreak.name | shortFullName}}</a></p>
+					<p><span>{{winStreak.streak}}</span> <a href="#/api/user/{{winStreak.userId}}">{{winStreak.name | shortFullName}}</a></p>
 				</div>
 				<div class="stat losing-streak">
 					<h4>Most consecutive losses</h4>
-					<p><span>{{losingStreak.streak}}</span> <a href="#/api/user{{losingStreak.userId}}">{{losingStreak.name | shortFullName}}</a></p>
+					<p><span>{{losingStreak.streak}}</span> <a href="#/api/user/{{losingStreak.userId}}">{{losingStreak.name | shortFullName}}</a></p>
 				</div>
 				<div class="stat sweeping-score">
 					<h4>Largest sweeping score</h4>
 					<p class="score"><span class="winner-score">{{sweepingScore.winnerScore}}</span> - {{sweepingScore.loserScore}}</p>
-					<p class="players"><span class="winner-name"><a href="#/api/user{{sweepingScore.winnerUserId}}">{{sweepingScore.winnerName | shortFullName}}</a></span> vs. <span class="loser-score"><a href="#/api/user{{sweepingScore.loserUserId}}">{{sweepingScore.loserName | shortFullName}}</a></span></p>
+					<p class="players"><span class="winner-name"><a href="#/api/user/{{sweepingScore.winnerUserId}}">{{sweepingScore.winnerName | shortFullName}}</a></span> vs. <span class="loser-score"><a href="#/api/user/{{sweepingScore.loserUserId}}">{{sweepingScore.loserName | shortFullName}}</a></span></p>
 				</div>
 				<div class="stat total-games-played">
 					<h4>Total games played</h4>
