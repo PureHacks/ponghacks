@@ -23,20 +23,8 @@
 						<h3>Ranking <span class="arrow">&#10140;</span></h3>
 					</div>
 					<ol>
-						<li>
-							<p>Tim L.</p>
-						</li>
-						<li>
-							<p>Tim L.</p>
-						</li>
-						<li>
-							<p>Tim L.</p>
-						</li>
-						<li>
-							<p>Tim L.</p>
-						</li>
-						<li>
-							<p>Tim L.</p>
+						<li ng-repeat="player in eloRanking">
+							<p>{{player.name}}</p>
 						</li>
 					</ol>
 				</section>
