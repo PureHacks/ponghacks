@@ -27,6 +27,7 @@
     "colors": "^1.1.0",
     "ejs": "^2.3.1",
     "express": "^4.12.4",
+    "express-validator": "^2.11.0",
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.0",
     "gulp-livereload": "^3.8.0",

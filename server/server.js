@@ -1,6 +1,7 @@
 "use strict";
 
 var express = require("express"),
+	expressValidator = require("express-validator"),
 	bodyParser = require("body-parser"),
 	fs = require("fs"),
 	multer = require("multer"),
@@ -14,6 +15,7 @@ var io = require("socket.io")(http);
 var	port = process.env.PORT || 8888;
 
 app.use(bodyParser.json()); // for parsing application/json
+app.use(expressValidator());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multer()); // for parsing multipart/form-data
 
