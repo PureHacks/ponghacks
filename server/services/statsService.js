@@ -177,7 +177,7 @@ exports.getTopRankings = function(numResults, callback) {
 
 exports.getAllUserStats = function(callback) {
 	var query = " \
- 		SELECT userId, name, \
+ 		SELECT userId, name, avatarUrl, \
 		(SELECT COUNT(*) FROM Game WHERE winnerUserId = b.userId) as wins, \
 		(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId) as losses, \
 		(SELECT wins + losses) as gameCount, \

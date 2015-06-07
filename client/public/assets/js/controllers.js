@@ -123,19 +123,17 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 
 pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", 
 	function($scope, $http) {
-		$scope.allPlayerStats = {};
+		$scope.allUserStats = {};
 
 		$scope.init = function() {
-			console.log("TODO: add all player stats route");
-			// $http.get("/api/stats/user/")
-			// 	.success(function(stats){
-			// 		console.log(stats);
-			// 		$scope.stats = stats;
-			// 		$scope.stats.totGames = stats.wins + stats.losses;
-			// 	})
-			// 	.error(function(data, status, headers, config) {
-			// 		console.error(data.error);
-			// 	});
+			$http.get("/api/stats/user/all")
+				.success(function(stats){
+					console.log(stats);
+					$scope.allUserStats = stats;
+				})
+				.error(function(data, status, headers, config) {
+					console.error(data.error);
+				});
 		};
 	}
 ]);
