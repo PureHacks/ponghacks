@@ -108,7 +108,6 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 
 				$http.get("/api/stats/user/" + $routeParams.id)
 					.success(function(stats){
-						console.log(stats);
 						$scope.stats = stats;
 						$scope.stats.totGames = stats.wins + stats.losses;
 					})

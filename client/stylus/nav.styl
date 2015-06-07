@@ -1,6 +1,12 @@
 .top-nav
+	
 	background-color $nav-bg-blue
-	nav
+	.logo
+		h1
+			text-indent -9999px
+			display block
+			background url("/assets/img/ponghacks-logo.png") no-repeat
+	.row
 		margin 0 auto
 		height 75px
 		ul
@@ -8,9 +14,16 @@
 			padding 0
 			list-style-type none
 			li
+				padding 40px 20px 10px 35px
+				height 75px
 				display inline-block
-				width 19%
-				padding 25px
+				border-left 1px solid $nav-border-divider
+				&:last-child
+					padding 40px 35px 10px 35px
+					border-right 1px solid $nav-border-divider
 				text-align center
+				&.selected
+					background-color $header-bg-grey
+					color $nav-bg-blue
 				a
-					color white
+					color $white
