@@ -72,6 +72,7 @@
 			"description": "",
 			"write": true,
 			"order": [
+				"eb794d78-5a58-f720-089a-122905fc7f47",
 				"8726a1af-7860-25bb-7978-0bf128f9b447",
 				"147cb9ad-1bf8-07a5-6e98-176a29f9256f"
 			],
@@ -79,7 +80,8 @@
 			"collection_owner": 0,
 			"collection_id": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"collection": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
-			"owner": 0
+			"owner": 0,
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5"
 		}
 	],
 	"timestamp": 1433017706486,
@@ -248,7 +250,7 @@
 		{
 			"id": "724a7419-d82f-de22-fa15-7022bf6913f7",
 			"headers": "Content-Type: application/json\n",
-			"url": "http://{{server}}/api/game/history/5",
+			"url": "http://{{server}}/api/game/recent/5",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -259,7 +261,7 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"time": 1433102081096,
-			"name": "Get Game History #numGames",
+			"name": "Get Recent Games",
 			"description": "",
 			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
 			"responses": [],
@@ -556,6 +558,26 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"folder": "2ae8f9d7-302f-d2ee-c385-9b2d31200671",
+			"synced": false
+		},
+		{
+			"id": "eb794d78-5a58-f720-089a-122905fc7f47",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://{{server}}/api/user/recent?numResults=15",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1433709088513,
+			"name": "Get Recent Users",
+			"description": "",
+			"collectionId": "a5d31a87-7da1-087a-22fc-f29d3715abc5",
+			"responses": [],
 			"synced": false
 		},
 		{
