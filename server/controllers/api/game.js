@@ -7,17 +7,17 @@ module.exports = function(io) {
 
 
 	var addGame = function(req, res) {
-		gameService.addGame(req.body, function(error, result){
+		gameService.addGame(req.body, function(error, insertId){
 			if (error){
 				res.status(500).json({"error": "Error adding game."});
 			}
 			else {
-				gameService.getGame(result.insertId, function(error, results) {
+				gameService.getGame(insertId, function(error, results) {
 					if (results.length > 0) {
 						io.emit("new-game", results[0]);
 					}
 				});
-				res.status(200).json({id: result.insertId});
+				res.status(200).json({id: insertId});
 			}
 		});
 	};
