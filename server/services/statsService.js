@@ -162,3 +162,15 @@ exports.getLargestScoreDifference = function(callback) {
 	  callback(error, rows);
 	});
 };
+
+exports.getTopRankings = function(numResults, callback) {
+	var query = " \
+ 		SELECT userId, name \
+		FROM User \
+		ORDER BY eloRanking DESC \
+		LIMIT " + numResults;
+
+	db.query(query, function(error, rows) {
+	  callback(error, rows);
+	});
+};

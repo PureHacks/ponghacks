@@ -43,3 +43,9 @@ exports.insertObject = function(tableName, obj, callback) {
 exports.escape = function(input) {
 	return pool.escape(input);
 };
+
+exports.getConnection = function(callback) {
+	pool.getConnection(function(error, connection) {
+	  callback(error, connection);
+	});
+};
