@@ -11,30 +11,25 @@ exports.getAppStats = function(callback) {
 
 exports.getUserStats = function(userId, callback) {
 	var userId = db.escape(userId);
-	var opponentUserId = db.escape(opponentUserId);
 
-	var query = "\
-	SELECT  ( \
-	    SELECT COUNT(*) \
-	    FROM   Game \
-	    WHERE winnerUserId = " + userId + "  \
-	    ) AS wins, \
-	     \
-	    ( \
-	    SELECT COUNT(*) \
-	    FROM   Game \
-	    WHERE loserUserId =  " + userId + " \
-	    ) AS losses, \
- \
-	    ( \
-	    SELECT SUM(winnerScore) FROM Game \
-	      WHERE winnerUserId  =  " + userId + "\
-	    ) AS winningPoints, \
- \
-	    ( \
-	    SELECT SUM(loserScore) FROM Game \
-	      WHERE loserUserId  =  " + userId + " \
-	    ) AS losingPoints";
+	var query = " \
+		CALL userLongestWinningStreak(" + userId + ", @userWinningStreak); \
+		CALL userLongestLosingStreak(" + userId + ", @userLosingStreak); \
+		SELECT userId, name, avatarUrl, \
+			(SELECT COUNT(*) FROM Game WHERE winnerUserId = b.userId) as wins, \
+			(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId) as losses, \
+			(SELECT wins + losses) as gameCount, \
+			(SELECT wins/gameCount * 100) as winRate, \
+			(SELECT COUNT(*) FROM Game WHERE winnerUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyWins, \
+			(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyLosses, \
+			(SELECT wins + losses) as weeklyGameCount, \
+			(SELECT wins/gameCount * 100) as weeklyWinRate, \
+		    (SELECT MIN(DATE) FROM Game WHERE userId = "+ userId + ") as playerSince, \
+		    (SELECT @userWinningStreak) as longestWinningStreak, \
+		    (SELECT @userLosingStreak) as longestLosingStreak, \
+			(1 + (SELECT count(*) from User a WHERE a.eloRanking > b.eloRanking)) as rank \
+			FROM User b \
+			WHERE userId = "+ userId;
 
 	db.query(query, function(error, rows) {
 	  callback(error, rows);
@@ -184,6 +179,11 @@ exports.getAllUserStats = function(callback) {
 		(SELECT wins/gameCount * 100) as winRate, \
 		(1 + (SELECT count(*) from User a WHERE a.eloRanking > b.eloRanking)) as rank \
 		FROM User b \
+		WHERE userId IN ( \
+					SELECT DISTINCT winnerUserID FROM Game \
+					UNION \
+					SELECT DISTINCT loserUserId FROM Game \
+		) \
 		ORDER BY name";
 
 	db.query(query, function(error, rows) {

@@ -65,6 +65,92 @@ AUTO_INCREMENT = 51
 DEFAULT CHARACTER SET = utf8;
 
 
+-- CREATE PROCEDURE FOR PLAYER's LONGEST WINNING STREAK
+DROP PROCEDURE IF EXISTS userLongestWinningStreak;
+DROP PROCEDURE IF EXISTS userLongestLosingStreak;
+
+
+DELIMITER //
+ 
+CREATE PROCEDURE `userLongestWinningStreak` (IN userId INT, OUT streak INT)
+BEGIN
+
+    DECLARE maxStreak INT DEFAULT 0;
+    DECLARE b, streakCounter, winnerId INT;
+    DECLARE curWinnerIds CURSOR FOR SELECT winnerUserID FROM Game WHERE winnerUserId = 70 or loserUserId = 70 ORDER BY date ASC;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
+    OPEN curWinnerIds;
+    
+    SET b = 0;
+    SET streakCounter = 0;
+    
+    WHILE b = 0 DO
+        FETCH curWinnerIds INTO winnerId;
+        IF b = 0 THEN
+            IF winnerId = userId THEN
+              SET streakCounter = streakCounter + 1;
+            ELSE
+              IF streakCounter > maxStreak THEN
+                SET maxStreak = streakCounter;
+                SET streakCounter = 0;
+          END IF;
+        END IF;  
+      END IF;  
+    END WHILE;
+ 
+    CLOSE curWinnerIds;
+    
+    IF streakCounter > maxStreak THEN
+      SET maxStreak = streakCounter;
+      SET streakCounter = 0;
+  END IF;
+
+    SET streak = maxStreak;
+ 
+END //
+
+-- CREATE PROCEDURE FOR PLAYER's LONGEST WINNING STREAK
+
+CREATE PROCEDURE `userLongestLosingStreak` (IN userId INT, OUT streak INT)
+BEGIN
+
+    DECLARE maxStreak INT DEFAULT 0;
+    DECLARE b, streakCounter, loserId INT;
+    DECLARE curLoserIds CURSOR FOR SELECT loserUserId FROM Game WHERE winnerUserId = 70 or loserUserId = 70 ORDER BY date ASC;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
+    OPEN curLoserIds;
+    
+    SET b = 0;
+    SET streakCounter = 0;
+    
+    WHILE b = 0 DO
+        FETCH curLoserIds INTO loserId;
+        IF b = 0 THEN
+            IF loserId = userId THEN
+              SET streakCounter = streakCounter + 1;
+            ELSE
+              IF streakCounter > maxStreak THEN
+                SET maxStreak = streakCounter;
+                SET streakCounter = 0;
+          END IF;
+        END IF;  
+      END IF;  
+    END WHILE;
+ 
+    CLOSE curLoserIds;
+    
+    IF streakCounter > maxStreak THEN
+      SET maxStreak = streakCounter;
+      SET streakCounter = 0;
+  END IF;
+
+    SET streak = maxStreak;
+ 
+END //
+
+DELIMITER ;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
