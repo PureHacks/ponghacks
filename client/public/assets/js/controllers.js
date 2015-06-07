@@ -5,14 +5,17 @@
 var pongAppControllers = angular.module("pongAppControllers", []);
 
 
-pongAppControllers.controller("dashboardCtrl", ["$scope", "$http",
-	function($scope, $http, $routeParams) {
+pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
+	function($scope, $http, socket, $routeParams) {
+		var NUM_RECENT_GAMES = 5;
 
-		$scope.init = function(){
-			$http.get("/api/game/recent/5").success(function(games) {
-				$scope.mostRecentGame = games.shift();
-				$scope.recentGames = games;
-    		});
+		$scope.dataRefresh = function(refresh){
+			if (!refresh) {
+				$http.get("/api/game/recent/5").success(function(games) {
+					$scope.mostRecentGame = games.shift();
+					$scope.recentGames = games;
+	    		});
+			}
     		$http.get("/api/stats/standings/weekly?numResults=4").success(function(standing) {
 				$scope.weeklyStandings = standing;
     		});
@@ -28,9 +31,13 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http",
     		$http.get("/api/game/total").success(function(total) {
     			$scope.totalGames = total;
     		});
+    		$http.get("/api/stats/top-rankings").success(function(rankings) {
+    			console.log(rankings);
+    			$scope.eloRanking = rankings || $scope.eloRanking;
+    		});
 		};
 		
-		$scope.mostRecentGame = [{}];
+		$scope.mostRecentGame = {};
 		$scope.recentGames = [{},{},{},{}];
 		$scope.eloRanking = [{},{},{},{},{}];
 		$scope.weeklyStandings = [{},{},{},{}];
@@ -38,6 +45,15 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http",
 		$scope.losingStreak = {};
 		$scope.sweepingScore = {};
 		$scope.totalGames = 0;
+
+		socket.on("new-game", function(game) {
+			$scope.recentGames.unshift($scope.mostRecentGame);
+			$scope.mostRecentGame = game;
+			if ($scope.recentGames.length > NUM_RECENT_GAMES - 1){
+				$scope.recentGames.pop();
+			}
+			$scope.dataRefresh(true);
+		});
 	}
 ]);
 
@@ -61,12 +77,12 @@ pongAppControllers.controller("leaderboardCtrl", ["$scope", "$http", "socket",
 			$scope.recentGameMessages = messages;
 		});
 
-		socket.on("new-game", function(game){
-            $scope.recentGameMessages.unshift(getGameMessage(game));
-            if ($scope.recentGameMessages.length > NUM_RECENT_GAMES){
-            	$scope.recentGameMessages.pop();
-            }
-	        //TODO: also refresh leaderboards here
+		socket.on("new-game", function(game) {
+			$scope.recentGameMessages.unshift(getGameMessage(game));
+			if ($scope.recentGameMessages.length > NUM_RECENT_GAMES){
+				$scope.recentGameMessages.pop();
+			}
+			//TODO: also refresh leaderboards here
 		});
 	}
 ]);
