@@ -28,7 +28,21 @@ var getUser = function(req, res) {
 	});
 };
 
+var getRecentUsers = function(req, res) {
+	var numResults = parseInt(req.query.numResults) || 15;
+
+	userService.getRecentUsers(numResults, function(error, rows){
+		if (error){
+			res.status(500).json({"error": "Error fetching recent users."});
+		}
+	  	else {
+	  		res.status(200).json(rows);
+	  	}
+	});
+};
+
 router.get("/list", getAllUsers);
+router.get("/recent", getRecentUsers);
 router.get("/:userId", getUser);
 
 module.exports = router;
