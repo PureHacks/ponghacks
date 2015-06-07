@@ -16,10 +16,10 @@ var fetchUserDetails = function(url, callback){
 	});
 };
 
-request("https://hipchat.tor.razorfish.com/v2/user?max-results=1000&auth_token=" + key.auth_token, function (error, response, body) {
+request("https://hipchat.tor.razorfish.com/v2/user?max-results=1000&auth_token=" + key.hc_auth_token_user, function (error, response, body) {
 	var users = JSON.parse(body).items;
 	var userDetailURLs = users.map(function(user) {
-	  	return user.links.self + "?auth_token=" + key.auth_token;
+	  	return user.links.self + "?auth_token=" + key.hc_auth_token_user;
 	});
 	
 	async.map(userDetailURLs, fetchUserDetails, function(error, results){

@@ -4,6 +4,7 @@ module.exports = function(io) {
 
 	var router = require("express").Router();
 	var gameService = require("../../services/gameService");
+	var hipchatService = require("../../services/hipchatService");
 
 
 	var addGame = function(req, res) {
@@ -17,6 +18,9 @@ module.exports = function(io) {
 						io.emit("new-game", results[0]);
 					}
 				});
+
+				hipchatService.gameUpdate(req.body.winnerUserId, req.body.loserUserId, req.body.winnerScore, req.body.loserScore);
+
 				res.status(200).json({id: insertId});
 			}
 		});
