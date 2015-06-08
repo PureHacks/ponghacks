@@ -2,23 +2,16 @@ package com.razorfish.ponghacksscorekeeper;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
 import com.razorfish.ponghacksscorekeeper.Retrofit.PlayersQuery;
-
-import java.util.ArrayList;
-
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import com.squareup.otto.Bus;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private Bus mBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -20,8 +20,8 @@ public class PlayerListAdapter extends ArrayAdapter {
     private ImageView playerAvatar;
     private TextView playerName;
 
-    public PlayerListAdapter(Context context, List list) {
-        super(context, 0, list);
+    public PlayerListAdapter(Context context) {
+        super(context, 0);
     }
 
     @Override

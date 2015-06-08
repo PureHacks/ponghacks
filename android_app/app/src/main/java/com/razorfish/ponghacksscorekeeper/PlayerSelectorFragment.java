@@ -16,22 +16,11 @@ import java.util.ArrayList;
  * Created by timothy.lau on 2015-06-06.
  */
 public class PlayerSelectorFragment extends Fragment {
-    private static final String playerListBundle = "playerListBundle";
-
-    public static PlayerSelectorFragment newInstance(ArrayList playerList) {
-        PlayerSelectorFragment fragment = new PlayerSelectorFragment();
-        Bundle args = new Bundle();
-        args.putParcelableArrayList(playerListBundle, playerList);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.player_selector, container, false);
-
-//        ArrayList<Parcelable> listArg = getArguments().getParcelableArrayList(playerListBundle);
 
         PlayerSelectorPagerAdapter adapter = new PlayerSelectorPagerAdapter(getFragmentManager());
 
