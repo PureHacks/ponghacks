@@ -7,6 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
+import com.razorfish.ponghacksscorekeeper.Retrofit.PlayersQuery;
+
+import java.util.ArrayList;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -22,6 +32,9 @@ public class MainActivity extends ActionBarActivity {
         rightScore.init("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
+
+        PlayersQuery allPlayers = new PlayersQuery(getString(R.string.endpoint), null, this);
+
 
     }
 

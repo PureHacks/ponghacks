@@ -3,6 +3,7 @@ package com.razorfish.ponghacksscorekeeper;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
+
+import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by timothy.lau on 2015-06-05.
@@ -35,6 +46,41 @@ public class ScoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.player_entry, container, false);
+
+//        final PlayerListFragment playerList = new PlayerListFragment();
+//        final PlayerSelectorFragment playerSelectorFragment = new PlayerSelectorFragment();
+
+        final int parentId = container.getId();
+
+        Button playerButton = (Button) v.findViewById(R.id.button);
+        playerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build();
+//
+//                PlayerListModel.PlayerListInterface playerListInterface = restAdapter.create(PlayerListModel.PlayerListInterface.class);
+//
+//                playerListInterface.playerListResults(new Callback<ArrayList<PlayerListModel.Player>>() {
+//                    @Override
+//                    public void success(ArrayList<PlayerListModel.Player> players, Response response) {
+////                        Log.d("response[0]", players.get(0).getEmail());
+////                        PlayerListFragment playerListFragment = PlayerListFragment.newInstance(players);
+////                        PlayerSelectorFragment playerSelectorFragment = PlayerSelectorFragment.newInstance(players);
+//                        PlayerSelectorFragment playerSelectorFragment = new PlayerSelectorFragment();
+//                        getFragmentManager().beginTransaction().replace(parentId, playerSelectorFragment).addToBackStack(null).commit();
+//
+//                    }
+//
+//                    @Override
+//                    public void failure(RetrofitError error) {
+//
+//                    }
+//                });
+
+                PlayerSelectorFragment playerSelectorFragment = new PlayerSelectorFragment();
+                getFragmentManager().beginTransaction().replace(parentId, playerSelectorFragment).addToBackStack(null).commit();
+            }
+        });
 
         final EditText editText = (EditText) v.findViewById(R.id.editText2);
         Button subButton = (Button) v.findViewById(R.id.button2);

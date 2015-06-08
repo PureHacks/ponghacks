@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="endpoint">http://10.15.64.83:8888</string>
 </resources>
