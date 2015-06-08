@@ -27,7 +27,7 @@ exports.getUserStats = function(userId, callback) {
 		    (SELECT MIN(DATE) FROM Game WHERE userId = "+ userId + ") as playerSince, \
 		    (SELECT @userWinningStreak) as longestWinningStreak, \
 		    (SELECT @userLosingStreak) as longestLosingStreak, \
-			(1 + (SELECT count(*) from User a WHERE a.eloRanking > b.eloRanking)) as rank \
+			(1 + (SELECT count(*) from User a WHERE userId IN (SELECT userId from activeUsers) AND a.eloRanking > b.eloRanking)) as rank \
 			FROM User b \
 			WHERE userId = "+ userId;
 
@@ -162,6 +162,7 @@ exports.getTopRankings = function(numResults, callback) {
 	var query = " \
  		SELECT userId, name \
 		FROM User \
+		WHERE userId IN (SELECT userId from activeUsers) \
 		ORDER BY eloRanking DESC \
 		LIMIT " + numResults;
 
@@ -185,13 +186,9 @@ exports.getAllUserStats = function(callback) {
 		(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId AND MONTH(date) = MONTH(NOW())) as monthlyLosses, \
 		(SELECT monthlyWins + monthlyLosses) as monthlyGameCount, \
 		(SELECT monthlyWins/weeklyGameCount * 100) as monthlyWinRate, \
-		(1 + (SELECT count(*) from User a WHERE a.eloRanking > b.eloRanking)) as rank \
+		(1 + (SELECT count(*) from User a WHERE userId IN (SELECT userId from activeUsers) AND a.eloRanking > b.eloRanking)) as rank \
 		FROM User b \
-		WHERE userId IN ( \
-					SELECT DISTINCT winnerUserID FROM Game \
-					UNION \
-					SELECT DISTINCT loserUserId FROM Game \
-		) \
+		WHERE userId IN (SELECT userId from activeUsers) \
 		ORDER BY name";
 
 	db.query(query, function(error, rows) {

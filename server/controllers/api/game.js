@@ -8,6 +8,17 @@ module.exports = function(io) {
 
 
 	var addGame = function(req, res) {
+		req.checkBody("winnerUserId", "Invalid or missing winnerUserId").notEmpty().isInt();
+		req.checkBody("winnerScore", "Invalid or missing winnerScore").notEmpty().isInt();
+		req.checkBody("loserUserId", "Invalid or missing loserUserId").notEmpty().isInt();
+		req.checkBody("loserScore", "Invalid or missing loserScore").notEmpty().isInt();
+
+		var validationErrors = req.validationErrors();
+		if (validationErrors) {
+			res.status(400).json(validationErrors);
+		    return;
+		}
+
 		gameService.addGame(req.body, function(error, insertId){
 			if (error){
 				res.status(500).json({"error": "Error adding game."});
