@@ -2,13 +2,15 @@ package com.razorfish.ponghacksscorekeeper;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.squareup.otto.Bus;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private Bus mBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,6 @@ public class MainActivity extends ActionBarActivity {
         rightScore.init("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
-
     }
 
     @Override

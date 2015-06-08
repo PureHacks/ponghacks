@@ -3,6 +3,7 @@ package com.razorfish.ponghacksscorekeeper;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +12,38 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 
+import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
+import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 /**
  * Created by timothy.lau on 2015-06-05.
  */
 public class ScoreFragment extends Fragment {
     private int defaultScore;
+    private String playerType;
+    Button playerButton;
+    PlayerListModel.Player selectedPlayer;
+    Bus mBus = BusProvider.getInstance();
 
     public void init(String result) {
-        if (result.toLowerCase().equals("winner")) {
+        if (result.equals("winner")) {
             defaultScore = 21;
+            playerType = "winner";
         }
         else {
             defaultScore = 15;
+            playerType = "loser";
         }
     }
 
@@ -35,6 +56,18 @@ public class ScoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.player_entry, container, false);
+
+        final int parentId = container.getId();
+
+        playerButton = (Button) v.findViewById(R.id.button);
+
+        playerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlayerSelectorFragment playerSelectorFragment = PlayerSelectorFragment.newInstance(playerType);
+                getFragmentManager().beginTransaction().add(parentId, playerSelectorFragment).addToBackStack(null).commit();
+            }
+        });
 
         final EditText editText = (EditText) v.findViewById(R.id.editText2);
         Button subButton = (Button) v.findViewById(R.id.button2);
@@ -75,4 +108,26 @@ public class ScoreFragment extends Fragment {
 
         return v;
     }
+
+    @Subscribe
+    public void onPlayerSelected(PlayerSelected event) {
+        Log.d("Scorefragment getType", event.getType());
+        Log.d("ScorefragmentplayerType", playerType);
+        if (event.getType().equals(playerType)) {
+            selectedPlayer = event.getPlayer();
+            playerButton.setText(selectedPlayer.getName());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBus.register(this);
+    }
+
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        mBus.unregister(this);
+//    }
 }
