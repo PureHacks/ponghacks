@@ -6,12 +6,16 @@ import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListAdapter;
+import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.LoadPlayers;
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayersListResponse;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
@@ -22,6 +26,7 @@ import com.squareup.otto.Subscribe;
 public class PlayerListFragment extends Fragment {
 
     private static final String playerListBundle = "playerListBundle";
+    private static final String type = "type";
     Bus mBus = BusProvider.getInstance();
 
     private PlayerListAdapter mAdapter;
@@ -29,6 +34,9 @@ public class PlayerListFragment extends Fragment {
 
     public static PlayerListFragment newInstance(String listType) {
         PlayerListFragment newFragment = new PlayerListFragment();
+        Bundle args = new Bundle();
+        args.putString(type, listType);
+        newFragment.setArguments(args);
         return newFragment;
     }
 
@@ -39,6 +47,15 @@ public class PlayerListFragment extends Fragment {
         mListView = (ListView) v.findViewById(R.id.playerListView);
         mAdapter = new PlayerListAdapter(getActivity());
         mListView.setAdapter(mAdapter);
+
+        mListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PlayerListModel.Player player = (PlayerListModel.Player) mAdapter.getItem(position);
+                mBus.post(new PlayerSelected(player, getArguments().getString(type)));
+                getFragmentManager().popBackStack();
+            }
+        });
 
         return v;
     }

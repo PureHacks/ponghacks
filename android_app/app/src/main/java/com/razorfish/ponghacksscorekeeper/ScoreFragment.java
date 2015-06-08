@@ -13,6 +13,10 @@ import android.widget.ImageButton;
 import android.widget.NumberPicker;
 
 import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
+import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,9 @@ import retrofit.client.Response;
 public class ScoreFragment extends Fragment {
     private int defaultScore;
     private String playerType;
+    Button playerButton;
+    PlayerListModel.Player selectedPlayer;
+    Bus mBus = BusProvider.getInstance();
 
     public void init(String result) {
         if (result.toLowerCase().equals("winner")) {
@@ -54,12 +61,19 @@ public class ScoreFragment extends Fragment {
 
         final int parentId = container.getId();
 
-        Button playerButton = (Button) v.findViewById(R.id.button);
+        playerButton = (Button) v.findViewById(R.id.button);
+
+//        if (playerType.equals("winner"))
+//            playerButton.setId(R.id.player_button_winner);
+//        else
+//            playerButton.setId(R.id.player_button_loser);
+
+
         playerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PlayerSelectorFragment playerSelectorFragment = PlayerSelectorFragment.newInstance(playerType);
-                getFragmentManager().beginTransaction().replace(parentId, playerSelectorFragment).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().add(parentId, playerSelectorFragment).addToBackStack(null).commit();
             }
         });
 
@@ -101,5 +115,25 @@ public class ScoreFragment extends Fragment {
         });
 
         return v;
+    }
+
+    @Subscribe
+    public void onPlayerSelected(PlayerSelected event) {
+        if (event.getType().equals(playerType)) {
+            selectedPlayer = event.getPlayer();
+            playerButton.setText(selectedPlayer.getName());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBus.register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBus.unregister(this);
     }
 }

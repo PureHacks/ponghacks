@@ -32,15 +32,8 @@ public class PlayerSelectorFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.player_selector, container, false);
 
-        Log.d(playerTypeKey, getArguments().getString(playerTypeKey));
-
-        if (getArguments().getString(playerTypeKey).equals("winner"))
-            v.findViewById(R.id.pager).setId(R.id.pager_winner);
-        else
-            v.findViewById(R.id.pager).setId(R.id.pager_loser);
-
-        viewPager = getArguments().getString(playerTypeKey).equals("winner") ? (ViewPager) v.findViewById(R.id.pager_winner) : (ViewPager) v.findViewById(R.id.pager_loser);
-        adapter = new PlayerSelectorPagerAdapter(getFragmentManager());
+        viewPager = (ViewPager) v.findViewById(R.id.pager);
+        adapter = new PlayerSelectorPagerAdapter(getFragmentManager(), getArguments().getString(playerTypeKey));
         viewPager.setAdapter(adapter);
 
         tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);

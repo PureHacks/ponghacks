@@ -2,4 +2,6 @@
 <resources>
     <item name="pager_winner" type="id"/>
     <item name="pager_loser" type="id"/>
+    <item name="player_button_winner" type="id"/>
+    <item name="player_button_loser" type="id"/>
 </resources>

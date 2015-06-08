@@ -11,10 +11,11 @@ import java.util.ArrayList;
  * Created by timothy.lau on 2015-06-06.
  */
 public class PlayerSelectorPagerAdapter extends FragmentStatePagerAdapter {
-    ArrayList playerList;
+    String type;
 
-    public PlayerSelectorPagerAdapter(FragmentManager fm) {
+    public PlayerSelectorPagerAdapter(FragmentManager fm, String type) {
         super(fm);
+        this.type = type;
     }
 
     @Override
@@ -31,9 +32,9 @@ public class PlayerSelectorPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         PlayerListFragment fragment;
         if (position == 0) {
-            fragment = new PlayerListFragment();
+            fragment = PlayerListFragment.newInstance(type);
         } else {
-            fragment = new PlayerListFragment();
+            fragment = PlayerListFragment.newInstance(type);
         }
 
         return fragment;
