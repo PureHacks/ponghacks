@@ -3,13 +3,14 @@ package com.razorfish.ponghacksscorekeeper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
 /**
  * Created by timothy.lau on 2015-06-06.
  */
-public class PlayerSelectorPagerAdapter extends FragmentPagerAdapter {
+public class PlayerSelectorPagerAdapter extends FragmentStatePagerAdapter {
     ArrayList playerList;
 
     public PlayerSelectorPagerAdapter(FragmentManager fm) {

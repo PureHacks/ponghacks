@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.PlayersQuery;
 import com.squareup.otto.Bus;
 
 
@@ -25,10 +24,6 @@ public class MainActivity extends ActionBarActivity {
         rightScore.init("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
-
-        PlayersQuery allPlayers = new PlayersQuery(getString(R.string.endpoint), null, this);
-
-
     }
 
     @Override

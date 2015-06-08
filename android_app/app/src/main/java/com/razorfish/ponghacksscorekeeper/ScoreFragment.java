@@ -27,13 +27,16 @@ import retrofit.client.Response;
  */
 public class ScoreFragment extends Fragment {
     private int defaultScore;
+    private String playerType;
 
     public void init(String result) {
         if (result.toLowerCase().equals("winner")) {
             defaultScore = 21;
+            playerType = "winner";
         }
         else {
             defaultScore = 15;
+            playerType = "loser";
         }
     }
 
@@ -48,7 +51,6 @@ public class ScoreFragment extends Fragment {
         View v = inflater.inflate(R.layout.player_entry, container, false);
 
 //        final PlayerListFragment playerList = new PlayerListFragment();
-//        final PlayerSelectorFragment playerSelectorFragment = new PlayerSelectorFragment();
 
         final int parentId = container.getId();
 
@@ -56,28 +58,7 @@ public class ScoreFragment extends Fragment {
         playerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build();
-//
-//                PlayerListModel.PlayerListInterface playerListInterface = restAdapter.create(PlayerListModel.PlayerListInterface.class);
-//
-//                playerListInterface.playerListResults(new Callback<ArrayList<PlayerListModel.Player>>() {
-//                    @Override
-//                    public void success(ArrayList<PlayerListModel.Player> players, Response response) {
-////                        Log.d("response[0]", players.get(0).getEmail());
-////                        PlayerListFragment playerListFragment = PlayerListFragment.newInstance(players);
-////                        PlayerSelectorFragment playerSelectorFragment = PlayerSelectorFragment.newInstance(players);
-//                        PlayerSelectorFragment playerSelectorFragment = new PlayerSelectorFragment();
-//                        getFragmentManager().beginTransaction().replace(parentId, playerSelectorFragment).addToBackStack(null).commit();
-//
-//                    }
-//
-//                    @Override
-//                    public void failure(RetrofitError error) {
-//
-//                    }
-//                });
-
-                PlayerSelectorFragment playerSelectorFragment = new PlayerSelectorFragment();
+                PlayerSelectorFragment playerSelectorFragment = PlayerSelectorFragment.newInstance(playerType);
                 getFragmentManager().beginTransaction().replace(parentId, playerSelectorFragment).addToBackStack(null).commit();
             }
         });

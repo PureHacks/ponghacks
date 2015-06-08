@@ -11,4 +11,8 @@ public class PlayersListResponse {
     public PlayersListResponse(ArrayList response) {
         this.response = response;
     }
+
+    public ArrayList getResponse() {
+        return response;
+    }
 }

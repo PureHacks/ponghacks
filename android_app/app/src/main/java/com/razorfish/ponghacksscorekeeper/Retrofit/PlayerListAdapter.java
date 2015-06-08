@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.razorfish.ponghacksscorekeeper.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,8 @@ import java.util.List;
 public class PlayerListAdapter extends ArrayAdapter {
     private ImageView playerAvatar;
     private TextView playerName;
+
+    private List list = new ArrayList();
 
     public PlayerListAdapter(Context context) {
         super(context, 0);
