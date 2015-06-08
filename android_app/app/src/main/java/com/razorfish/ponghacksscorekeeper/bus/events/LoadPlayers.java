@@ -5,8 +5,18 @@ package com.razorfish.ponghacksscorekeeper.bus.events;
  */
 public class LoadPlayers {
     String query;
+    String playerType;
 
-    public LoadPlayers(String query) {
+    public LoadPlayers(String query, String playerType) {
         this.query = query;
+        this.playerType = playerType;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public String getPlayerType() {
+        return playerType;
     }
 }

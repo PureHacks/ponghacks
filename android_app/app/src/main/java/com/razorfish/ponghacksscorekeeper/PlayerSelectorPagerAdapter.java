@@ -32,9 +32,9 @@ public class PlayerSelectorPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         PlayerListFragment fragment;
         if (position == 0) {
-            fragment = PlayerListFragment.newInstance(type);
+            fragment = PlayerListFragment.newInstance(type, "recent");
         } else {
-            fragment = PlayerListFragment.newInstance(type);
+            fragment = PlayerListFragment.newInstance(type, "all");
         }
 
         return fragment;

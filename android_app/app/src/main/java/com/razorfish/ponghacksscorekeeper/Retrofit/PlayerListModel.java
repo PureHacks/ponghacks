@@ -44,5 +44,8 @@ public class PlayerListModel {
     public interface PlayerListInterface {
         @GET("/api/user/list")
         void playerListResults(@Query("") Callback<ArrayList<Player>> cb);
+
+        @GET("/api/user/recent")
+        void recentPlayerList(@Query("") Callback<ArrayList<Player>> cb);
     }
 }

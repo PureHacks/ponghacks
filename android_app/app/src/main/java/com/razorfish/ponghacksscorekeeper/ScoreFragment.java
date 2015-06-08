@@ -37,7 +37,7 @@ public class ScoreFragment extends Fragment {
     Bus mBus = BusProvider.getInstance();
 
     public void init(String result) {
-        if (result.toLowerCase().equals("winner")) {
+        if (result.equals("winner")) {
             defaultScore = 21;
             playerType = "winner";
         }
@@ -57,17 +57,9 @@ public class ScoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.player_entry, container, false);
 
-//        final PlayerListFragment playerList = new PlayerListFragment();
-
         final int parentId = container.getId();
 
         playerButton = (Button) v.findViewById(R.id.button);
-
-//        if (playerType.equals("winner"))
-//            playerButton.setId(R.id.player_button_winner);
-//        else
-//            playerButton.setId(R.id.player_button_loser);
-
 
         playerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +111,8 @@ public class ScoreFragment extends Fragment {
 
     @Subscribe
     public void onPlayerSelected(PlayerSelected event) {
+        Log.d("Scorefragment getType", event.getType());
+        Log.d("ScorefragmentplayerType", playerType);
         if (event.getType().equals(playerType)) {
             selectedPlayer = event.getPlayer();
             playerButton.setText(selectedPlayer.getName());
@@ -131,9 +125,9 @@ public class ScoreFragment extends Fragment {
         mBus.register(this);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        mBus.unregister(this);
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        mBus.unregister(this);
+//    }
 }

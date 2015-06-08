@@ -2,7 +2,7 @@ package com.razorfish.ponghacksscorekeeper;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +27,17 @@ public class PlayerListFragment extends Fragment {
 
     private static final String playerListBundle = "playerListBundle";
     private static final String type = "type";
+    private static final String query = "query";
     Bus mBus = BusProvider.getInstance();
 
     private PlayerListAdapter mAdapter;
     private ListView mListView;
 
-    public static PlayerListFragment newInstance(String listType) {
+    public static PlayerListFragment newInstance(String listType, String queryVal) {
         PlayerListFragment newFragment = new PlayerListFragment();
         Bundle args = new Bundle();
         args.putString(type, listType);
+        args.putString(query, queryVal);
         newFragment.setArguments(args);
         return newFragment;
     }
@@ -52,6 +54,7 @@ public class PlayerListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PlayerListModel.Player player = (PlayerListModel.Player) mAdapter.getItem(position);
+                Log.d("playerType", getArguments().getString(type));
                 mBus.post(new PlayerSelected(player, getArguments().getString(type)));
                 getFragmentManager().popBackStack();
             }
@@ -64,7 +67,12 @@ public class PlayerListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mBus.register(this);
-        mBus.post(new LoadPlayers(null));
+        if (getArguments().getString(query).equals("all")) {
+            mBus.post(new LoadPlayers("all", getArguments().getString(type)));
+        }
+        else {
+            mBus.post(new LoadPlayers("recent", getArguments().getString(type)));
+        }
     }
 
     @Override
@@ -75,7 +83,9 @@ public class PlayerListFragment extends Fragment {
 
     @Subscribe
     public void onPlayersLoaded(PlayersListResponse playersListResponse) {
-        mAdapter.addAll(playersListResponse.getResponse());
-        ((BaseAdapter) mListView.getAdapter()).notifyDataSetChanged();
+        if (getArguments().getString(type).equals(playersListResponse.getPlayerType()) && getArguments().getString(query).equals(playersListResponse.getQueryType())) {
+            mAdapter.addAll(playersListResponse.getResponse());
+            ((BaseAdapter) mListView.getAdapter()).notifyDataSetChanged();
+        }
     }
 }

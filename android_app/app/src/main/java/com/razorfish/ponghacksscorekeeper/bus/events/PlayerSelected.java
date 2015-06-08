@@ -11,11 +11,7 @@ public class PlayerSelected {
 
     public PlayerSelected(PlayerListModel.Player player, String type) {
         this.player = player;
-        if (type.equals("winner")) {
-            this.type = "winner";
-        } else {
-            this.type = "loser";
-        }
+        this.type = type;
     }
 
     public PlayerListModel.Player getPlayer() {
