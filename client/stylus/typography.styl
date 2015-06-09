@@ -37,6 +37,8 @@ h1, h2
 	src url("../fonts/Uniform/Black/uniform-black-webfont.svg")
 	src url("../fonts/Uniform/Black/uniform-black-webfont.ttf")
 	
+.uppercase
+	text-transform uppercase
 
 .time-regular
 	font-family Regular
@@ -52,10 +54,12 @@ h1, h2
 	
 .section-header
 	background-color $header-bg-grey
+	color $font-dark-blue
 	padding 8.5px
 	h3
 		font-family Medium
 		font-size 14px
+		text-transform uppercase
 		
 .weekly-standings
 	td:first-child, th:first-child
@@ -63,6 +67,8 @@ h1, h2
 	thead
 		background-color $header-bg-grey
 		font-size 14px
+		text-transform uppercase
+		color $font-dark-blue
 		th
 			font-family Bold
 			&:first-child
@@ -72,6 +78,7 @@ h1, h2
 			font-family Regular
 			font-size 18px
 			text-align center
+			color $font-dark-blue
 			&:first-child, &:last-child
 				font-family Bold
 			&:last-child
@@ -79,50 +86,62 @@ h1, h2
 
 .elo-ranking
 	ol li
+		color $font-dark-blue
 		&:before
 			font-family Black
 			font-size 22px
+			color $font-dark-blue
 		&:first-child
 			color $accent-red
+			&:before
+				color $accent-red
 		p
-			font-family Bold
+			font-family Medium
 			font-size 20px
 			text-align left
-
-
 
 .recent-games
 	.game-info
 		p
 			font-family Regular
-			font-size 16px					
+			font-size 16px
+			color $font-dark-blue		
 			span
 				font-family Bold
 				&.winner-name
 					color $accent-red
-				&.loser-name
-					color $accent-dark-grey
 		.time-regular
 			font-family Regular
 			font-size 14px
+			color $font-dark-blue
 	.game-score
 		font-family Black
 		font-size 22px
-		color $accent-dark-grey
+		color $font-dark-blue
 
 .random-stats
+	h4, p
+		text-align center
 	h4
 		font-family Medium
 		font-size 14px
+		text-transform uppercase
+		color $font-dark-blue
 	p
 		font-size 34px
 		font-family Bold
 		span
 			font-family Black
-	.win-streak p span
-		color $accent-red
-	.losing-streak p span
-		color $accent-grey
+	.streak p, .streak h4
+		text-align left
+	.win-streak p
+		color $font-dark-blue
+		span
+			color $accent-red
+	.losing-streak p
+		color $font-dark-blue
+		span
+			color $accent-grey
 	.sweeping-score p
 		font-size 50px
 		color $accent-grey
@@ -134,7 +153,7 @@ h1, h2
 	.total-games
 		font-size 60px
 		font-family Black
-		color $accent-dark-grey
+		color $font-dark-blue
 	
 html
 	font-family Bold

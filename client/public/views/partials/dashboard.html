@@ -3,7 +3,7 @@
 		<section class="clearfix wgrid-8of12">
 			<div class="winner">
 				<img src="{{mostRecentGame.winnerAvatarUrl}}">
-				<h4><a class="name-large" href="#/api/user/{{mostRecentGame.winnerUserId}}">{{mostRecentGame.winnerName | shortFullName}}</a></h4>
+				<h4><a class="name-large" href="#/api/user/{{mostRecentGame.winnerUserId}}">{{mostRecentGame.winnerName | shortFullName}}  <span class="star"></span></a></h4>
 			</div>
 			<div class="time-score">
 				<p class="time-regular">{{mostRecentGame.date | smartDate}}</p>
@@ -20,7 +20,7 @@
 			<div class="row">
 				<section class="elo-ranking wgrid-3wAny marg-l-0">
 					<div class="section-header">
-						<h3>Ranking <a href="#/player-stats"><span class="arrow">&#10140;</span></a></h3>
+						<h3>Ranking <a href="#/player-stats"><span class="arrow"></span></a></h3>
 					</div>
 					<ol>
 						<li ng-repeat="player in eloRanking">
@@ -30,7 +30,7 @@
 				</section>
 				<section class="recent-games wgrid-5wAny marg-r-0">
 					<div class="section-header">
-						<h3>Recent Games <span class="arrow">&#10140;</span></h3>
+						<h3>Recent Games <span class="arrow"></span></h3>
 					</div>
 					<ul>
 						<li ng-repeat="game in recentGames">
@@ -71,15 +71,25 @@
 		<div class="right-column wgrid-4of12 marg-r-0">
 			<section class="random-stats">
 				<div class="section-header">
-					<h3>Player Stats</h3>
+					<h3>Player Stats <span class="arrow"></span></h3>
 				</div>
-				<div class="stat win-streak">
-					<h4>Longest winning streak</h4>
-					<p><span>{{winStreak.streak}}</span> <a href="#/api/user/{{winStreak.userId}}">{{winStreak.name | shortFullName}}</a></p>
+				<div class="stat streak win-streak clearfix">
+					<div class="streak-left">
+						<span class="arrow"></span>
+					</div>
+					<div class="streak-right">
+						<h4>Longest winning streak</h4>
+						<p><span>{{winStreak.streak}}</span> <a class="uppercase" href="#/api/user/{{winStreak.userId}}">{{winStreak.name | shortFullName}}</a></p>
+					</div>
 				</div>
-				<div class="stat losing-streak">
-					<h4>Most consecutive losses</h4>
-					<p><span>{{losingStreak.streak}}</span> <a href="#/api/user/{{losingStreak.userId}}">{{losingStreak.name | shortFullName}}</a></p>
+				<div class="stat streak losing-streak clearfix">
+					<div class="streak-left">
+						<span class="arrow"></span>
+					</div>
+					<div class="streak-right">
+						<h4>Most consecutive losses</h4>
+						<p><span>{{losingStreak.streak}}</span> <a class="uppercase" href="#/api/user/{{losingStreak.userId}}">{{losingStreak.name | shortFullName}}</a></p>
+					</div>
 				</div>
 				<div class="stat sweeping-score">
 					<h4>Largest sweeping score</h4>
