@@ -69,6 +69,19 @@ angular.module("filters", [])
 			}
 		};
 	})
+	.filter("winRate", function() {
+		return function(winRate) {
+			if (typeof winRate === "number") {
+				if (winRate % 1 === 0) {
+					return winRate + "%";
+				} else {
+					return winRate.toFixed(1) + "%";
+				}
+			} else {
+				return 0;
+			}
+		};
+	})
 	.filter("smartDate", function() {
 		var today = new Date(),
 			day = today.getDate(),
