@@ -1,17 +1,17 @@
 <div class="dashboard row clearfix" ng-init="dataRefresh()">
 	<div class="most-recent-game wgrid-12of12">
-		<section class="clearfix">
+		<section class="clearfix wgrid-8of12">
 			<div class="winner">
 				<img src="{{mostRecentGame.winnerAvatarUrl}}">
-				<h4><a href="#/api/user/{{mostRecentGame.winnerUserId}}">{{mostRecentGame.winnerName | shortFullName}}</a></h4>
+				<h4><a class="name-large" href="#/api/user/{{mostRecentGame.winnerUserId}}">{{mostRecentGame.winnerName | shortFullName}}</a></h4>
 			</div>
 			<div class="time-score">
-				<p>{{mostRecentGame.date | smartDate}}</p>
-				<p class="score"><span>{{mostRecentGame.winnerScore}}</span> - {{mostRecentGame.loserScore}}</p>
+				<p class="time-regular">{{mostRecentGame.date | smartDate}}</p>
+				<p class="score-large"><span>{{mostRecentGame.winnerScore}}</span> - {{mostRecentGame.loserScore}}</p>
 			</div>			
 			<div class="loser">
 				<img src="{{mostRecentGame.loserAvatarUrl}}">
-				<h4><a href="#/api/user/{{mostRecentGame.loserUserId}}">{{mostRecentGame.loserName | shortFullName}}</a></h4>
+				<h4><a class="name-large" href="#/api/user/{{mostRecentGame.loserUserId}}">{{mostRecentGame.loserName | shortFullName}}</a></h4>
 			</div>
 		</section>
 	</div>
@@ -20,11 +20,11 @@
 			<div class="row">
 				<section class="elo-ranking wgrid-3wAny marg-l-0">
 					<div class="section-header">
-						<h3>Ranking <span class="arrow">&#10140;</span></h3>
+						<h3>Ranking <a href="#/player-stats"><span class="arrow">&#10140;</span></a></h3>
 					</div>
 					<ol>
 						<li ng-repeat="player in eloRanking">
-							<p><a href="#/api/user/{{player.userId}}">{{player.name | shortFullName}}</a></p>
+							<p><a href="#/api/user/{{player.userId}}">{{player.name | shortFullName}} <span ng-class="{star:$first}"></span></a></p>
 						</li>
 					</ol>
 				</section>
@@ -36,7 +36,7 @@
 						<li ng-repeat="game in recentGames">
 							<div class="recent-game clearfix">
 								<div class="game-info">
-									<p>{{game.date | smartDate}}</p>
+									<p class="time-regular">{{game.date | smartDate}}</p>
 									<p><span class="winner-name"><a href="#/api/user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/api/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
 								</div>
 								<div class="game-score">
@@ -62,7 +62,7 @@
 							<td class="games">{{playerStats.gameCount}}</td>
 							<td class="wins">{{playerStats.wins}}</td>
 							<td class="losses">{{playerStats.losses}}</td>
-							<td class="win-rate">{{playerStats.winRate | number : 1}}</td>
+							<td class="win-rate">{{playerStats.winRate | winRate}}</td>
 						</tr>
 					</table>
 				</section>	

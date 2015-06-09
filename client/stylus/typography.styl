@@ -1,2 +1,155 @@
 h1, h2
 	text-align center
+
+@font-face
+	font-family Medium
+	font-style normal
+	src url("../fonts/Uniform/Medium/uniform-medium-webfont.eot")
+	src url("../fonts/Uniform/Medium/uniform-medium-webfont.woff2")
+	src url("../fonts/Uniform/Medium/uniform-medium-webfont.woff")
+	src url("../fonts/Uniform/Medium/uniform-medium-webfont.svg")
+	src url("../fonts/Uniform/Medium/uniform-medium-webfont.ttf")
+	
+@font-face
+	font-family Regular
+	font-style normal
+	src url("../fonts/Uniform/Regular/uniform-regular-webfont.eot")
+	src url("../fonts/Uniform/Regular/uniform-regular-webfont.woff2")
+	src url("../fonts/Uniform/Regular/uniform-regular-webfont.woff")
+	src url("../fonts/Uniform/Regular/uniform-regular-webfont.svg")
+	src url("../fonts/Uniform/Regular/uniform-regular-webfont.ttf")
+	
+@font-face
+	font-family Bold
+	font-style normal
+	src url("../fonts/Uniform/Bold/uniform-bold-webfont.eot")
+	src url("../fonts/Uniform/Bold/uniform-bold-webfont.woff2")
+	src url("../fonts/Uniform/Bold/uniform-bold-webfont.woff")
+	src url("../fonts/Uniform/Bold/uniform-bold-webfont.svg")
+	src url("../fonts/Uniform/Bold/uniform-bold-webfont.ttf")
+	
+@font-face
+	font-family Black
+	font-style normal
+	src url("../fonts/Uniform/Black/uniform-black-webfont.eot")
+	src url("../fonts/Uniform/Black/uniform-black-webfont.woff2")
+	src url("../fonts/Uniform/Black/uniform-black-webfont.woff")
+	src url("../fonts/Uniform/Black/uniform-black-webfont.svg")
+	src url("../fonts/Uniform/Black/uniform-black-webfont.ttf")
+	
+
+.time-regular
+	font-family Regular
+	font-size 20px
+
+.score-large
+	font-family Black
+	font-size 65px
+
+.name-large
+	font-family Bold
+	font-size 24px
+	
+.section-header
+	background-color $header-bg-grey
+	padding 8.5px
+	h3
+		font-family Medium
+		font-size 14px
+		
+.weekly-standings
+	td:first-child, th:first-child
+		text-align left
+	thead
+		background-color $header-bg-grey
+		font-size 14px
+		th
+			font-family Bold
+			&:first-child
+				font-family Medium
+	tr
+		td
+			font-family Regular
+			font-size 18px
+			text-align center
+			&:first-child, &:last-child
+				font-family Bold
+			&:last-child
+				color $accent-red
+
+.elo-ranking
+	ol li
+		&:before
+			font-family Black
+			font-size 22px
+		&:first-child
+			color $accent-red
+		p
+			font-family Bold
+			font-size 20px
+			text-align left
+
+
+
+.recent-games
+	.game-info
+		p
+			font-family Regular
+			font-size 16px					
+			span
+				font-family Bold
+				&.winner-name
+					color $accent-red
+				&.loser-name
+					color $accent-dark-grey
+		.time-regular
+			font-family Regular
+			font-size 14px
+	.game-score
+		font-family Black
+		font-size 22px
+		color $accent-dark-grey
+
+.random-stats
+	h4
+		font-family Medium
+		font-size 14px
+	p
+		font-size 34px
+		font-family Bold
+		span
+			font-family Black
+	.win-streak p span
+		color $accent-red
+	.losing-streak p span
+		color $accent-grey
+	.sweeping-score p
+		font-size 50px
+		color $accent-grey
+		font-family Regular
+		&.score
+			font-family Black
+		.winner-score, .winner-name
+			color $accent-red
+	.total-games
+		font-size 60px
+		font-family Black
+		color $accent-dark-grey
+	
+html
+	font-family Bold
+
+a 
+	text-decoration none
+	border-bottom none
+	color inherit
+	transition 0.5s ease
+	border-bottom none
+
+a:visited
+	color inherit
+
+a:hover
+	color $accent-red
+	border-bottom 1px solid $accent-red
+	transition: 0.5 ease;
