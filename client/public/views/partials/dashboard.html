@@ -24,7 +24,7 @@
 					</div>
 					<ol>
 						<li ng-repeat="player in eloRanking">
-							<p><a href="#/api/user/{{player.userId}}">{{player.name | shortFullName}}</a></p>
+							<p><a href="#/api/user/{{player.userId}}">{{player.name | shortFullName}} <span ng-class="{star:$first}"></span></a></p>
 						</li>
 					</ol>
 				</section>
