@@ -14,14 +14,12 @@
 			margin 0 auto	
 			h4
 				font-size 24px
-				
 			.time-score
 				.time-regular
 					margin 10px 0 20px 0
 				.score-large
 					span
 						color $accent-red
-			
 			img 
 				border solid 5px $white
 				width 125px
@@ -31,14 +29,16 @@
 				img
 					border-color $accent-red
 				color $accent-red
-			
+				.star
+					width 25px
+					height 24px
+					background url("/assets/img/star.png")
+					display inline-block
 			.winner, .time-score, .loser
 				float left
 				text-align center
-			
 			.winner, .loser
 				width 30%
-			
 			.time-score
 				width 40%
 	.dashboard-breakdown
@@ -53,9 +53,10 @@
 						color $accent-red
 						position absolute
 						right 5px
-						top -2px
-						content "&#10140;"
-						font-size 20px
+						top 0
+						background url("/assets/img/arrow-right.png")
+						width: 19px
+						height: 15px
 
 		.left-column, .right-column
 			margin-top 20px
@@ -69,15 +70,29 @@
 		.random-stats
 			height 480px
 			.stat
-				text-align center
 				height 100px
 				padding-top 25px
-				h4
-					font-size 14px
 				border-bottom 1px solid $header-bg-grey
-				
 				&.total-games-played
 					border-bottom none
+			.streak
+				.streak-left,
+				.streak-right
+					float: left
+				.streak-left
+					width 25%
+					.arrow
+						margin 0 auto
+						width 54px
+						height 54px
+						display block
+				.streak-right
+					width 75%
+					padding-left 7.5px
+				&.win-streak .arrow
+					background-image url("/assets/img/arrow-up.png")	
+				&.losing-streak .arrow
+					background-image url("/assets/img/arrow-down.png")
 			.sweeping-score
 				padding-top 20px
 				height 145px
@@ -106,16 +121,11 @@
 						border-bottom none
 					.star
 						position absolute
-						top 13px
+						top 10px
 						right 20px
-						width 35px
-						height 25px
-						background url("/assets/img/star.svg")
-						background-size 35px 25px
-						content ""
-						fill
-							color $accent-red
-					
+						width 25px
+						height 24px
+						background url("/assets/img/star.png")
 		.recent-games
 			ul li
 				border-bottom 1px solid $header-bg-grey
@@ -126,7 +136,6 @@
 					padding 15px 10px 15px 15px
 					.game-info, .game-score
 						float left
-						padding 5
 					.game-info
 						width 80%
 					.game-score
