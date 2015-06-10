@@ -35,4 +35,66 @@
 						font-size 22px
 						color $font-dark-blue
 	.profile-stats
-		color $accent-red
+		height 650px
+		background-color $bg-dark-blue
+		color $white
+		.avatar
+			width 140px
+			height 140px
+			margin 20px auto
+			img
+				border-radius 50%
+				border 3px solid $white
+		.name
+			margin-bottom 20px
+		.player-since
+			margin-bottom 16px
+		.player-rank
+			margin-bottom 25px
+		.split
+			padding 0 20px
+			.block
+				float left
+				width 50%
+				height 75px
+				&.top
+					padding-bottom 10px
+				&.bottom
+					padding-top 10px
+				&.top.left
+					border-bottom 1px solid $accent-grey
+					border-right 1px solid $accent-grey
+				&.top.right
+					border-bottom 1px solid $accent-grey
+				&.bottom.left
+					border-right 1px solid $accent-grey
+		.bottom-row
+			margin-bottom 40px
+		.streak
+			height 65px
+			padding 0 20px
+			.streak-left,
+			.streak-right
+				float: left
+				height inherit
+				border-bottom 1px solid $accent-grey
+			.streak-left
+				width 25%
+				.arrow
+					margin 0 auto
+					width 54px
+					height 54px
+					display block
+			.streak-right
+				width 75%
+				padding-left 7.5px
+			&.win-streak .arrow
+				background-image url("/assets/img/arrow-up.png")	
+			&.losing-streak .arrow
+				background-image url("/assets/img/arrow-down.png")
+		.bottom-streak
+			.streak-left, .streak-right
+				margin-top 15px
+				border-bottom none
+		
+			
