@@ -115,18 +115,91 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 
 pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", 
 	function($scope, $http) {
-		$scope.allUserStats = {};
+		$scope.displayedStats = {};
+		$scope.filter = "allTime";
+		$scope.selectedUsers = [];
+
+		var allTimeStats = {};
+		var weeklyStats = {};
+		var monthlyStats = {};
 
 		$scope.init = function() {
 			$http.get("/api/stats/user/all")
 				.success(function(stats){
-					console.log(stats);
-					$scope.allUserStats = stats;
+					allTimeStats = stats;
+					setWeeklyStats(stats);
+					setMonthlyStats(stats);
+
+					$scope.displayedStats = allTimeStats;
 				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
 		};
+
+		$scope.$watch("filter", function(value) {
+			switch (value) {
+			    case "allTime":
+			        $scope.displayedStats = allTimeStats;
+			        break;
+			    case "weekly":
+			        $scope.displayedStats = weeklyStats;
+			        break;
+			    case "monthly":
+			        $scope.displayedStats = monthlyStats;
+			        break;
+			}
+		 });
+ 
+		var setWeeklyStats = function(allStats) {
+			weeklyStats = allStats.map(function(userStats) {
+			  	return {
+					"userId": userStats.userId,
+				    "name": userStats.name,
+				    "avatarUrl": userStats.avatarUrl,
+				    "wins": userStats.weeklyWins,
+				    "losses": userStats.weeklyLosses,
+				    "gameCount": userStats.weeklyGameCount,
+				    "winRate": userStats.weeklyWinRate,
+				    "rank": userStats.rank
+				};
+			});
+		};
+
+		var setMonthlyStats = function(allStats) {
+			monthlyStats = allStats.map(function(userStats) {
+			  	return {
+					"userId": userStats.userId,
+				    "name": userStats.name,
+				    "avatarUrl": userStats.avatarUrl,
+				    "wins": userStats.monthlyWins,
+				    "losses": userStats.monthlyLosses,
+				    "gameCount": userStats.monthlyGameCount,
+				    "winRate": userStats.monthlyWinRate,
+				    "rank": userStats.rank
+				};
+			});
+		};
+	    
+	    $scope.toggleCompareSelection = function toggleCompareSelection(userId) {
+	      var idx = $scope.selectedUsers.indexOf(userId);
+	      
+	      //already checked, uncheck
+	      if (idx > -1) {
+	        $scope.selectedUsers.splice(idx, 1);
+	      }
+	      // if second checkbox, compare users
+	      else if($scope.selectedUsers.length === 1){
+	        console.log("COMPARING USERS: " + $scope.selectedUsers[0] + " vs. " + userId);
+	        $scope.selectedUsers = [];
+	      }
+	      // first user selected
+	      else {
+			$scope.selectedUsers.push(userId);
+	      }
+
+	      console.log($scope.selectedUsers);
+	    };
 	}
 ]);
 
