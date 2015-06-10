@@ -1,38 +1,90 @@
 .profile
-	
 	width 100%
 	margin 0 auto
 	
-	section
-		border 1px solid $white
-		background-color $section-bg-white
-		
-		div
-			padding 10px
-		
-		.section-header
-			background-color $header-bg-grey
-			h3 
-				font-size 14px
-					
+	.weekly-stats
+		height 130px
+		background-color $white
+		margin-bottom 25px
+		table
+			width 95%
+			td
+				padding-top 10px
+				width 25%
+
 	.game-history
 		ul li
-			border-bottom 1px solid $header-bg-grey
+			padding 0 20px
 			.recent-game
-				height inherit
+				padding 26px 0
+				height 90px
+				border-bottom 1px solid $header-bg-grey
 				.game-info, .game-score
 					float left
-					padding 0
 				.game-info
 					width 80%
-					.winner-name
-						color $accent-red
-					.loser-name
-						color $font-dark-blue
 				.game-score
 					width 20%
-					span
-						font-size 22px
-						color $font-dark-blue
+					padding-top 10px
 	.profile-stats
-		color $accent-red
+		height 700px
+		background-color $bg-dark-blue
+		color $white
+		.avatar
+			width 140px
+			height 140px
+			margin 20px auto
+			img
+				border-radius 50%
+				border 5px solid $white
+		.name
+			margin-bottom 20px
+		.player-since
+			margin-bottom 16px
+		.player-rank
+			margin-bottom 25px
+		.split
+			padding 0 20px
+			.block
+				float left
+				width 50%
+				height 75px
+				&.top
+					padding-bottom 10px
+				&.bottom
+					padding-top 10px
+				&.top.left
+					border-bottom 1px solid $accent-grey
+					border-right 1px solid $accent-grey
+				&.top.right
+					border-bottom 1px solid $accent-grey
+				&.bottom.left
+					border-right 1px solid $accent-grey
+		.bottom-row
+			margin-bottom 40px
+		.streak
+			height 65px
+			padding 0 20px
+			.streak-left,
+			.streak-right
+				float: left
+				height inherit
+				border-bottom 1px solid $accent-grey
+			.streak-left
+				width 25%
+				.arrow
+					margin 0 auto
+					width 54px
+					height 54px
+					display block
+			.streak-right
+				width 75%
+				padding-left 7.5px
+			&.win-streak .arrow
+				background-image url("/assets/img/arrow-up.png")	
+			&.losing-streak .arrow
+				background-image url("/assets/img/arrow-down.png")
+		.bottom-streak
+			.streak-left, .streak-right
+				margin-top 15px
+				border-bottom none

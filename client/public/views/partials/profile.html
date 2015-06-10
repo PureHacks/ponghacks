@@ -1,57 +1,76 @@
 <div class="profile row clearfix" ng-init="init()">
 	<div class="row">
-		<a href="#/player-stats">Back to <span>All Player Stats</span></a>
+		<div class="back-link wgrid-12of12">
+			<a class="link" href="#/player-stats">&#8249; Back to <span>All Player Stats</span></a>
+		</div>
 	</div>
 	<div class="row">
 		<div class="profile-stats wgrid-4of12">
 			<div class="row">
-				<img src="{{stats.avatarUrl}}" alt="profile-pic"/>
-				<p>{{stats.name}}</p>
-				<p>{{stats.playerSince | smartDate}}</p>
-				<p>Ranking: {{stats.rank}}</p>
-			</div>
-			<div class="row">
-				<div>
-					<span class="total-games">{{stats.gameCount}} Total games played</span>
-					<span class="total-wins">{{stats.wins}} Total wins</span>	
+				<div class="avatar">
+					<img src="{{stats.avatarUrl}}" alt="profile-pic"/>
 				</div>
-				<div>
-					<span class="total-losses">{{stats.losses}} Total losses</span>	
-					<span class="win-rate">{{stats.winRate}} Total losses</span>	
+				<p class="name">{{stats.name}}</p>
+				<p class="player-since">Player since {{stats.playerSince | smartDate}}</p>
+				<p class="player-rank uppercase">Ranking: {{stats.rank}}</p>
+			</div>
+			<div class="row split clearfix uppercase">
+				<div class="block top left">
+					<p class="number">{{stats.gameCount}}</p>
+					<p class="bottom-text">Total games</p>
+				</div>
+				<div class="block top right">
+					<p class="number">{{stats.wins}}</p>
+					<p class="bottom-text">Total wins</p>
 				</div>
 			</div>
-			<div class="row">
-				<h4>Longest winning streak: <span>{{stats.longestWinningStreak}}</span></h4>	
-				<h4>Most consecutive losses: <span>{{stats.longestLosingStreak}}</span></h4>
+			<div class="row split bottom-row clearfix uppercase">
+				<div class="block bottom left">
+					<p class="number">{{stats.losses}}</p>
+					<p class="bottom-text">Total losses</p>
+				</div>
+				<div class="block bottom right">
+					<p class="number">{{stats.winRate | winRate}}</p>
+					<p class="bottom-text">Win Rate</p>
+				</div>
 			</div>
-			<div class="row">
-				<button>Compare</button>
+			<div class="stat streak win-streak clearfix uppercase">
+				<div class="streak-left">
+					<span class="arrow"></span>
+				</div>
+				<div class="streak-right">
+					<h4>Longest winning streak</h4>
+					<p><span>{{stats.longestWinningStreak}}</span> Games</p>
+				</div>
+			</div>
+			<div class="stat streak losing-streak clearfix uppercase bottom-streak">
+				<div class="streak-left">
+					<span class="arrow"></span>
+				</div>
+				<div class="streak-right">
+					<h4>Most consecutive losses</h4>
+					<p><span>{{stats.longestLosingStreak}}</span> Games</p>
+				</div>
 			</div>
 		</div>
 		<div class="wgrid-8of12">
 			<div class="row weekly-stats">
-				<section>
+				<section class="section">
 					<div class="section-header">
 						<h3>Weekly Stats</h3>
 					</div>
 				</section>
 				<table>
 					<tr>
-						<td>{{stats.weeklyGameCount}}</td>
-						<td>{{stats.weeklyWins}}</td>
-						<td>{{stats.weeklyLosses}}</td>
-						<td>{{stats.weeklyWinRate}}</td>
-					</tr>
-					<tr>
-						<td>Games</td>
-						<td>Wins</td>
-						<td>Losses</td>
-						<td>Win Rate</td>
+						<td><p class="stat-number">{{stats.weeklyGameCount}}</p><p class="stat-title">Games</p></td>
+						<td><p class="stat-number">{{stats.weeklyWins}}</p><p class="stat-title">Wins</p></td>
+						<td><p class="stat-number">{{stats.weeklyLosses}}</p><p class="stat-title">Losses</p></td>
+						<td><p class="stat-number">{{stats.weeklyWinRate | winRate}}</p><p class="stat-title">Win Rate</p></td>
 					</tr>
 				</table>
 			</div>
 			<div class="row game-history">
-				<section>
+				<section class="section">
 					<div class="section-header">
 						<h3>Game History</h3>
 					</div>
@@ -60,7 +79,7 @@
 							<div class="recent-game clearfix">
 								<div class="game-info">
 									<p>{{game.date | smartDate}}</p>
-									<p><span class="winner-name"><a href="#/api/user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/api/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
+									<p><span class="winner-name"><a href="#/user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
 								</div>
 								<div class="game-score">
 									<span>{{game.winnerScore}} - {{game.loserScore}}</span>

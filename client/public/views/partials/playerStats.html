@@ -20,8 +20,8 @@
 			</thead>
 			<tr ng-repeat="player in displayedStats" ts-repeat>
 				<td class="name">
-					<a href="#/api/user/{{player.userId}}" class="profile-img-name">
-						<img src="{{player.avatarUrl}}"/>
+					<a href="#/user/{{player.userId}}" class="profile-img-name">
+						<img ng-src="{{player.avatarUrl}}"/>
 						<span>{{player.name | shortFullName}}</span>
 					</a>
 				</td>

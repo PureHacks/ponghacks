@@ -9,7 +9,7 @@ app.config(["$routeProvider",
 				templateUrl: "partials/dashboard.html",
 				controller: "dashboardCtrl"
 			})
-			.when("/api/user/:id", {
+			.when("/user/:id", {
 				templateUrl: "partials/profile.html",
 				controller: "profileCtrl"
 			})
