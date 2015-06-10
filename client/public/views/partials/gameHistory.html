@@ -9,7 +9,7 @@
 				<div class="recent-game clearfix">
 					<div class="game-info">
 						<p>{{game.date | smartDate}}</p>
-						<p><span class="winner-name"><a href="#/api/user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/api/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
+						<p><span class="winner-name"><a href="#/user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
 					</div>
 					<div class="game-score">
 						<span>{{game.winnerScore}} - {{game.loserScore}}</span>
