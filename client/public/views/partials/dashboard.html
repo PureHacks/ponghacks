@@ -18,7 +18,7 @@
 	<div class="dashboard-breakdown">
 		<div class="left-column wgrid-8of12">
 			<div class="row">
-				<section class="elo-ranking wgrid-3wAny marg-l-0">
+				<section class="section elo-ranking wgrid-3wAny marg-l-0">
 					<div class="section-header">
 						<h3>Ranking <a href="#/player-stats"><span class="arrow"></span></a></h3>
 					</div>
@@ -28,9 +28,9 @@
 						</li>
 					</ol>
 				</section>
-				<section class="recent-games wgrid-5wAny marg-r-0">
+				<section class="section recent-games wgrid-5wAny marg-r-0">
 					<div class="section-header">
-						<h3>Recent Games <span class="arrow"></span></h3>
+						<h3>Recent Games <a href="#/game-history"><span class="arrow"></span></a></h3>
 					</div>
 					<ul>
 						<li ng-repeat="game in recentGames">
@@ -48,7 +48,7 @@
 				</section>
 			</div>
 			<div class="row">
-				<section class="weekly-standings  wgrid-8wAny">
+				<section class="section weekly-standings wgrid-8wAny">
 					<table>
 						<thead>
 							<th class="name">Weekly Standings</th>
@@ -69,9 +69,9 @@
 			</div>
 		</div>
 		<div class="right-column wgrid-4of12 marg-r-0">
-			<section class="random-stats">
+			<section class="section random-stats">
 				<div class="section-header">
-					<h3>Player Stats <span class="arrow"></span></h3>
+					<h3>Player Stats <a href="#/player-stats"><span class="arrow"></span></a></h3>
 				</div>
 				<div class="stat streak win-streak clearfix">
 					<div class="streak-left">

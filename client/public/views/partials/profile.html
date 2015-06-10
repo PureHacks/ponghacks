@@ -1,6 +1,8 @@
 <div class="profile row clearfix" ng-init="init()">
 	<div class="row">
-		<a href="#/player-stats">Back to <span>All Player Stats</span></a>
+		<div class="back-link wgrid-12of12">
+			<a class="link" href="#/player-stats">&#8249; Back to <span>All Player Stats</span></a>
+		</div>
 	</div>
 	<div class="row">
 		<div class="profile-stats wgrid-4of12">
@@ -53,28 +55,22 @@
 		</div>
 		<div class="wgrid-8of12">
 			<div class="row weekly-stats">
-				<section>
+				<section class="section">
 					<div class="section-header">
 						<h3>Weekly Stats</h3>
 					</div>
 				</section>
 				<table>
 					<tr>
-						<td>{{stats.weeklyGameCount}}</td>
-						<td>{{stats.weeklyWins}}</td>
-						<td>{{stats.weeklyLosses}}</td>
-						<td>{{stats.weeklyWinRate}}</td>
-					</tr>
-					<tr>
-						<td>Games</td>
-						<td>Wins</td>
-						<td>Losses</td>
-						<td>Win Rate</td>
+						<td><p class="stat-number">{{stats.weeklyGameCount}}</p><p class="stat-title">Games</p></td>
+						<td><p class="stat-number">{{stats.weeklyWins}}</p><p class="stat-title">Wins</p></td>
+						<td><p class="stat-number">{{stats.weeklyLosses}}</p><p class="stat-title">Losses</p></td>
+						<td><p class="stat-number">{{stats.weeklyWinRate | winRate}}</p><p class="stat-title">Win Rate</p></td>
 					</tr>
 				</table>
 			</div>
 			<div class="row game-history">
-				<section>
+				<section class="section">
 					<div class="section-header">
 						<h3>Game History</h3>
 					</div>

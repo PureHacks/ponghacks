@@ -1,41 +1,33 @@
 .profile
-	
 	width 100%
 	margin 0 auto
 	
-	section
-		border 1px solid $white
-		background-color $section-bg-white
-		
-		div
-			padding 10px
-		
-		.section-header
-			background-color $header-bg-grey
-			h3 
-				font-size 14px
-					
+	.weekly-stats
+		height 130px
+		background-color $white
+		margin-bottom 25px
+		table
+			width 95%
+			td
+				padding-top 10px
+				width 25%
+
 	.game-history
 		ul li
-			border-bottom 1px solid $header-bg-grey
+			padding 0 20px
 			.recent-game
-				height inherit
+				padding 26px 0
+				height 90px
+				border-bottom 1px solid $header-bg-grey
 				.game-info, .game-score
 					float left
-					padding 0
 				.game-info
 					width 80%
-					.winner-name
-						color $accent-red
-					.loser-name
-						color $font-dark-blue
 				.game-score
 					width 20%
-					span
-						font-size 22px
-						color $font-dark-blue
+					padding-top 10px
 	.profile-stats
-		height 650px
+		height 700px
 		background-color $bg-dark-blue
 		color $white
 		.avatar
@@ -44,7 +36,7 @@
 			margin 20px auto
 			img
 				border-radius 50%
-				border 3px solid $white
+				border 5px solid $white
 		.name
 			margin-bottom 20px
 		.player-since
@@ -96,5 +88,3 @@
 			.streak-left, .streak-right
 				margin-top 15px
 				border-bottom none
-		
-			
