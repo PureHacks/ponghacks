@@ -2,17 +2,22 @@
 .player-stats
 	margin 0 auto
 	
-	form
-		label
-			position relative
-			padding 5px 20px
-			input[type=radio] 
-				position absolute
-				right 0
-				top 0
-	
+	.top-row
+		height 93px
+		padding 26px 0
+		form
+			label
+				display block
+				padding 13px 12px
+				position relative
+				height 45px
+				border 1px solid $font-dark-blue
+				input[type=radio]
+					position absolute
+					right 14px
+					top 14px
+		
 	.all-stats
-		margin-top 20px
 		margin-bottom 20px
 		table
 			background-color $white
@@ -20,7 +25,7 @@
 			height 600px
 			
 			.name
-				width  26.5%
+				width 	26.5%
 			.games
 				width 	12.5%
 			.wins

@@ -1,15 +1,35 @@
-<div class="player-stats row clearfix" ng-init="init()">
-	<h2>All Player Stats</h2>
-	<div>
-		<form>
-			<label for=""><input type="radio" ng-model="filter" value="allTime">All time</label>
-			<label for=""><input type="radio" ng-model="filter" value="monthly">Monthly</label>
-			<label for=""><input type="radio" ng-model="filter" value="weekly">Weekly</label>
-		</form>
+<div class="player-stats row" ng-init="init()">
+	<div class="row top-row">
+		<div class="wgrid-12of12">
+			<div class="wgrid-6of12 wgrid-2of8 marg-l-0">
+				<h2>All Player Stats</h2>
+			</div>
+			<div class="data-filter wgrid-6of12 wgrid-6of8 marg-r-0">
+				<div class="row">
+					<form>
+						<div class="wgrid-2of12 wgrid-2of8 marg-l-0">
+							<label for="allTime">
+								<input type="radio" ng-model="filter" value="allTime" id="allTime" name="allTime">All time
+							</label>
+						</div>
+						<div class="wgrid-2of12 wgrid-2of8">
+							<label for="monthly">
+								<input type="radio" ng-model="filter" value="monthly" id="monthly" name="monthly">Monthly
+							</label>
+						</div>
+						<div class="wgrid-2of12 wgrid-2of8 marg-r-0">
+							<label for="weekly">
+								<input type="radio" ng-model="filter" value="weekly" id="weekly" name="weekly">Weekly
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	<section class="all-stats wgrid-12of12 wgrid-4of4 wgrid-8of8">
 		<table ts-wrapper>
-			<thead>
+			<thead class="uppercase">
 				<th class="name" ts-criteria="name" ts-default>Player</th>
 				<th class="games" ts-criteria="gameCount">Total Games</th>
 				<th class="wins" ts-criteria="wins">Wins</th>
