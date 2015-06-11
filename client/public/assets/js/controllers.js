@@ -15,51 +15,51 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
 					.success(function(games) {
 						$scope.mostRecentGame = games.shift();
 						$scope.recentGames = games;
-		    		})
+					})
 					.error(function(data, status, headers, config) {
 						console.error(data.error);
 					});
 			}
-    		$http.get("/api/stats/standings/weekly?numResults=4")
-	    		.success(function(standing) {
+			$http.get("/api/stats/standings/weekly?numResults=4")
+				.success(function(standing) {
 					$scope.weeklyStandings = standing;
-	    		})
+				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
-    		$http.get("/api/stats/streak/wins/top")
-	    		.success(function(player) {
+			$http.get("/api/stats/streak/wins/top")
+				.success(function(player) {
 					$scope.winStreak = player;
-	    		})
+				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
-    		$http.get("/api/stats/streak/losses/top")
-	    		.success(function(player) {
+			$http.get("/api/stats/streak/losses/top")
+				.success(function(player) {
 					$scope.losingStreak = player;
-	    		})
+				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
-    		$http.get("/api/stats/largest-score-difference")
-	    		.success(function(score) {
-	    			$scope.sweepingScore = score;
-	    		})
+			$http.get("/api/stats/largest-score-difference")
+				.success(function(score) {
+					$scope.sweepingScore = score;
+				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
-    		$http.get("/api/game/total")
-	    		.success(function(total) {
-	    			$scope.totalGames = total;
-	    		})
+			$http.get("/api/game/total")
+				.success(function(total) {
+					$scope.totalGames = total;
+				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
-    		$http.get("/api/stats/top-rankings")
-    			.success(function(rankings) {
-    				$scope.eloRanking = rankings || $scope.eloRanking;
-    			})
-    			.error(function(data, status, headers, config) {
+			$http.get("/api/stats/top-rankings")
+				.success(function(rankings) {
+					$scope.eloRanking = rankings || $scope.eloRanking;
+				})
+				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
 		};
@@ -188,34 +188,34 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http",
 		var clearSelectedPlayers = function() {
 			comparedPlayers = [];
 			angular.forEach($scope.allPlayerStats, function(player) {
-        		player.selected = false;
-    		});
+				player.selected = false;
+			});
 		};
 
 		var setAllTimeStats = function(stats) {
-		  	return {
-			    "wins": stats.wins,
-			    "losses": stats.losses,
-			    "gameCount": stats.gameCount,
-			    "winRate": stats.winRate,
+			return {
+				"wins": stats.wins,
+				"losses": stats.losses,
+				"gameCount": stats.gameCount,
+				"winRate": stats.winRate,
 			};
 		};
  
 		var setWeeklyStats = function(stats) {
-		  	return {
-			    "wins": stats.weeklyWins,
-			    "losses": stats.weeklyLosses,
-			    "gameCount": stats.weeklyGameCount,
-			    "winRate": stats.weeklyWinRate,
+			return {
+				"wins": stats.weeklyWins,
+				"losses": stats.weeklyLosses,
+				"gameCount": stats.weeklyGameCount,
+				"winRate": stats.weeklyWinRate,
 			};
 		};
 
 		var setMonthlyStats = function(stats) {
-		  	return {
-			    "wins": stats.monthlyWins,
-			    "losses": stats.monthlyLosses,
-			    "gameCount": stats.monthlyGameCount,
-			    "winRate": stats.monthlyWinRate,
+			return {
+				"wins": stats.monthlyWins,
+				"losses": stats.monthlyLosses,
+				"gameCount": stats.monthlyGameCount,
+				"winRate": stats.monthlyWinRate,
 			};
 		};
 	}
@@ -229,7 +229,7 @@ pongAppControllers.controller("gameHistoryCtrl", ["$scope", "$http",
 			$http.get("/api/game/history/99")
 				.success(function(gameHist) {
 					$scope.gameHistory = gameHist;
-	    		})
+				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
@@ -242,7 +242,7 @@ pongAppControllers.controller("inputScoreCtrl", ["$scope", "$http", "$routeParam
 		
 		$http.get("/api/user/list").success(function(data) {
 			$scope.team = data;
-    	});
+		});
 
 		$scope.submitScore = function() {
 			var game = {
