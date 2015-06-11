@@ -147,10 +147,7 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http",
 		// to display either 0: allTime, 1: weekly, 2: monthly
 		var changeStats = function(statIndex) {
 			angular.forEach($scope.allPlayerStats, function(player, index) {
-				$scope.allPlayerStats[index].gameCount = player.stats[statIndex].gameCount;
-				$scope.allPlayerStats[index].wins = player.stats[statIndex].wins;
-				$scope.allPlayerStats[index].losses = player.stats[statIndex].losses;
-				$scope.allPlayerStats[index].winRate = player.stats[statIndex].winRate;
+				angular.extend($scope.allPlayerStats[index], player.stats[statIndex]);
 			});
 		};
 
