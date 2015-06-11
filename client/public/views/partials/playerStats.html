@@ -1,31 +1,58 @@
-<div class="player-stats row clearfix" ng-init="init()">
-	<h2>All Player Stats</h2>
-	<div>
-		<form>
-			<label for=""><input type="radio" ng-model="filter" value="allTime">All time</label>
-			<label for=""><input type="radio" ng-model="filter" value="monthly">Monthly</label>
-			<label for=""><input type="radio" ng-model="filter" value="weekly">Weekly</label>
-		</form>
+<div class="player-stats row" ng-init="init()">
+	<div class="row top-row">
+		<div class="wgrid-12of12">
+			<div class="wgrid-6of12 wgrid-2of8 marg-l-0">
+				<h2>All Player Stats</h2>
+			</div>
+			<div class="data-filter wgrid-6of12 wgrid-6of8 marg-r-0">
+				<div class="row">
+					<form>
+						<div class="wgrid-2of12 wgrid-2of8 marg-l-0">
+							<label for="allTime">
+								<input type="radio" ng-model="filter" value="allTime" id="allTime" name="allTime">All time
+							</label>
+						</div>
+						<div class="wgrid-2of12 wgrid-2of8">
+							<label for="monthly">
+								<input type="radio" ng-model="filter" value="monthly" id="monthly" name="monthly">Monthly
+							</label>
+						</div>
+						<div class="wgrid-2of12 wgrid-2of8 marg-r-0">
+							<label for="weekly">
+								<input type="radio" ng-model="filter" value="weekly" id="weekly" name="weekly">Weekly
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	<section class="all-stats wgrid-12of12 wgrid-4of4 wgrid-8of8">
-		<table>
-			<thead>
-				<th class="name">Player</th>
-				<th class="games">Total Games</th>
-				<th class="wins">Wins</th>
-				<th class="losses">Losses</th>
-				<th class="win-rate">Win Rate</th>
-				<th class="rank">Rank</th>
-				<th class="win-rate">Compare</th>
+		<table ts-wrapper>
+			<thead class="uppercase">
+				<th class="name" ts-criteria="name" ts-default>Player</th>
+				<th class="games" ts-criteria="gameCount">Total Games</th>
+				<th class="wins" ts-criteria="wins">Wins</th>
+				<th class="losses" ts-criteria="losses">Losses</th>
+				<th class="win-rate" ts-criteria="winRate">Win Rate</th>
+				<th class="rank" ts-criteria="rank">All-time Rank</th>
+				<th class="compare-check">Compare</th>
 			</thead>
-			<tr ng-repeat="player in allUserStats">
-				<td class="name"><a href="#/user/{{player.userId}}"><image src="{{player.avatarUrl}}"/><span>{{player.name | shortFullName}}</span></a></td>
+			<tr ng-repeat="player in allPlayerStats | tablesort" ts-repeat>
+				<td class="name">
+					<a href="#/user/{{player.id}}" class="profile-img-name">
+						<img ng-src="{{player.avatarUrl}}"/>
+						<span>{{player.name}}</span>
+					</a>
+				</td>
 				<td class="games">{{player.gameCount}}</td>
 				<td class="wins">{{player.wins}}</td>
 				<td class="losses">{{player.losses}}</td>
-				<td class="win-rate">{{player.winRate}}</td>
+				<td class="win-rate">{{player.winRate | winRate}}</td>
 				<td class="rank">{{player.rank}}</td>
-				<td class="compare-check"><input name="checkbox_name" id="checkbox_id" type="checkbox"></td>
+				<td class="compare-check">
+					<input value="{{player.id}}" type="checkbox" ng-model="player.selected" ng-click="comparePlayer(player.id)"/>
+				</td>
 			</tr>
 		</table>
 	</section>	

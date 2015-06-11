@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("pongApp", ["ngRoute", "pongAppControllers", "filters"]);
+var app = angular.module("pongApp", ["ngRoute", "pongAppControllers", "filters", "tableSort"]);
 
 app.config(["$routeProvider",
 	function($routeProvider) {

@@ -1,5 +1,23 @@
 h1, h2
 	text-align center
+	
+
+html
+	font-family Bold
+a 
+	text-decoration none
+	border-bottom none
+	color inherit
+	transition 0.5s ease
+	border-bottom none
+
+a:visited
+	color inherit
+
+a:hover
+	color $accent-red
+	border-bottom 1px solid $accent-red
+	transition: 0.5 ease;
 
 @font-face
 	font-family Medium
@@ -193,21 +211,25 @@ h1, h2
 		height 55px
 	.stat-title
 		font-size 13px
-	
-html
-	font-family Bold
-
-a 
-	text-decoration none
-	border-bottom none
-	color inherit
-	transition 0.5s ease
-	border-bottom none
-
-a:visited
-	color inherit
-
-a:hover
-	color $accent-red
-	border-bottom 1px solid $accent-red
-	transition: 0.5 ease;
+		
+.player-stats
+	color $font-dark-blue
+	h2
+		text-align left
+		font-family Medium
+		font-size 28px
+		
+	form label
+		font-family Bold
+		font-size 16px
+	table
+		border solid 1px $white
+		thead th
+			font-family Medium
+			font-size 14px
+		tr
+			td
+				font-family Regular
+				font-size 18px
+				&:first-child, &:nth-child(5)
+					font-family Bold
