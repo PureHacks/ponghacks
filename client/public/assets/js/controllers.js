@@ -93,7 +93,6 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 			if ($routeParams.id) {
 				$http.get("/api/game/user/" + $routeParams.id)
 					.success(function(gameHistory){
-						
 						$scope.gameHistory = gameHistory;
 					})
 					.error(function(data, status, headers, config) {
@@ -102,7 +101,6 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 
 				$http.get("/api/stats/user/" + $routeParams.id)
 					.success(function(stats){
-						console.log("stats:",stats);
 						$scope.stats = stats;
 					})
 					.error(function(data, status, headers, config) {
@@ -115,91 +113,111 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 
 pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", 
 	function($scope, $http) {
-		$scope.displayedStats = {};
-		$scope.filter = "allTime";
-		$scope.selectedUsers = [];
 
-		var allTimeStats = {};
-		var weeklyStats = {};
-		var monthlyStats = {};
+		$scope.filter = "allTime";
+		$scope.allPlayerStats = [];
+		var comparedPlayers = [];
 
 		$scope.init = function() {
 			$http.get("/api/stats/user/all")
 				.success(function(stats){
-					allTimeStats = stats;
-					setWeeklyStats(stats);
-					setMonthlyStats(stats);
-
-					$scope.displayedStats = allTimeStats;
+					populateData(stats);
 				})
 				.error(function(data, status, headers, config) {
 					console.error(data.error);
 				});
 		};
 
+		var populateData = function(allPlayerStats){
+			angular.forEach(allPlayerStats, function(player, index) {
+				var newPlayer = {
+					name : player.name,
+					avatarUrl : player.avatarUrl,
+					rank : player.rank,
+					id: player.userId,
+					selected : false,
+					stats : [setAllTimeStats(player), setWeeklyStats(player), setMonthlyStats(player)],
+				};
+				$scope.allPlayerStats.push(newPlayer);
+			});
+			changeStats(0);
+		};
+
+		// update gameCount, wins, losses, and win rate 
+		// to display either 0: allTime, 1: weekly, 2: monthly
+		var changeStats = function(statIndex) {
+			angular.forEach($scope.allPlayerStats, function(player, index) {
+				$scope.allPlayerStats[index].gameCount = player.stats[statIndex].gameCount;
+				$scope.allPlayerStats[index].wins = player.stats[statIndex].wins;
+				$scope.allPlayerStats[index].losses = player.stats[statIndex].losses;
+				$scope.allPlayerStats[index].winRate = player.stats[statIndex].winRate;
+			});
+		};
+
 		$scope.$watch("filter", function(value) {
 			switch (value) {
-			    case "allTime":
-			        $scope.displayedStats = allTimeStats;
-			        break;
-			    case "weekly":
-			        $scope.displayedStats = weeklyStats;
-			        break;
-			    case "monthly":
-			        $scope.displayedStats = monthlyStats;
-			        break;
+				case "allTime":
+					changeStats(0);
+					break;
+				case "weekly":
+					changeStats(1);
+					break;
+				case "monthly":
+					changeStats(2);
+					break;
 			}
 		 });
+
+		$scope.comparePlayer = function(playerId) {
+			console.log("selected", playerId);
+			comparedPlayers.push(playerId);
+			if (comparedPlayers.length === 2) {
+				console.log("CLEAR");
+				compare(comparedPlayers[0], comparedPlayers[1]);
+				clearSelectedPlayers();
+			}
+		};
+
+		var compare = function(playerOneId, playerTwoId) {
+			$http.get("/api/stats/user/"+playerOneId+"/matchup/"+playerTwoId)
+				.success(function(compareStats) {
+					console.log(compareStats);
+				});
+		};
+
+		var clearSelectedPlayers = function() {
+			comparedPlayers = [];
+			angular.forEach($scope.allPlayerStats, function(player) {
+        		player.selected = false;
+    		});
+		};
+
+		var setAllTimeStats = function(stats) {
+		  	return {
+			    "wins": stats.wins,
+			    "losses": stats.losses,
+			    "gameCount": stats.gameCount,
+			    "winRate": stats.winRate,
+			};
+		};
  
-		var setWeeklyStats = function(allStats) {
-			weeklyStats = allStats.map(function(userStats) {
-			  	return {
-					"userId": userStats.userId,
-				    "name": userStats.name,
-				    "avatarUrl": userStats.avatarUrl,
-				    "wins": userStats.weeklyWins,
-				    "losses": userStats.weeklyLosses,
-				    "gameCount": userStats.weeklyGameCount,
-				    "winRate": userStats.weeklyWinRate,
-				    "rank": userStats.rank
-				};
-			});
+		var setWeeklyStats = function(stats) {
+		  	return {
+			    "wins": stats.weeklyWins,
+			    "losses": stats.weeklyLosses,
+			    "gameCount": stats.weeklyGameCount,
+			    "winRate": stats.weeklyWinRate,
+			};
 		};
 
-		var setMonthlyStats = function(allStats) {
-			monthlyStats = allStats.map(function(userStats) {
-			  	return {
-					"userId": userStats.userId,
-				    "name": userStats.name,
-				    "avatarUrl": userStats.avatarUrl,
-				    "wins": userStats.monthlyWins,
-				    "losses": userStats.monthlyLosses,
-				    "gameCount": userStats.monthlyGameCount,
-				    "winRate": userStats.monthlyWinRate,
-				    "rank": userStats.rank
-				};
-			});
+		var setMonthlyStats = function(stats) {
+		  	return {
+			    "wins": stats.monthlyWins,
+			    "losses": stats.monthlyLosses,
+			    "gameCount": stats.monthlyGameCount,
+			    "winRate": stats.monthlyWinRate,
+			};
 		};
-	    
-	    $scope.toggleCompareSelection = function toggleCompareSelection(userId) {
-	      var idx = $scope.selectedUsers.indexOf(userId);
-	      
-	      //already checked, uncheck
-	      if (idx > -1) {
-	        $scope.selectedUsers.splice(idx, 1);
-	      }
-	      // if second checkbox, compare users
-	      else if($scope.selectedUsers.length === 1){
-	        console.log("COMPARING USERS: " + $scope.selectedUsers[0] + " vs. " + userId);
-	        $scope.selectedUsers = [];
-	      }
-	      // first user selected
-	      else {
-			$scope.selectedUsers.push(userId);
-	      }
-
-	      console.log($scope.selectedUsers);
-	    };
 	}
 ]);
 

@@ -38,11 +38,11 @@
 				<th class="rank" ts-criteria="rank">All-time Rank</th>
 				<th class="compare-check">Compare</th>
 			</thead>
-			<tr ng-repeat="player in displayedStats" ts-repeat>
+			<tr ng-repeat="player in allPlayerStats | tablesort" ts-repeat>
 				<td class="name">
-					<a href="#/user/{{player.userId}}" class="profile-img-name">
+					<a href="#/user/{{player.id}}" class="profile-img-name">
 						<img ng-src="{{player.avatarUrl}}"/>
-						<span>{{player.name | shortFullName}}</span>
+						<span>{{player.name}}</span>
 					</a>
 				</td>
 				<td class="games">{{player.gameCount}}</td>
@@ -51,8 +51,7 @@
 				<td class="win-rate">{{player.winRate | winRate}}</td>
 				<td class="rank">{{player.rank}}</td>
 				<td class="compare-check">
-					<input name="compareSelected[]" value="{{player.userId}}" ng-checked="selectedUsers.indexOf(player.userId) > -1" 
-						ng-click="toggleCompareSelection(player.userId)" type="checkbox">
+					<input value="{{player.id}}" type="checkbox" ng-model="player.selected" ng-click="comparePlayer(player.id)"/>
 				</td>
 			</tr>
 		</table>
