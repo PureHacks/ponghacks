@@ -1,0 +1,29 @@
+.overlay-container
+	position fixed
+	top 0
+	bottom 0
+	left 0
+	right 0
+	z-index 999
+	pointer-events: none;
+	background-color rgba(0,0,0,0.8)
+	
+	.overlay
+		margin 25% auto
+		float none
+		background-color $white
+		height 480px
+		position relative
+		.close-compare
+			position absolute
+			top -36px
+			right 0
+			width 52px
+			height 36px
+			background-color $accent-red
+			color $white
+			font-size 32px
+			border none
+			outline none
+			pointer-events auto
+			z-index 9999

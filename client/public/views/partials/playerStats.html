@@ -1,5 +1,14 @@
 <div class="player-stats row" ng-init="init()">
 	<div class="row top-row">
+		<div class="overlay-container" ng-show="comparedPlayers.length == 2">
+			<div class="overlay wgrid-8of12">
+				<div class="row">
+					<button class="close-compare" ng-click="closeOverlay()">&times;</button>
+					<div class="left player wgrid-4of8"></div>
+					<div class="right player wgrid-4of8"></div>
+				</div>
+			</div>
+		</div>
 		<div class="wgrid-12of12">
 			<div class="wgrid-6of12 wgrid-2of8 marg-l-0">
 				<h2>All Player Stats</h2>

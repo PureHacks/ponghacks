@@ -116,7 +116,7 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http",
 
 		$scope.filter = "allTime";
 		$scope.allPlayerStats = [];
-		var comparedPlayers = [];
+		$scope.comparedPlayers = [];
 
 		$scope.init = function() {
 			$http.get("/api/stats/user/all")
@@ -147,10 +147,7 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http",
 		// to display either 0: allTime, 1: weekly, 2: monthly
 		var changeStats = function(statIndex) {
 			angular.forEach($scope.allPlayerStats, function(player, index) {
-				$scope.allPlayerStats[index].gameCount = player.stats[statIndex].gameCount;
-				$scope.allPlayerStats[index].wins = player.stats[statIndex].wins;
-				$scope.allPlayerStats[index].losses = player.stats[statIndex].losses;
-				$scope.allPlayerStats[index].winRate = player.stats[statIndex].winRate;
+				angular.extend($scope.allPlayerStats[index], player.stats[statIndex]);
 			});
 		};
 
@@ -170,11 +167,10 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http",
 
 		$scope.comparePlayer = function(playerId) {
 			console.log("selected", playerId);
-			comparedPlayers.push(playerId);
-			if (comparedPlayers.length === 2) {
+			$scope.comparedPlayers.push(playerId);
+			if ($scope.comparedPlayers.length === 2) {
 				console.log("CLEAR");
-				compare(comparedPlayers[0], comparedPlayers[1]);
-				clearSelectedPlayers();
+				compare($scope.comparedPlayers[0], $scope.comparedPlayers[1]);
 			}
 		};
 
@@ -185,8 +181,9 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http",
 				});
 		};
 
-		var clearSelectedPlayers = function() {
-			comparedPlayers = [];
+		$scope.closeOverlay = function() {
+			console.log("yo");
+			$scope.comparedPlayers = [];
 			angular.forEach($scope.allPlayerStats, function(player) {
 				player.selected = false;
 			});
