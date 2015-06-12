@@ -1,30 +1,24 @@
 package com.razorfish.ponghacksscorekeeper;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.NumberPicker;
 
 import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 /**
  * Created by timothy.lau on 2015-06-05.
@@ -118,6 +112,24 @@ public class ScoreFragment extends Fragment {
         if (event.getType().equals(getArguments().getString("playerType"))) {
             selectedPlayer = event.getPlayer();
             playerButton.setText(selectedPlayer.getName());
+            Picasso.with(getActivity()).load(selectedPlayer.getAvatarUrl()).into(new Target() {
+                @Override
+                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                    Drawable playerIcon = new BitmapDrawable(getActivity().getResources(), bitmap);
+                    playerIcon.setBounds(0,0,100,100);
+                    playerButton.setCompoundDrawables(playerIcon, null, null, null);
+                }
+
+                @Override
+                public void onBitmapFailed(Drawable errorDrawable) {
+
+                }
+
+                @Override
+                public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                }
+            });
         }
     }
 
