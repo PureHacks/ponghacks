@@ -25,20 +25,16 @@ import com.squareup.otto.Subscribe;
  */
 public class PlayerListFragment extends Fragment {
 
-    private static final String playerListBundle = "playerListBundle";
-    private static final String type = "type";
-    private static final String query = "query";
+    private static final String query = "queryType";
     Bus mBus = BusProvider.getInstance();
 
     private PlayerListAdapter mAdapter;
     private ListView mListView;
 
-    public static PlayerListFragment newInstance(String listType, String queryVal) {
+    public static PlayerListFragment newInstance(Bundle args) {
         PlayerListFragment newFragment = new PlayerListFragment();
-        Bundle args = new Bundle();
-        args.putString(type, listType);
-        args.putString(query, queryVal);
-        newFragment.setArguments(args);
+        Bundle localargs = new Bundle(args);
+        newFragment.setArguments(localargs);
         return newFragment;
     }
 
@@ -47,15 +43,14 @@ public class PlayerListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.player_list, container, false);
         mListView = (ListView) v.findViewById(R.id.playerListView);
-        mAdapter = new PlayerListAdapter(getActivity());
+        mAdapter = new PlayerListAdapter(container.getContext());
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PlayerListModel.Player player = (PlayerListModel.Player) mAdapter.getItem(position);
-                Log.d("playerType", getArguments().getString(type));
-                mBus.post(new PlayerSelected(player, getArguments().getString(type)));
+                mBus.post(new PlayerSelected(player, getArguments().getString(getString(R.string.playerTypeName))));
                 getFragmentManager().popBackStack();
             }
         });
@@ -67,12 +62,7 @@ public class PlayerListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mBus.register(this);
-        if (getArguments().getString(query).equals("all")) {
-            mBus.post(new LoadPlayers("all", getArguments().getString(type)));
-        }
-        else {
-            mBus.post(new LoadPlayers("recent", getArguments().getString(type)));
-        }
+        mBus.post(new LoadPlayers(getArguments().getString(query), getArguments().getString(getString(R.string.playerTypeName))));
     }
 
     @Override
@@ -83,7 +73,7 @@ public class PlayerListFragment extends Fragment {
 
     @Subscribe
     public void onPlayersLoaded(PlayersListResponse playersListResponse) {
-        if (getArguments().getString(type).equals(playersListResponse.getPlayerType()) && getArguments().getString(query).equals(playersListResponse.getQueryType())) {
+        if (getArguments().getString(getString(R.string.playerTypeName)).equals(playersListResponse.getPlayerType()) && getArguments().getString(query).equals(playersListResponse.getQueryType())) {
             mAdapter.addAll(playersListResponse.getResponse());
             ((BaseAdapter) mListView.getAdapter()).notifyDataSetChanged();
         }

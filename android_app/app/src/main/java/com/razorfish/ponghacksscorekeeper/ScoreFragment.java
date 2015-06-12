@@ -30,21 +30,25 @@ import retrofit.client.Response;
  * Created by timothy.lau on 2015-06-05.
  */
 public class ScoreFragment extends Fragment {
-    private int defaultScore;
-    private String playerType;
     Button playerButton;
     PlayerListModel.Player selectedPlayer;
     Bus mBus = BusProvider.getInstance();
 
-    public void init(String result) {
+    public static ScoreFragment newInstance(String result) {
+        ScoreFragment fragment = new ScoreFragment();
+        Bundle args = new Bundle();
+
         if (result.equals("winner")) {
-            defaultScore = 21;
-            playerType = "winner";
+            args.putString("playerType", "winner");
+            args.putInt("defaultScore", 21);
         }
         else {
-            defaultScore = 15;
-            playerType = "loser";
+            args.putString("playerType", "loser");
+            args.putInt("defaultScore", 15);
         }
+
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -64,7 +68,7 @@ public class ScoreFragment extends Fragment {
         playerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlayerSelectorFragment playerSelectorFragment = PlayerSelectorFragment.newInstance(playerType);
+                PlayerSelectorFragment playerSelectorFragment = PlayerSelectorFragment.newInstance(getArguments());
                 getFragmentManager().beginTransaction().add(parentId, playerSelectorFragment).addToBackStack(null).commit();
             }
         });
@@ -76,7 +80,7 @@ public class ScoreFragment extends Fragment {
         InputFilterMinMax inputFilterMinMax = new InputFilterMinMax("0","99");
 
         editText.setFilters(new InputFilter[]{inputFilterMinMax});
-        editText.setText(String.valueOf(defaultScore));
+        editText.setText(Integer.toString(getArguments().getInt("defaultScore")));
 
         subButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,9 +115,7 @@ public class ScoreFragment extends Fragment {
 
     @Subscribe
     public void onPlayerSelected(PlayerSelected event) {
-        Log.d("Scorefragment getType", event.getType());
-        Log.d("ScorefragmentplayerType", playerType);
-        if (event.getType().equals(playerType)) {
+        if (event.getType().equals(getArguments().getString("playerType"))) {
             selectedPlayer = event.getPlayer();
             playerButton.setText(selectedPlayer.getName());
         }
