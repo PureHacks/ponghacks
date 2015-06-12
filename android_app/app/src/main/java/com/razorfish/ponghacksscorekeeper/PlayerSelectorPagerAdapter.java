@@ -1,9 +1,11 @@
 package com.razorfish.ponghacksscorekeeper;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -11,11 +13,11 @@ import java.util.ArrayList;
  * Created by timothy.lau on 2015-06-06.
  */
 public class PlayerSelectorPagerAdapter extends FragmentStatePagerAdapter {
-    String type;
+    Bundle args;
 
-    public PlayerSelectorPagerAdapter(FragmentManager fm, String type) {
+    public PlayerSelectorPagerAdapter(FragmentManager fm, Bundle args) {
         super(fm);
-        this.type = type;
+        this.args = args;
     }
 
     @Override
@@ -30,13 +32,13 @@ public class PlayerSelectorPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        PlayerListFragment fragment;
+        Bundle localargs = new Bundle(args);
         if (position == 0) {
-            fragment = PlayerListFragment.newInstance(type, "recent");
+            localargs.putString("queryType", "recent");
         } else {
-            fragment = PlayerListFragment.newInstance(type, "all");
+            localargs.putString("queryType", "all");
         }
 
-        return fragment;
+        return PlayerListFragment.newInstance(localargs);
     }
 }

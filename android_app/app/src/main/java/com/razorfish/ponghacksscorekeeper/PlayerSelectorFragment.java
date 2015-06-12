@@ -19,11 +19,10 @@ public class PlayerSelectorFragment extends Fragment {
     PagerSlidingTabStrip tabs;
     ViewPager viewPager;
 
-    public static PlayerSelectorFragment newInstance(String playerType) {
+    public static PlayerSelectorFragment newInstance(Bundle args) {
         PlayerSelectorFragment fragment = new PlayerSelectorFragment();
-        Bundle args = new Bundle();
-        args.putString(playerTypeKey, playerType);
-        fragment.setArguments(args);
+        Bundle localargs = new Bundle(args);
+        fragment.setArguments(localargs);
         return fragment;
     }
 
@@ -33,7 +32,7 @@ public class PlayerSelectorFragment extends Fragment {
         View v = inflater.inflate(R.layout.player_selector, container, false);
 
         viewPager = (ViewPager) v.findViewById(R.id.pager);
-        adapter = new PlayerSelectorPagerAdapter(getFragmentManager(), getArguments().getString(playerTypeKey));
+        adapter = new PlayerSelectorPagerAdapter(getFragmentManager(), getArguments());
         viewPager.setAdapter(adapter);
 
         tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);

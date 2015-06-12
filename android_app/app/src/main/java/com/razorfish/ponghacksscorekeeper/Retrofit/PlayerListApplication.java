@@ -15,6 +15,9 @@ public class PlayerListApplication extends Application {
     PlayerListService playerListService;
     Bus bus = BusProvider.getInstance();
 
+    String playerType = "playerType";
+    String defaultScore = "defaultScore";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -24,6 +27,17 @@ public class PlayerListApplication extends Application {
     }
 
     private PlayerListModel.PlayerListInterface buildInterface() {
-        return new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListModel.PlayerListInterface.class);
+        RestAdapter.Builder builder = new RestAdapter.Builder();
+
+//        return new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListModel.PlayerListInterface.class);
+        return new RestAdapter.Builder().setClient(new MockClient()).setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListModel.PlayerListInterface.class);
+    }
+
+    public String getPlayerTypeString() {
+        return playerType;
+    }
+
+    public String getDefaultScoreString() {
+        return defaultScore;
     }
 }

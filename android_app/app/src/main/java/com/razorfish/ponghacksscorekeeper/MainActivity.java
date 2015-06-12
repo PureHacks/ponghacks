@@ -17,11 +17,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ScoreFragment leftScore = new ScoreFragment();
-        ScoreFragment rightScore = new ScoreFragment();
-
-        leftScore.init("winner");
-        rightScore.init("loser");
+        ScoreFragment leftScore = ScoreFragment.newInstance("winner");
+        ScoreFragment rightScore = ScoreFragment.newInstance("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
     }
