@@ -5,13 +5,14 @@
 	left 0
 	right 0
 	z-index 999
-	pointer-events: none;
 	background-color rgba(0,0,0,0.8)
 	
 	.overlay
-		margin 25% auto
+		z-index 9999
+		margin 15% auto
 		float none
 		background-color $white
+		max-width 640px
 		height 480px
 		position relative
 		.close-compare
@@ -27,3 +28,50 @@
 			outline none
 			pointer-events auto
 			z-index 9999
+		.arrow-h2h
+			position absolute
+			right 42%
+			top 15%
+			background url("../img/arrow-h2h.png") no-repeat
+			width 114px
+			height 72px
+			display block
+		
+		.avatar
+			margin 20px 0
+			img
+				width 145px
+				height 145px
+				display block
+				margin 0 auto
+				border-radius 50%
+				border 5px solid $header-bg-grey
+		.name
+			margin-bottom 10px
+		.player-since
+			margin-bottom 10px
+		.player-rank
+			margin-bottom 20px
+			font-family Bold
+		.player
+			margin-bottom 40px
+			.split
+				padding 0 20px
+				max-width 280px
+				margin 0 auto
+				
+				.block
+					float left
+					width 50%
+					height 75px
+					&.top
+						padding-bottom 10px
+					&.bottom
+						padding-top 10px
+					&.top.left
+						border-bottom 1px solid $accent-grey
+						border-right 1px solid $accent-grey
+					&.top.right
+						border-bottom 1px solid $accent-grey
+					&.bottom.left
+						border-right 1px solid $accent-grey

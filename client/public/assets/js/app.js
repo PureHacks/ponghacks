@@ -71,7 +71,7 @@ angular.module("filters", [])
 	})
 	.filter("winRate", function() {
 		return function(winRate) {
-			if (typeof winRate === "number") {
+			if (typeof winRate === "number" && !isNaN(winRate)) {
 				if (winRate % 1 === 0) {
 					return winRate + "%";
 				} else {
@@ -79,6 +79,15 @@ angular.module("filters", [])
 				}
 			} else {
 				return 0;
+			}
+		};
+	})
+	.filter("realNumber", function() {
+		return function(number) {
+			if (isNaN(number)) {
+				return 0;
+			} else {
+				return number;
 			}
 		};
 	})

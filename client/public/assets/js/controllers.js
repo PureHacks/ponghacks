@@ -11,7 +11,7 @@ pongAppControllers.controller("dashboardCtrl", ["$scope", "$http", "socket",
 
 		$scope.dataRefresh = function(refresh) {
 			if (!refresh) {
-				$http.get("/api/game/history/5")
+				$http.get("/api/game/history/" + NUM_RECENT_GAMES)
 					.success(function(games) {
 						$scope.mostRecentGame = games.shift();
 						$scope.recentGames = games;
@@ -111,12 +111,15 @@ pongAppControllers.controller("profileCtrl", ["$scope", "$http", "$routeParams",
 	}
 ]);
 
-pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", 
-	function($scope, $http) {
+pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", "$filter", 
+	function($scope, $http, $filter) {
 
 		$scope.filter = "allTime";
 		$scope.allPlayerStats = [];
 		$scope.comparedPlayers = [];
+
+		$scope.leftCompare = {};
+		$scope.rightCompare = {};
 
 		$scope.init = function() {
 			$http.get("/api/stats/user/all")
@@ -165,24 +168,44 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http",
 			}
 		 });
 
-		$scope.comparePlayer = function(playerId) {
-			console.log("selected", playerId);
-			$scope.comparedPlayers.push(playerId);
-			if ($scope.comparedPlayers.length === 2) {
-				console.log("CLEAR");
-				compare($scope.comparedPlayers[0], $scope.comparedPlayers[1]);
+		$scope.addPlayerToCompare = function(playerId) {
+			var push = function(id) {
+				$scope.comparedPlayers.push(id);
+			};
+			if ($scope.comparedPlayers.length === 0){
+				push(playerId);
+			} else if ($scope.comparedPlayers[0] !== playerId) {
+				push(playerId);
+				if ($scope.comparedPlayers.length === 2) {
+					compare($scope.comparedPlayers[0], $scope.comparedPlayers[1]);
+				}
+			} else {
+				$scope.comparedPlayers = [];
 			}
 		};
 
 		var compare = function(playerOneId, playerTwoId) {
 			$http.get("/api/stats/user/"+playerOneId+"/matchup/"+playerTwoId)
 				.success(function(compareStats) {
-					console.log(compareStats);
+					computeCompareStats(compareStats, playerOneId, playerTwoId);
 				});
 		};
 
+		var computeCompareStats = function (compareStats, playerOneId, playerTwoId) {
+			$scope.compareStats = compareStats;
+			var totalGames = (compareStats.wins + compareStats.opponentWins);
+
+			$scope.leftCompare = $filter("filter")($scope.allPlayerStats, function(player) {return (player.id === playerOneId);})[0];
+			$scope.rightCompare = $filter("filter")($scope.allPlayerStats, function(player) {return (player.id === playerTwoId);})[0];
+
+			$scope.leftCompare.avgPoints = ((compareStats.winningPoints + compareStats.losingPoints) / totalGames).toFixed(1);
+			$scope.rightCompare.avgPoints = ((compareStats.opponentWinningPoints + compareStats.opponentLosingPoints) / totalGames).toFixed(1);
+
+			$scope.leftCompare.winRate = (compareStats.wins / totalGames) * 100;
+			$scope.rightCompare.winRate = (compareStats.opponentWins / totalGames) * 100;
+		};
+
 		$scope.closeOverlay = function() {
-			console.log("yo");
 			$scope.comparedPlayers = [];
 			angular.forEach($scope.allPlayerStats, function(player) {
 				player.selected = false;
