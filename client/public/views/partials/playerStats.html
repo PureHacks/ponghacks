@@ -4,8 +4,67 @@
 			<div class="overlay wgrid-8of12">
 				<div class="row">
 					<button class="close-compare" ng-click="closeOverlay()">&times;</button>
-					<div class="left player wgrid-4of8"></div>
-					<div class="right player wgrid-4of8"></div>
+					<span class="arrow-h2h"></span>
+					<div class="left player wgrid-4of12 marg-r-0">
+						<div class="row">
+							<div class="avatar">
+								<img ng-src="{{leftCompare.avatarUrl}}" alt="player avatar">
+							</div>
+							<p class="name">{{leftCompare.name}}</p>
+							<p class="player-since">Player Since: {{leftcompare.date}}</p>
+							<p class="player-rank uppercase">RANKING: {{leftCompare.rank}}</p>
+						</div>
+						<div class="row split clearfix uppercase">
+							<div class="block top left">
+								<p class="number">{{compareStats.wins}}</p>
+								<p class="bottom-text">Wins</p>
+							</div>
+							<div class="block top right">
+								<p class="number">{{compareStats.opponentWins}}</p>
+								<p class="bottom-text">Losses</p>
+							</div>
+						</div>
+						<div class="row split bottom-row clearfix uppercase">
+							<div class="block bottom left">
+								<p class="number">{{leftCompare.winRate | winRate}}</p>
+								<p class="bottom-text">Win Rate</p>
+							</div>
+							<div class="block bottom right">
+								<p class="number">{{leftCompare.avgPoints | realNumber}}</p>
+								<p class="bottom-text">Average Points per Game</p>
+							</div>
+						</div>
+					</div>
+					<div class="right player wgrid-4of12 marg-l-0">
+						<div class="row">
+							<div class="avatar">
+								<img ng-src="{{rightCompare.avatarUrl}}" alt="player avatar">
+							</div>
+							<p class="name">{{rightCompare.name}}</p>
+							<p class="player-since">Player Since: XXXXXX</p>
+							<p class="player-rank uppercase">RANKING: {{rightCompare.rank}}</p>
+						</div>
+						<div class="row split clearfix uppercase">
+							<div class="block top left">
+								<p class="number">{{compareStats.opponentWins}}</p>
+								<p class="bottom-text">Wins</p>
+							</div>
+							<div class="block top right">
+								<p class="number">{{compareStats.wins}}</p>
+								<p class="bottom-text">Losses</p>
+							</div>
+						</div>
+						<div class="row split bottom-row clearfix uppercase">
+							<div class="block bottom left">
+								<p class="number">{{rightCompare.winRate | winRate}}</p>
+								<p class="bottom-text">Win Rate</p>
+							</div>
+							<div class="block bottom right">
+								<p class="number">{{rightCompare.avgPoints | realNumber}}</p>
+								<p class="bottom-text">Average Points per Game</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -45,14 +104,16 @@
 				<th class="losses" ts-criteria="losses">Losses</th>
 				<th class="win-rate" ts-criteria="winRate">Win Rate</th>
 				<th class="rank" ts-criteria="rank">All-time Rank</th>
-				<th class="compare-check">Compare</th>
+				<th class="compare-check">Head to Head Stats</th>
 			</thead>
 			<tr ng-repeat="player in allPlayerStats | tablesort" ts-repeat>
 				<td class="name">
-					<a href="#/user/{{player.id}}" class="profile-img-name">
-						<img ng-src="{{player.avatarUrl}}"/>
-						<span>{{player.name}}</span>
-					</a>
+					<div class="name-bump">
+						<a href="#/user/{{player.id}}" class="profile-img-name">
+							<img ng-src="{{player.avatarUrl}}"/>
+							<span>{{player.name}}</span>
+						</a>
+					</div>
 				</td>
 				<td class="games">{{player.gameCount}}</td>
 				<td class="wins">{{player.wins}}</td>
@@ -60,7 +121,11 @@
 				<td class="win-rate">{{player.winRate | winRate}}</td>
 				<td class="rank">{{player.rank}}</td>
 				<td class="compare-check">
-					<input value="{{player.id}}" type="checkbox" ng-model="player.selected" ng-click="comparePlayer(player.id)"/>
+					<div class="checkbox-container">
+						<label for="checkbox-{{$index}}" class="checkbox-label">
+							<input value="{{player.id}}" name="checkbox-{{$index}}" id="checkbox-{{$index}}"type="checkbox" ng-model="player.selected" ng-click="addPlayerToCompare(player.id)"/>
+						</label>
+					</div>
 				</td>
 			</tr>
 		</table>
