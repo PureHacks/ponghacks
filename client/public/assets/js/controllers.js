@@ -218,6 +218,7 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", "$filter",
 				"losses": stats.losses,
 				"gameCount": stats.gameCount,
 				"winRate": stats.winRate,
+
 			};
 		};
  
@@ -259,17 +260,36 @@ pongAppControllers.controller("gameHistoryCtrl", ["$scope", "$http",
 
 pongAppControllers.controller("inputScoreCtrl", ["$scope", "$http", "$routeParams",
 	function($scope, $http, $routeParams) {
-		
-		$http.get("/api/user/list").success(function(data) {
-			$scope.team = data;
-		});
 
-		$scope.submitScore = function() {
+		$scope.team = [];
+		$scope.winner = {};
+		$scope.loser = {};
+		$scope.winnerScore = 21;
+		$scope.loserScore = 15;
+
+		$scope.init = function() {
+			$scope.winner.avatarUrl = $scope.loser.avatarUrl = "https://hipchat.tor.razorfish.com/img/silhouette_125.png";
+
+			$http.get("/api/user/list").success(function(data) {
+				$scope.team = data;
+			});
+		};
+
+		$scope.submitScoreNow = function($form) {
+			if ($form.$valid) {
+				if (angular.isObject($scope.winner) && $scope.winner.userId && angular.isObject($scope.loser) && $scope.loser.userId && $scope.winner !== $scope.loser) {
+					postScore();
+					$form.$setPristine();
+				}
+			}
+		};
+
+		var postScore = function() {
 			var game = {
 				winnerUserId: $scope.winner.userId,
-				winnerScore: $scope.winner.score,
+				winnerScore: $scope.winnerScore,
 				loserUserId: $scope.loser.userId,
-				loserScore: $scope.loser.score,
+				loserScore: $scope.loserScore
 			};
 
 			$http({
@@ -281,6 +301,9 @@ pongAppControllers.controller("inputScoreCtrl", ["$scope", "$http", "$routeParam
 			.success(function(data, status, headers, config) {
 				$scope.winner = {},
 				$scope.loser = {};
+				$scope.winner.avatarUrl = $scope.loser.avatarUrl = "https://hipchat.tor.razorfish.com/img/silhouette_125.png";
+				$scope.winnerScore = 21;
+				$scope.loserScore = 15;
 			})
 			.error(function(data, status, headers, config) {
 				console.error(data.error);

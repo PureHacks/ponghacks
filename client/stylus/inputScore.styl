@@ -11,32 +11,37 @@
 		form
 			input, select
 				width 100%
-				font-size 35px
-				line-height 1.5
+				font-family Medium
 				height 55px
 				border none
+				outline none
 				background-color $white
-			&.ng-valid
+			&.ng-pristine, &.ng-invalid
 				.submit-score
-					background-color $accent-red
-					color $white
+					background-color rgb(192, 192, 192)
 		
 		.select-container
 			margin-bottom 38px
 			position relative
 			select
-				text-indent 45px
-				outline none
+				font-size 21px
+				text-indent 60px
+				
 			img
 				position absolute
 				display block
 				width 40px
 				height 40px
-				top 5px
-				left 5px
+				top 7px
+				left 7px
+				border-radius 50%
 				
 		.point-input-container
+			position relative
 			margin-bottom 55px
+			input
+				font-size 25px
+				text-indent 155px
 
 		.winner
 			.select-container, .point-input-container
@@ -48,4 +53,9 @@
 			display block
 			border none
 			color $font-dark-blue
+			background-color $accent-red
+			color $white
+			&.disabled
+				background-color rgb(192, 192, 192)
+				
 			
