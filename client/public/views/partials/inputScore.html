@@ -1,35 +1,39 @@
-<section>
-	<h2>Input game results</h2>
-	<div class="container">
-		<form>
-			<div class="half winner">
-				<h3>Winner</h3>
-				<div>
-					<img ng-src="{{winner.avatarUrl}}"/>				
-				</div>
-				<select ng-model="winner" ng-options="user.name for user in team" ng-init="form.type=typeOptions[0].value">
-					<option style="display:none" value="0">Select a Player</option>
-				</select>
-				<span class="player-score">{{winner.score}}</span>
-				<div>
-					<input class="player-score" ng-model="winner.score" ng-init="winner.score=21" type="number" name="winnerName"/>
-				</div>
+<div class="input-score row" ng-init="init()">
+	<div class="container wgrid-10of12">
+		<div class="row">
+			<div class="form-container">
+				<h3>Match details</h3>
+				<form name="submitScore" ng-submit="submitScoreNow(submitScore)" novalidate>
+					<div class="half winner wgrid-5of12 marg-l-0">
+						<div class="select-container wgrid-4of12">
+							<img ng-src="{{winner.avatarUrl}}"/>
+							<select ng-options="user.name for user in team" name="winnerName" ng-model="winner" ng-required="true">
+								<option value="" disabled>Winner</option>
+							</select>
+						</div>
+						<div class="point-input-container wgrid-4of12">
+							<label for="winnerScore">Winner score
+								<input class="player-score" min="21" max="99" name="winScore" ng-model="winnerScore" type="number" id="winnerScore" name="winnerScore" ng-required="true"/>
+							</label>
+						</div>
+					</div>
+					<div class="half loser wgrid-5of12 marg-r-0">
+						<div class="select-container wgrid-4of12">
+							<img ng-src="{{loser.avatarUrl}}"/>
+							<select name="loserName" ng-model="loser" ng-options="user.name for user in team" ng-required="true">
+								<option value="" disabled>Loser</option>
+							</select>
+						</div>				
+						<div class="point-input-container wgrid-4of12">
+							<label for="loserScore">Loser Score
+								<input class="player-score" min="0" max="99" name="lossScore" ng-model="loserScore" type="number" id="loserScore" name="loserScore" ng-required="true"/>
+							</label>
+						</div>
+				
+					</div>	
+					<button type="submit" class="submit-score" ng-class="{'disabled' : submitScore.winnerName.$pristine || submitScore.loserName.$pristine}" ng-disabled="submitScore.$pristine || submitScore.$invalid || submitScore.winnerName.$pristine || submitScore.loserName.$pristine">Submit match ></button>
+				</form>
 			</div>
-			<div class="half loser">
-				<h3>Loser</h3>
-				<div>
-					<img ng-src="{{loser.avatarUrl}}"/>
-				</div>				
-				<select ng-model="loser" ng-options="user.name for user in team" ng-init="form.type=typeOptions[0].value">
-					<option style="display:none" value="0">Select a Player</option>
-				</select>
-				<span class="player-score">{{loser.score}}</span>
-				<div>
-					<input class="player-score" ng-model="loser.score" ng-init="loser.score=0" type="number" name="loserName"/>
-				</div>
-
-			</div>	
-			<button ng-click="submitScore()">Enter Score</button>
-		</form>
+		</div>
 	</div>
-</section>
+</div>
