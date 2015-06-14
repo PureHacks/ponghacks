@@ -1,5 +1,6 @@
 package com.razorfish.ponghacksscorekeeper.Retrofit;
 
+import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.events.LoadPlayers;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayersListResponse;
 import com.squareup.otto.Bus;
@@ -15,10 +16,10 @@ import retrofit.client.Response;
  * Created by Tim on 2015-06-07.
  */
 public class PlayerListService {
-    private PlayerListModel.PlayerListInterface mApi;
+    private PlayerListQuery.PlayerListInterface mApi;
     private Bus mBus;
 
-    public PlayerListService(PlayerListModel.PlayerListInterface listInterface, Bus bus) {
+    public PlayerListService(PlayerListQuery.PlayerListInterface listInterface, Bus bus) {
         mApi = listInterface;
         mBus = bus;
     }
@@ -26,9 +27,9 @@ public class PlayerListService {
     @Subscribe
     public void onLoadPlayers(final LoadPlayers busLoadPlayers) {
         if (busLoadPlayers.getQuery().equals("all")) {
-            mApi.playerListResults(new Callback<ArrayList<PlayerListModel.Player>>() {
+            mApi.playerListResults(new Callback<ArrayList<Player>>() {
                 @Override
-                public void success(ArrayList<PlayerListModel.Player> players, Response response) {
+                public void success(ArrayList<Player> players, Response response) {
                     mBus.post(new PlayersListResponse(players, "all", busLoadPlayers.getPlayerType()));
                 }
 
@@ -38,9 +39,9 @@ public class PlayerListService {
                 }
             });
         } else {
-            mApi.recentPlayerList(new Callback<ArrayList<PlayerListModel.Player>>() {
+            mApi.recentPlayerList(new Callback<ArrayList<Player>>() {
                 @Override
-                public void success(ArrayList<PlayerListModel.Player> players, Response response) {
+                public void success(ArrayList<Player> players, Response response) {
                     mBus.post(new PlayersListResponse(players, "recent", busLoadPlayers.getPlayerType()));
                 }
 

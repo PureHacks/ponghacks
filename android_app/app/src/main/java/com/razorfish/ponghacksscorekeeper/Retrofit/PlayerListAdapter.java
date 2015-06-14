@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.razorfish.ponghacksscorekeeper.R;
+import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class PlayerListAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        PlayerListModel.Player player = (PlayerListModel.Player) getItem(position);
+        Player player = (Player) getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.player_list_row, parent, false);

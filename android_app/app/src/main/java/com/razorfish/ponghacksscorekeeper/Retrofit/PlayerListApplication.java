@@ -13,6 +13,7 @@ import retrofit.RestAdapter;
  */
 public class PlayerListApplication extends Application {
     PlayerListService playerListService;
+    SubmitScoreService submitScoreService;
     Bus bus = BusProvider.getInstance();
 
     String playerType = "playerType";
@@ -21,16 +22,20 @@ public class PlayerListApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        playerListService = new PlayerListService(buildInterface(), bus);
+        playerListService = new PlayerListService(buidUserListQuery(), bus);
         bus.register(playerListService);
+        submitScoreService = new SubmitScoreService(buildSubmitScoreQuery(), bus);
+        bus.register(submitScoreService);
         bus.register(this);
     }
 
-    private PlayerListModel.PlayerListInterface buildInterface() {
-        RestAdapter.Builder builder = new RestAdapter.Builder();
+    private PlayerListQuery.PlayerListInterface buidUserListQuery() {
+        //        return new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListModel.PlayerListInterface.class);
+        return new RestAdapter.Builder().setClient(new MockClient()).setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListQuery.PlayerListInterface.class);
+    }
 
-//        return new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListModel.PlayerListInterface.class);
-        return new RestAdapter.Builder().setClient(new MockClient()).setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListModel.PlayerListInterface.class);
+    private SubmitScoreQuery.SubmitScoreInterface buildSubmitScoreQuery() {
+        return new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(SubmitScoreQuery.SubmitScoreInterface.class);
     }
 
     public String getPlayerTypeString() {

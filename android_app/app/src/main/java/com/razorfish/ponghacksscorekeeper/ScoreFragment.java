@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
+import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
+import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
@@ -25,7 +26,8 @@ import com.squareup.picasso.Target;
  */
 public class ScoreFragment extends Fragment {
     Button playerButton;
-    PlayerListModel.Player selectedPlayer;
+    Player selectedPlayer;
+    int score;
     Bus mBus = BusProvider.getInstance();
 
     public static ScoreFragment newInstance(String result) {
@@ -67,6 +69,8 @@ public class ScoreFragment extends Fragment {
             }
         });
 
+        score = getArguments().getInt("defaultScore");
+
         final EditText editText = (EditText) v.findViewById(R.id.editText2);
         Button subButton = (Button) v.findViewById(R.id.button2);
         Button addButton = (Button) v.findViewById(R.id.button3);
@@ -74,19 +78,20 @@ public class ScoreFragment extends Fragment {
         InputFilterMinMax inputFilterMinMax = new InputFilterMinMax("0","99");
 
         editText.setFilters(new InputFilter[]{inputFilterMinMax});
-        editText.setText(Integer.toString(getArguments().getInt("defaultScore")));
+        editText.setText(Integer.toString(score));
 
         subButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editText.getText().toString().isEmpty()) {
-                    editText.setText("0");
+                    score = 0;
                 } else if (editText.getText().toString().equals("0")) {
-                    editText.setText("0");
+                    score = 0;
                 } else {
-                    int point = Integer.parseInt(editText.getText().toString());
-                    editText.setText(String.valueOf(point - 1));
+                    score--;
                 }
+                mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
+                editText.setText(Integer.toString(score));
             }
         });
 
@@ -94,13 +99,14 @@ public class ScoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (editText.getText().toString().isEmpty()) {
-                    editText.setText("0");
+                    score = 0;
                 } else if (editText.getText().toString().equals("99")) {
-                    editText.setText("0");
+                    score = 99;
                 } else {
-                    int point = Integer.parseInt(editText.getText().toString());
-                    editText.setText(String.valueOf(point + 1));
+                    score++;
                 }
+                mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
+                editText.setText(Integer.toString(score));
             }
         });
 
@@ -116,7 +122,7 @@ public class ScoreFragment extends Fragment {
                 @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                     Drawable playerIcon = new BitmapDrawable(getActivity().getResources(), bitmap);
-                    playerIcon.setBounds(0,0,100,100);
+                    playerIcon.setBounds(0, 0, 100, 100);
                     playerButton.setCompoundDrawables(playerIcon, null, null, null);
                 }
 
@@ -130,6 +136,8 @@ public class ScoreFragment extends Fragment {
 
                 }
             });
+
+            mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
         }
     }
 
@@ -139,9 +147,9 @@ public class ScoreFragment extends Fragment {
         mBus.register(this);
     }
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        mBus.unregister(this);
-//    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBus.unregister(this);
+    }
 }
