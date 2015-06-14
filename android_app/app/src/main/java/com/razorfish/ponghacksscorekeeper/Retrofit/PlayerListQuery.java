@@ -1,6 +1,6 @@
 package com.razorfish.ponghacksscorekeeper.Retrofit;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 
 import java.util.ArrayList;
 

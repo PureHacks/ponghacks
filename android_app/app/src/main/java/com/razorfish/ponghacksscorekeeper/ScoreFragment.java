@@ -12,10 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
 import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
+import com.razorfish.ponghacksscorekeeper.helpers.InputFilterMinMax;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;

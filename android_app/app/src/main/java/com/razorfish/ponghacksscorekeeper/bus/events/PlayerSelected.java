@@ -1,6 +1,6 @@
 package com.razorfish.ponghacksscorekeeper.bus.events;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 
 /**
  * Created by timothy.lau on 2015-06-08.

@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListAdapter;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.LoadPlayers;

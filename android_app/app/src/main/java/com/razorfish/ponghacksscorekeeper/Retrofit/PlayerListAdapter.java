@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.razorfish.ponghacksscorekeeper.R;
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

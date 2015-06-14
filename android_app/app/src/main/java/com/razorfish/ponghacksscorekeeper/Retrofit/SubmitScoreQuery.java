@@ -1,6 +1,6 @@
 package com.razorfish.ponghacksscorekeeper.Retrofit;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.SubmitScoreModel;
+import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 
 import retrofit.Callback;
 import retrofit.http.Body;

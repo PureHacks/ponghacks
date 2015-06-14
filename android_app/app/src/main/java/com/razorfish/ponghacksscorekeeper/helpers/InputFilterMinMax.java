@@ -1,4 +1,4 @@
-package com.razorfish.ponghacksscorekeeper;
+package com.razorfish.ponghacksscorekeeper.helpers;
 
 import android.text.InputFilter;
 import android.text.Spanned;

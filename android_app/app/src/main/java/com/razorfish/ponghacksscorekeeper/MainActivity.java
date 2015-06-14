@@ -2,15 +2,14 @@ package com.razorfish.ponghacksscorekeeper;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.Player;
-import com.razorfish.ponghacksscorekeeper.Retrofit.Models.SubmitScoreModel;
+import com.razorfish.ponghacksscorekeeper.models.Player;
+import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
 import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;

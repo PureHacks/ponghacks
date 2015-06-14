@@ -1,8 +1,13 @@
-package com.razorfish.ponghacksscorekeeper.Retrofit;
+package com.razorfish.ponghacksscorekeeper;
 
 import android.app.Application;
 
 import com.razorfish.ponghacksscorekeeper.R;
+import com.razorfish.ponghacksscorekeeper.Retrofit.MockClient;
+import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListQuery;
+import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListService;
+import com.razorfish.ponghacksscorekeeper.Retrofit.SubmitScoreQuery;
+import com.razorfish.ponghacksscorekeeper.Retrofit.SubmitScoreService;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.squareup.otto.Bus;
 

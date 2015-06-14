@@ -1,4 +1,4 @@
-package com.razorfish.ponghacksscorekeeper.Retrofit.Models;
+package com.razorfish.ponghacksscorekeeper.models;
 
 /**
  * Created by timothy.lau on 2015-06-14.
