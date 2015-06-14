@@ -1,0 +1,51 @@
+.input-score
+	margin 0 auto
+	color $font-dark-blue
+	.container
+		background-color $section-bg-white
+		float none
+		margin 15% auto
+		h3
+			padding 50px 0
+		
+		form
+			input, select
+				width 100%
+				font-size 35px
+				line-height 1.5
+				height 55px
+				border none
+				background-color $white
+			&.ng-valid
+				.submit-score
+					background-color $accent-red
+					color $white
+		
+		.select-container
+			margin-bottom 38px
+			position relative
+			select
+				text-indent 45px
+				outline none
+			img
+				position absolute
+				display block
+				width 40px
+				height 40px
+				top 5px
+				left 5px
+				
+		.point-input-container
+			margin-bottom 55px
+
+		.winner
+			.select-container, .point-input-container
+				float right
+				
+		.submit-score
+			width 100%
+			height 55px
+			display block
+			border none
+			color $font-dark-blue
+			
