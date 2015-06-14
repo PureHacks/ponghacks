@@ -2,16 +2,17 @@
 
 ## Stack
 
-* MySQL
-* Express
-* Angular
-* Node
+* [MySQL](http://www.mysql.com/)
+* [Express](http://expressjs.com/)
+* [Angular](https://angularjs.org/)
+* [NodeJS](http://nodejs.org)
 
 ### Tools & Libraries
 
 * [GulpJS](https://github.com/gulpjs/gulp)
 * [Socket.io](https://github.com/Automattic/socket.io)
 * [AsyncJS](https://github.com/caolan/async)
+* [Angular Tablesort](https://github.com/mattiash/angular-tablesort)
 
 ## Getting started
 
