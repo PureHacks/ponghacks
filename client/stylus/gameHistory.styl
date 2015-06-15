@@ -1,21 +1,57 @@
 .game-history
+	margin 0 auto
+	float none
+	.container
+		.header
+			height 115px
+			h2
+				padding-top 40px
 
-	margin 0 auto	
-		ul li
-			border-bottom 1px solid $header-bg-grey
-			.recent-game
-				height inherit
-				.game-info, .game-score
-					float left
-					padding 0
-				.game-info
-					width 80%
-					.winner-name
-						color $accent-red
-					.loser-name
-						color $font-dark-blue
-				.game-score
-					width 20%
-					span
-						font-size 22px
-						color $font-dark-blue
+		.game-container
+
+			.game
+				padding 0px 16px
+				background-color $white
+				margin-bottom 20px
+				.winner
+					border-bottom 1px solid $accent-grey
+					img
+						border 3px solid $accent-red
+				.loser
+					padding-top 10px
+					img
+						border 3px solid $accent-grey
+
+				&:nth-child(3n - 2)
+					margin-left 0
+				&:nth-child(3n)
+					margin-right 0
+				.date
+					height 37px
+					padding-top 18px
+				.player-info
+					position relative
+					height 100px
+
+					img
+						width 67px
+						height 67px
+						position absolute
+						top 10px
+						left 0
+						border-radius 50%
+					.player-name
+						position absolute
+						top 37px
+						left 90px
+					.player-score
+						position absolute
+						right 5px
+						top 35px
+					.star
+						width 25px
+						height 24px
+						background url("/assets/img/star.png")
+						position absolute
+						left 42px
+						top 55px

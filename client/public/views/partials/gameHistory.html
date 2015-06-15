@@ -1,21 +1,31 @@
 <div class="game-history row clearfix" ng-init="init()">
-	<h2>Game History</h2>
-	<section class="section wgrid-12of12 wgrid-4of4 wgrid-8of8">
-		<div class="section-header">
-			<h3>Recent Games</h3>
+	<div class="container wgrid-12of12">
+		<div class="row header">
+			<h2>Game History</h2>
 		</div>
-		<ul>
-			<li ng-repeat="game in gameHistory">
-				<div class="recent-game clearfix">
-					<div class="game-info">
-						<p>{{game.date | smartDate}}</p>
-						<p><span class="winner-name"><a href="#/user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
-					</div>
-					<div class="game-score">
-						<span>{{game.winnerScore}} - {{game.loserScore}}</span>
+		<div class="row game-container">
+			<div class="game wgrid-4of12" ng-repeat="game in gameHistory">
+				<div class="row">
+					<p class="date">{{game.date | smartDate}}</p>
+				</div>
+				<div class="row winner">
+					<div class="player-info">
+						<a href="#/user/{{game.winnerUserId}}"><img ng-src="{{game.winnerAvatarUrl}}" alt="avatar"/><span class="player-name">{{game.winnerName | shortFullName}}</span></a>
+						<span class="star"></span>
+						<span class="player-score">
+							{{game.winnerScore}}
+						</span>
 					</div>
 				</div>
-			</li>
-		</ul>
-	</section>	
+				<div class="row loser">
+					<div class="player-info">
+						<a href="#/user/{{game.loserUserId}}"><img ng-src="{{game.loserAvatarUrl}}" alt="avatar"/><span class="player-name">{{game.loserName | shortFullName}}</span></a>
+						<span class="player-score">
+							{{game.loserScore}}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
