@@ -1,20 +1,20 @@
 package com.razorfish.ponghacksscorekeeper.bus.events;
 
-import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 
 /**
  * Created by timothy.lau on 2015-06-08.
  */
 public class PlayerSelected {
-    PlayerListModel.Player player;
+    Player player;
     String type;
 
-    public PlayerSelected(PlayerListModel.Player player, String type) {
+    public PlayerSelected(Player player, String type) {
         this.player = player;
         this.type = type;
     }
 
-    public PlayerListModel.Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 

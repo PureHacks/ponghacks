@@ -2,7 +2,6 @@ package com.razorfish.ponghacksscorekeeper;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListAdapter;
-import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.LoadPlayers;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
@@ -49,7 +48,7 @@ public class PlayerListFragment extends Fragment {
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PlayerListModel.Player player = (PlayerListModel.Player) mAdapter.getItem(position);
+                Player player = (Player) mAdapter.getItem(position);
                 mBus.post(new PlayerSelected(player, getArguments().getString(getString(R.string.playerTypeName))));
                 getFragmentManager().popBackStack();
             }

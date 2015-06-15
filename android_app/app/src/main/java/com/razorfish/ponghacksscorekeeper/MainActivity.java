@@ -4,13 +4,25 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.razorfish.ponghacksscorekeeper.models.Player;
+import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
+import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
+import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
+import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScores;
 import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    private Bus mBus;
+    private Bus mBus = BusProvider.getInstance();
+    Player winner;
+    Player loser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +33,22 @@ public class MainActivity extends ActionBarActivity {
         ScoreFragment rightScore = ScoreFragment.newInstance("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
+
+        Button submitButton = (Button) this.findViewById(R.id.button4);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (winner == null || loser == null) {
+                    Toast.makeText(getApplicationContext(), "Missing players, scores cannot be submitted.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Submitting scores...", Toast.LENGTH_SHORT).show();
+
+                    SubmitScoreModel submitScoreModel = new SubmitScoreModel(winner.getUserId(), winner.getScore(), loser.getUserId(), loser.getScore());
+                    mBus.post(new SubmitScores(submitScoreModel));
+                }
+            }
+        });
+
     }
 
     @Override
@@ -43,5 +71,35 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Subscribe
+    public void onPlayerSelected(PlayerSelected event) {
+        if (event.getType().equals("winner")) {
+            winner = event.getPlayer();
+        } else if (event.getType().equals("loser")) {
+            loser = event.getPlayer();
+        }
+    }
+
+    @Subscribe
+    public void onScoreChanged(ScoreChanged event) {
+        if (event.getPlayerType().equals("winner")) {
+            winner.setScore(event.getNewScore());
+        } else if (event.getPlayerType().equals("loser")) {
+            loser.setScore(event.getNewScore());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBus.register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBus.unregister(this);
     }
 }
