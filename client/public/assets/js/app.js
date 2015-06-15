@@ -106,9 +106,9 @@ angular.module("filters", [])
 					time = time[0] + ":" + time[1] + time[2].substr(time[2].length-2, 2).toLowerCase();
 
 				if (day === dateDay && month === dateMonth) {
-					return "Today " + time;
+					return "Today at " + time;
 				} else if (day - dateDay === 1) {
-					return "Yesterday " + time;
+					return "Yesterday at " + time;
 				} else if ((day - dateDay < 7 && dateMonth === month) || dateMonth - month === 1 && (day + 30) - dateDay < 7 ) {
 					return dayOfWeek[date.getDay()] +" " + time;
 				} else if(day - dateDay >= 7 && day - dateDay < 14 || (month - dateMonth === 1) && (day - (dateDay - 30) >= 7  && day - (dateDay - 30) < 14  ) ){
