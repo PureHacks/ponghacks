@@ -4,24 +4,24 @@ package com.razorfish.ponghacksscorekeeper.models;
  * Created by timothy.lau on 2015-06-14.
  */
 public class SubmitScoreModel {
-    int winnerId;
-    int loserId;
+    int winnerUserId;
+    int loserUserId;
     int winnerScore;
     int loserScore;
 
-    public SubmitScoreModel(int winnerId, int winnerScore, int loserId, int loserScore) {
-        this.winnerId = winnerId;
+    public SubmitScoreModel(int winnerUserId, int winnerScore, int loserUserId, int loserScore) {
+        this.winnerUserId = winnerUserId;
         this.winnerScore = winnerScore;
-        this.loserId = loserId;
+        this.loserUserId = loserUserId;
         this.loserScore = loserScore;
     }
 
-    public int getWinnerId() {
-        return winnerId;
+    public int getWinnerUserId() {
+        return winnerUserId;
     }
 
-    public int getLoserId() {
-        return loserId;
+    public int getLoserUserId() {
+        return loserUserId;
     }
 
     public int getWinnerScore() {
