@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.razorfish.ponghacksscorekeeper.bus.events.PlayerIconPressed;
-import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
@@ -64,6 +63,15 @@ public class ScoreFragment extends Fragment {
         final int parentId = container.getId();
 
         playerButton = (Button) v.findViewById(R.id.button);
+        TextView scoreLabel = (TextView) v.findViewById(R.id.pointsText);
+
+        if (getArguments().getString("playerType").equals("winner")) {
+            playerButton.setText("Winner");
+            scoreLabel.setText("Win points");
+        } else {
+            playerButton.setText("Loser");
+            scoreLabel.setText("Loss points");
+        }
 
         playerButton.setOnClickListener(new View.OnClickListener() {
             @Override

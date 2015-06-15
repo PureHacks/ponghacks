@@ -7,5 +7,6 @@
         android:layout_height="match_parent"
         android:id="@+id/button"
         android:drawableLeft="@drawable/dickbutt"
-        android:background="#ffa3a3a3" />
+        android:background="@android:color/white"
+        android:textColor="#ff5a6770" />
 </LinearLayout>
