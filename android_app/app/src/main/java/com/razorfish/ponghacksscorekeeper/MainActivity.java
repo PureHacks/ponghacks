@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
@@ -21,8 +22,9 @@ import com.squareup.otto.Subscribe;
 public class MainActivity extends ActionBarActivity {
 
     private Bus mBus = BusProvider.getInstance();
-    Player winner;
-    Player loser;
+    Player winner = new Player();
+    Player loser = new Player();
+    OverlayFragment overlayFragment = new OverlayFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +78,13 @@ public class MainActivity extends ActionBarActivity {
     @Subscribe
     public void onPlayerSelected(PlayerSelected event) {
         if (event.getType().equals("winner")) {
+            int score = winner.getScore();
             winner = event.getPlayer();
+            winner.setScore(score);
         } else if (event.getType().equals("loser")) {
+            int score = loser.getScore();
             loser = event.getPlayer();
+            loser.setScore(score);
         }
     }
 
@@ -88,6 +94,18 @@ public class MainActivity extends ActionBarActivity {
             winner.setScore(event.getNewScore());
         } else if (event.getPlayerType().equals("loser")) {
             loser.setScore(event.getNewScore());
+        }
+    }
+
+    @Subscribe
+    public void onPlayerSelectorStateChanged(PlayerSelectorStateChanged event) {
+        String playerType = event.getPlayerType();
+        View v = (playerType.equals("winner")) ? findViewById(R.id.rightScoreView) : findViewById(R.id.leftScoreView);
+
+        if (event.getTransition().equals("open")) {
+            getSupportFragmentManager().beginTransaction().add(v.getId(), overlayFragment, null).commit();
+        } else if (event.getTransition().equals("close")) {
+            getSupportFragmentManager().beginTransaction().remove(overlayFragment).commit();
         }
     }
 

@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerIconPressed;
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
@@ -30,6 +32,7 @@ public class ScoreFragment extends Fragment {
     Player selectedPlayer;
     int score;
     Bus mBus = BusProvider.getInstance();
+    OverlayFragment overlayFragment = new OverlayFragment();
 
     public static ScoreFragment newInstance(String result) {
         ScoreFragment fragment = new ScoreFragment();
@@ -137,8 +140,8 @@ public class ScoreFragment extends Fragment {
 
                 }
             });
-
-            mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
+        } else {
+            getFragmentManager().beginTransaction().remove(overlayFragment).commit();
         }
     }
 
