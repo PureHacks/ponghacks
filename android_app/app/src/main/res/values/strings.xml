@@ -13,4 +13,7 @@
     <string name="fontPlayer">Uniform-Medium.otf</string>
     <string name="fontSubmitButton">Uniform-Medium.otf</string>
     <string name="fontMatchDetails">Uniform-Bold.otf</string>
+    <string name="fontRegular">Uniform-Regular.otf</string>
+    <string name="fontTitle">Uniform-Bold.otf</string>
+    <string name="fontPlayerList">Uniform-Medium.otf</string>
 </resources>

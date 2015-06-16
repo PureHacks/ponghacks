@@ -1,6 +1,7 @@
 package com.razorfish.ponghacksscorekeeper.Retrofit;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,9 @@ public class PlayerListAdapter extends ArrayAdapter {
 
         playerAvatar = (ImageView) convertView.findViewById(R.id.playerAvatar);
         playerName = (TextView) convertView.findViewById(R.id.playerName);
+
+        Typeface playerFont = Typeface.createFromAsset(getContext().getAssets(), getContext().getString(R.string.fontPlayerList));
+        playerName.setTypeface(playerFont);
 
         Picasso.with(getContext()).load(player.getAvatarUrl()).into(playerAvatar);
 

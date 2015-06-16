@@ -1,8 +1,9 @@
 package com.razorfish.ponghacksscorekeeper;
 
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,15 +12,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
-import com.razorfish.ponghacksscorekeeper.bus.events.SubmitParamsChanged;
-import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScoreResult;
-import com.razorfish.ponghacksscorekeeper.models.Player;
-import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
 import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
+import com.razorfish.ponghacksscorekeeper.bus.events.SubmitParamsChanged;
+import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScoreResult;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScores;
+import com.razorfish.ponghacksscorekeeper.models.Player;
+import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -39,6 +40,17 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActionBar actionbar = getSupportActionBar();
+
+        actionbar.setCustomView(R.layout.actionbar_title);
+        actionbar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        TextView pong = (TextView) findViewById(R.id.pong);
+        TextView hacks = (TextView) findViewById(R.id.hacks);
+        Typeface titleFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontTitle));
+        pong.setTypeface(titleFont);
+        hacks.setTypeface(titleFont);
 
         TextView matchDetailsText = (TextView) findViewById(R.id.matchDetails);
         Typeface matchDetailsFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontMatchDetails));

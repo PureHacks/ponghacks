@@ -31,13 +31,13 @@ public class SubmitScoreService {
         mApi.submitScores(submitScores.getSubmitScoreModel(), new Callback<SubmitResponse>() {
             @Override
             public void success(SubmitResponse s, Response response) {
-                Log.d("submitscores success", response.getBody().toString());
+//                Log.d("submitscores success", response.getBody().toString());
                 mBus.post(new SubmitScoreResult(true));
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("submitscores callback", error.getBody().toString());
+//                Log.d("submitscores callback", error.getBody().toString());
                 mBus.post(new SubmitScoreResult(false));
             }
         });
