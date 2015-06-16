@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitParamsChanged;
+import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScoreResult;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
@@ -66,7 +67,6 @@ public class MainActivity extends ActionBarActivity {
 
                     SubmitScoreModel submitScoreModel = new SubmitScoreModel(winner.getUserId(), winner.getScore(), loser.getUserId(), loser.getScore());
                     mBus.post(new SubmitScores(submitScoreModel));
-                    ResetFragments();
                 }
             }
         });
@@ -140,6 +140,16 @@ public class MainActivity extends ActionBarActivity {
         } else {
             submittable = false;
             submitButton.setBackgroundColor(getResources().getColor(R.color.submitGrey));
+        }
+    }
+
+    @Subscribe
+    public void onSubmitScoreResult(SubmitScoreResult event) {
+        if (event.getSuccess()) {
+            Toast.makeText(getApplicationContext(), "Match submitted!", Toast.LENGTH_SHORT).show();
+            ResetFragments();
+        } else {
+            Toast.makeText(getApplicationContext(), "Submitting match scores not successful, please try again.", Toast.LENGTH_SHORT).show();
         }
     }
 

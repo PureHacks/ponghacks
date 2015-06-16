@@ -1,5 +1,6 @@
 package com.razorfish.ponghacksscorekeeper.Retrofit;
 
+import com.razorfish.ponghacksscorekeeper.models.SubmitResponse;
 import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 
 import retrofit.Callback;
@@ -12,6 +13,6 @@ import retrofit.http.POST;
 public class SubmitScoreQuery {
     public interface SubmitScoreInterface {
         @POST("/api/game")
-        void submitScores(@Body SubmitScoreModel submitScoreModel, Callback<String> cb);
+        void submitScores(@Body SubmitScoreModel submitScoreModel, Callback<SubmitResponse> cb);
     }
 }
