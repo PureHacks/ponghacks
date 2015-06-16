@@ -21,6 +21,8 @@ public class Player {
     }
 
     public Player() {
+        userId = -1;
+        score = -1;
     }
 
     public int getUserId() {

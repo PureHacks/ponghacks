@@ -4,4 +4,5 @@
     <item name="background" type="color">#FFF3F3F3</item>
     <item name="text" type="color">#FF5A6770</item>
     <item name="titleText" type="color">#FF5B6871</item>
+    <item name="darkGrey" type="color">#FF696969</item>
 </resources>
