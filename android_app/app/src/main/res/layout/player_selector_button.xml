@@ -6,6 +6,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/button"
-        android:drawableLeft="@drawable/dickbutt"
-        android:background="#ffa3a3a3" />
+        android:background="@android:color/white"
+        android:textColor="@color/text"
+        android:gravity="left|center_vertical"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:drawablePadding="5dp"/>
 </LinearLayout>

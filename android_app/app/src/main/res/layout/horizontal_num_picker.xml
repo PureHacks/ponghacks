@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:background="@android:color/white">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Win points"
-        android:id="@+id/textView"
+        android:id="@+id/pointsText"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="Win points"
+        android:textColor="@color/text" />
 
     <Button
         android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:text="-"
+        android:text="−"
         android:id="@+id/button2"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toLeftOf="@+id/editText2"
+        android:background="@android:color/transparent"
+        android:textSize="22dp"
+        android:textColor="@color/text" />
 
     <EditText
         android:layout_width="35dp"
@@ -26,17 +32,23 @@
         android:inputType="number"
         android:id="@+id/editText2"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/button2"
-        android:layout_toEndOf="@+id/button2"
-        android:maxLength="2" />
+        android:maxLength="2"
+        android:layout_toLeftOf="@+id/button3"
+        android:editable="false"
+        android:digits="2"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:textColor="@color/text" />
 
     <Button
         android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:text="+"
         android:id="@+id/button3"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_toRightOf="@+id/editText2"
-        android:layout_toEndOf="@+id/editText2"
-        android:layout_centerVertical="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:textSize="22dp"
+        android:textColor="@color/text" />
 </RelativeLayout>

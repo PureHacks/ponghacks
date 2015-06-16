@@ -4,7 +4,19 @@
     tools:context=".MainActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:background="@android:color/background_light">
+    android:background="#fff3f3f3">
 
-    <include layout="@layout/score_entry"></include>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Match details"
+        android:id="@+id/matchDetails"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
+        android:textColor="@color/titleText"
+        android:textSize="20sp" />
+
+    <include layout="@layout/score_entry" />
+
 </RelativeLayout>
