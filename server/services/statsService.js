@@ -4,7 +4,7 @@ var db = require("./database");
 var exports = module.exports = {};
 
 exports.getAppStats = function(callback) {
-	db.query("SELECT COUNT(*) as numGames, SUM(winnerScore + loserScore) as totalPoints FROM GAME", function(error, rows) {
+	db.query("SELECT COUNT(*) as numGames, SUM(winnerScore + loserScore) as totalPoints FROM Game", function(error, rows) {
 	  callback(error, rows);
 	});
 };
@@ -24,7 +24,7 @@ exports.getUserStats = function(userId, callback) {
 			(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyLosses, \
 			(SELECT weeklyWins + weeklyLosses) as weeklyGameCount, \
 			(SELECT weeklyWins/weeklyGameCount * 100) as weeklyWinRate, \
-		    (SELECT MIN(DATE) FROM Game WHERE userId = "+ userId + ") as playerSince, \
+		    (SELECT MIN(DATE) FROM Game WHERE winnerUserId = b.userId OR loserUserId = b.userId) as playerSince, \
 		    (SELECT IFNULL(SUM(winnerScore), 0) FROM Game WHERE winnerUserId = "+ userId + ") as winningPoints, \
 			(SELECT IFNULL(SUM(loserScore), 0) FROM Game WHERE loserUserId = "+ userId + ") as losingPoints, \
 			(SELECT (winningPoints + losingPoints) / gameCount) as avgPointsPerGame, \
@@ -90,7 +90,7 @@ exports.getWeeklyStandings = function(numResults, callback) {
 			SELECT name, userId, \
 				(SELECT COUNT(*) FROM Game WHERE userId = winnerUserId AND YEARWEEK(date) = YEARWEEK(NOW())) as wins, \
 				(SELECT COUNT(*) FROM Game WHERE userId = loserUserId AND YEARWEEK(date) = YEARWEEK(NOW())) as losses  \
-			FROM USER  \
+			FROM User  \
 			GROUP BY userId \
 		) as standings WHERE (wins != 0 OR losses != 0) \
 		ORDER BY winRate DESC \
@@ -108,14 +108,14 @@ exports.getLongestWinStreak = function(callback) {
 			SELECT winnerUserId as userId, COUNT(*) as streak \
 			FROM Game as a \
 			WHERE date > (SELECT IFNULL(MAX(date), 0) \
-					      FROM GAME \
+					      FROM Game \
 						  WHERE loserUserId = a.winnerUserId \
 					      ) \
 			GROUP BY winnerUserId \
 			ORDER BY streak DESC \
 			LIMIT 1 \
 		) as streaks \
-		INNER JOIN USER \
+		INNER JOIN User \
 		USING(userId)";
 
 	db.query(query, function(error, rows) {
@@ -130,14 +130,14 @@ exports.getLongestLosingStreak = function(callback) {
 			SELECT loserUserId as userId, COUNT(*) as streak \
 			FROM Game as a \
 			WHERE date > (SELECT IFNULL(MAX(date), 0) \
-					      FROM GAME \
+					      FROM Game \
 						  WHERE winnerUserId = a.loserUserId \
 					      ) \
 			GROUP BY loserUserId \
 			ORDER BY streak DESC \
 			LIMIT 1 \
 		) as streaks \
-		INNER JOIN USER \
+		INNER JOIN User \
 		USING(userId)";
 
 	db.query(query, function(error, rows) {
@@ -148,7 +148,7 @@ exports.getLongestLosingStreak = function(callback) {
 exports.getLargestScoreDifference = function(callback) {
 	var query = " \
  		SELECT winnerUserId, winnerUser.name as winnerName, winnerScore, loserUserId, loserUser.name as loserName, loserScore \
-		FROM GAME \
+		FROM Game \
 		INNER JOIN User winnerUser \
 			ON winnerUserId = winnerUser.userId \
 		INNER JOIN User loserUser \
@@ -181,6 +181,7 @@ exports.getAllUserStats = function(callback) {
 		(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId) as losses, \
 		(SELECT wins + losses) as gameCount, \
 		(SELECT wins/gameCount * 100) as winRate, \
+		(SELECT MIN(DATE) FROM Game WHERE winnerUserId = b.userId OR loserUserId = b.userId) as playerSince, \
 		(SELECT COUNT(*) FROM Game WHERE winnerUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyWins, \
 		(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyLosses, \
 		(SELECT weeklyWins + weeklyLosses) as weeklyGameCount, \

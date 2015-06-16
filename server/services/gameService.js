@@ -52,7 +52,7 @@ exports.addGame = function(game, callback) {
                 var loserNewElo = elo.newRatingIfLost(loserCurrentElo, winnerCurrentElo);
 
                 // INSERT NEW GAME
-                connection.query("INSERT INTO GAME SET ?", newGame, function(error, result, fields) {
+                connection.query("INSERT INTO Game SET ?", newGame, function(error, result, fields) {
                     if (error) {
                         connection.rollback(function() {
                             connection.release();

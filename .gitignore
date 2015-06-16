@@ -31,3 +31,8 @@ client/public/assets/css/main.css
 /.idea/workspace.xml
 /.idea/libraries
 /build
+
+
+# sublime ignore files
+*.sublime-project
+*.sublime-workspace
