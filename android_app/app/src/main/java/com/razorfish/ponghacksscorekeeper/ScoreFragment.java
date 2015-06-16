@@ -1,6 +1,7 @@
 package com.razorfish.ponghacksscorekeeper;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
@@ -23,6 +25,7 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.squareup.picasso.Transformation;
 
 /**
  * Created by timothy.lau on 2015-06-05.
@@ -142,6 +145,7 @@ public class ScoreFragment extends Fragment {
         if (event.getType().equals(getArguments().getString("playerType"))) {
             selectedPlayer = event.getPlayer();
             playerButton.setText(selectedPlayer.getName());
+//            Transformation circle = new RoundedTransformationBuilder().borderColor(Color.WHITE).borderWidthDp(1).cornerRadiusDp(30).oval(false).build();
             Picasso.with(getActivity()).load(selectedPlayer.getAvatarUrl()).into(new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {

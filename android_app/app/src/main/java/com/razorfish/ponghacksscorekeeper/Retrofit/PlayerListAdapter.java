@@ -1,6 +1,7 @@
 package com.razorfish.ponghacksscorekeeper.Retrofit;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.razorfish.ponghacksscorekeeper.R;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +46,9 @@ public class PlayerListAdapter extends ArrayAdapter {
         Typeface playerFont = Typeface.createFromAsset(getContext().getAssets(), getContext().getString(R.string.fontPlayerList));
         playerName.setTypeface(playerFont);
 
-        Picasso.with(getContext()).load(player.getAvatarUrl()).into(playerAvatar);
+        Transformation circle = new RoundedTransformationBuilder().borderColor(Color.WHITE).borderWidthDp(1).cornerRadiusDp(30).oval(false).build();
+
+        Picasso.with(getContext()).load(player.getAvatarUrl()).fit().transform(circle).into(playerAvatar);
 
         playerName.setText(player.getName());
 
