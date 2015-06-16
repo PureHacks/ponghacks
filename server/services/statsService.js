@@ -25,6 +25,9 @@ exports.getUserStats = function(userId, callback) {
 			(SELECT weeklyWins + weeklyLosses) as weeklyGameCount, \
 			(SELECT weeklyWins/weeklyGameCount * 100) as weeklyWinRate, \
 		    (SELECT MIN(DATE) FROM Game WHERE userId = "+ userId + ") as playerSince, \
+		    (SELECT IFNULL(SUM(winnerScore), 0) FROM Game WHERE winnerUserId = "+ userId + ") as winningPoints, \
+			(SELECT IFNULL(SUM(loserScore), 0) FROM Game WHERE loserUserId = "+ userId + ") as losingPoints, \
+			(SELECT (winningPoints + losingPoints) / gameCount) as avgPointsPerGame, \
 		    (SELECT @userWinningStreak) as longestWinningStreak, \
 		    (SELECT @userLosingStreak) as longestLosingStreak, \
 			(1 + (SELECT count(*) from User a WHERE userId IN (SELECT userId from activeUsers) AND a.eloRanking > b.eloRanking)) as rank \
