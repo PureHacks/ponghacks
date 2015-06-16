@@ -24,7 +24,7 @@ exports.getUserStats = function(userId, callback) {
 			(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyLosses, \
 			(SELECT weeklyWins + weeklyLosses) as weeklyGameCount, \
 			(SELECT weeklyWins/weeklyGameCount * 100) as weeklyWinRate, \
-		    (SELECT MIN(DATE) FROM Game WHERE userId = "+ userId + ") as playerSince, \
+		    (SELECT MIN(DATE) FROM Game WHERE winnerUserId = b.userId OR loserUserId = b.userId) as playerSince, \
 		    (SELECT @userWinningStreak) as longestWinningStreak, \
 		    (SELECT @userLosingStreak) as longestLosingStreak, \
 			(1 + (SELECT count(*) from User a WHERE userId IN (SELECT userId from activeUsers) AND a.eloRanking > b.eloRanking)) as rank \
@@ -178,6 +178,7 @@ exports.getAllUserStats = function(callback) {
 		(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId) as losses, \
 		(SELECT wins + losses) as gameCount, \
 		(SELECT wins/gameCount * 100) as winRate, \
+		(SELECT MIN(DATE) FROM Game WHERE winnerUserId = b.userId OR loserUserId = b.userId) as playerSince, \
 		(SELECT COUNT(*) FROM Game WHERE winnerUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyWins, \
 		(SELECT COUNT(*) FROM Game WHERE loserUserId = b.userId AND YEARWEEK(date) = YEARWEEK(NOW())) as weeklyLosses, \
 		(SELECT weeklyWins + weeklyLosses) as weeklyGameCount, \

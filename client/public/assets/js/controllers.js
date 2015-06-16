@@ -136,6 +136,7 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", "$filter",
 				var newPlayer = {
 					name : player.name,
 					avatarUrl : player.avatarUrl,
+					playerSince : player.playerSince,
 					rank : player.rank,
 					id: player.userId,
 					selected : false,

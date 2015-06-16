@@ -11,7 +11,7 @@
 								<img ng-src="{{leftCompare.avatarUrl}}" alt="player avatar">
 							</div>
 							<p class="name">{{leftCompare.name}}</p>
-							<p class="player-since">Player Since: {{leftcompare.date}}</p>
+							<p class="player-since">Player Since: {{leftCompare.playerSince | smartDate}}</p>
 							<p class="player-rank uppercase">RANKING: {{leftCompare.rank}}</p>
 						</div>
 						<div class="row split clearfix uppercase">
@@ -41,7 +41,7 @@
 								<img ng-src="{{rightCompare.avatarUrl}}" alt="player avatar">
 							</div>
 							<p class="name">{{rightCompare.name}}</p>
-							<p class="player-since">Player Since: XXXXXX</p>
+							<p class="player-since">Player Since: {{rightCompare.playerSince | smartDate}}</p>
 							<p class="player-rank uppercase">RANKING: {{rightCompare.rank}}</p>
 						</div>
 						<div class="row split clearfix uppercase">
