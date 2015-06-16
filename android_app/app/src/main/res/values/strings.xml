@@ -8,4 +8,9 @@
 
     <string name="playerTypeName">playerType</string>
     <string name="defaultScoreName">defaultScore</string>
+
+    <string name="fontScore">Uniform-Medium.otf</string>
+    <string name="fontPlayer">Uniform-Medium.otf</string>
+    <string name="fontSubmitButton">Uniform-Medium.otf</string>
+    <string name="fontMatchDetails">Uniform-Bold.otf</string>
 </resources>
