@@ -11,6 +11,20 @@ public class Player {
     String avatarUrl;
     int score;
 
+    public Player(int userId, String email, String name, String mentionName, String avatarUrl, int score) {
+        this.userId = userId;
+        this.email = email;
+        this.name = name;
+        this.mentionName = mentionName;
+        this.avatarUrl = avatarUrl;
+        this.score = score;
+    }
+
+    public Player() {
+        userId = -1;
+        score = -1;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -37,5 +51,25 @@ public class Player {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMentionName(String mentionName) {
+        this.mentionName = mentionName;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
