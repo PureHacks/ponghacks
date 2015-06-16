@@ -1,11 +1,13 @@
 package com.razorfish.ponghacksscorekeeper;
 
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
@@ -31,12 +33,20 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView matchDetailsText = (TextView) findViewById(R.id.matchDetails);
+        Typeface matchDetailsFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontMatchDetails));
+        matchDetailsText.setTypeface(matchDetailsFont);
+
         ScoreFragment leftScore = ScoreFragment.newInstance("winner");
         ScoreFragment rightScore = ScoreFragment.newInstance("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
 
         Button submitButton = (Button) this.findViewById(R.id.button4);
+        Typeface submitButtonFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontSubmitButton));
+        submitButton.setTypeface(submitButtonFont);
+        submitButton.setTransformationMethod(null);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

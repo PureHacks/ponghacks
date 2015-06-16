@@ -1,6 +1,7 @@
 package com.razorfish.ponghacksscorekeeper;
 
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -63,7 +64,14 @@ public class ScoreFragment extends Fragment {
         final int parentId = container.getId();
 
         playerButton = (Button) v.findViewById(R.id.button);
+
+        Typeface playerButtonFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.fontPlayer));
+        playerButton.setTypeface(playerButtonFont);
+        playerButton.setTransformationMethod(null);
+
         TextView scoreLabel = (TextView) v.findViewById(R.id.pointsText);
+        Typeface scoreLabelFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.fontScore));
+        scoreLabel.setTypeface(scoreLabelFont);
 
         if (getArguments().getString("playerType").equals("winner")) {
             playerButton.setText("Winner");
@@ -86,6 +94,10 @@ public class ScoreFragment extends Fragment {
         final EditText editText = (EditText) v.findViewById(R.id.editText2);
         Button subButton = (Button) v.findViewById(R.id.button2);
         Button addButton = (Button) v.findViewById(R.id.button3);
+
+        editText.setTypeface(scoreLabelFont);
+        subButton.setTypeface(scoreLabelFont);
+        addButton.setTypeface(scoreLabelFont);
 
         InputFilterMinMax inputFilterMinMax = new InputFilterMinMax("0","99");
 
@@ -148,6 +160,8 @@ public class ScoreFragment extends Fragment {
 
                 }
             });
+
+            playerButton.setPadding(playerButton.getPaddingLeft(), playerButton.getPaddingTop(), playerButton.getPaddingRight(), playerButton.getPaddingBottom());
         } else {
             getFragmentManager().beginTransaction().remove(overlayFragment).commit();
         }

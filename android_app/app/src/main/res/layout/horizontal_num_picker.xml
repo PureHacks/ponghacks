@@ -12,17 +12,19 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="Win points" />
+        android:text="Win points"
+        android:textColor="@color/text" />
 
     <Button
         android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:text="-"
+        android:text="−"
         android:id="@+id/button2"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/editText2"
         android:background="@android:color/transparent"
-        android:textSize="30dp" />
+        android:textSize="22dp"
+        android:textColor="@color/text" />
 
     <EditText
         android:layout_width="35dp"
@@ -35,7 +37,8 @@
         android:editable="false"
         android:digits="2"
         android:background="@android:color/transparent"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@color/text" />
 
     <Button
         android:layout_width="35dp"
@@ -46,5 +49,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:background="@android:color/transparent"
-        android:textSize="22dp" />
+        android:textSize="22dp"
+        android:textColor="@color/text" />
 </RelativeLayout>

@@ -9,12 +9,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Match details"
         android:id="@+id/matchDetails"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:paddingTop="20dp" />
+        android:paddingTop="20dp"
+        android:textColor="@color/titleText"
+        android:textSize="20sp" />
 
     <include layout="@layout/score_entry" />
 
