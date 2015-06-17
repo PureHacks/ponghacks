@@ -77,12 +77,18 @@ public class ScoreFragment extends Fragment {
         Typeface scoreLabelFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.fontScore));
         scoreLabel.setTypeface(scoreLabelFont);
 
+        TextView playerLabel = (TextView) v.findViewById(R.id.playerLabel);
+        Typeface playerLabelFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.fontTitle));
+        playerLabel.setTypeface(playerLabelFont);
+
         if (getArguments().getString("playerType").equals("winner")) {
-            playerButton.setText("Winner");
+            playerButton.setText("Select winner");
             scoreLabel.setText("Win points");
+            playerLabel.setText("Winning player");
         } else {
-            playerButton.setText("Loser");
+            playerButton.setText("Select loser");
             scoreLabel.setText("Loss points");
+            playerLabel.setText("Losing player");
         }
 
         playerButton.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +181,7 @@ public class ScoreFragment extends Fragment {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
             Drawable playerIcon = new BitmapDrawable(getActivity().getResources(), bitmap);
-            playerIcon.setBounds(0, 0, 70, 70);
+            playerIcon.setBounds(0, 0, 100, 100);
             playerButton.setCompoundDrawables(playerIcon, null, null, null);
         }
 

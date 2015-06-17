@@ -11,5 +11,6 @@
         android:gravity="left|center_vertical"
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
-        android:drawablePadding="5dp"/>
+        android:drawablePadding="5dp"
+        android:textSize="26sp" />
 </LinearLayout>

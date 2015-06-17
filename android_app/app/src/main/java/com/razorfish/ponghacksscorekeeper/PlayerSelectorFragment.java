@@ -47,6 +47,7 @@ public class PlayerSelectorFragment extends Fragment {
 
         Typeface tabFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.fontRegular));
         tabs.setTypeface(tabFont, 0);
+        tabs.setTextSize(45);
 
         return v;
     }
