@@ -98,7 +98,7 @@ angular.module("filters", [])
 
 		return function(date) {
 			if (date){
-				var dayOfWeek = ["Monday", "Tuesday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+				var dayOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 				var date = new Date(date),
 					dateDay = date.getDate(),
 					dateMonth = date.getMonth(),
