@@ -19,6 +19,7 @@ import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitParamsChanged;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScoreResult;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScores;
+import com.razorfish.ponghacksscorekeeper.helpers.SpinnerFragment;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.squareup.otto.Bus;
@@ -35,6 +36,7 @@ public class MainActivity extends ActionBarActivity {
     Button submitButton;
     ScoreFragment leftScore;
     ScoreFragment rightScore;
+    SpinnerFragment spinnerFragment = new SpinnerFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,13 +158,21 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Subscribe
+    public void onSubmit(SubmitScores event) {
+        getSupportFragmentManager().beginTransaction().add(findViewById(R.id.scoreViewFrame).getId(), spinnerFragment, null).commit();
+        submitButton.setBackgroundColor(getResources().getColor(R.color.submitGrey));
+    }
+
+    @Subscribe
     public void onSubmitScoreResult(SubmitScoreResult event) {
+        getSupportFragmentManager().beginTransaction().remove(spinnerFragment).commit();
         if (event.getSuccess()) {
             Toast.makeText(getApplicationContext(), "Match submitted!", Toast.LENGTH_SHORT).show();
             ResetFragments();
         } else {
             Toast.makeText(getApplicationContext(), "Submitting match scores not successful, please try again.", Toast.LENGTH_SHORT).show();
         }
+        mBus.post(new SubmitParamsChanged());
     }
 
     @Override
@@ -189,6 +199,5 @@ public class MainActivity extends ActionBarActivity {
         ScoreFragment rightScore = ScoreFragment.newInstance("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
-        mBus.post(new SubmitParamsChanged());
     }
 }

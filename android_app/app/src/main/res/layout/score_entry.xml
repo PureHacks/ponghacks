@@ -3,33 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scoreViewContainer"
+        android:layout_height="match_parent"
         android:layout_above="@+id/submit_button_frame"
-        android:layout_alignParentTop="true">
+        android:id="@+id/scoreViewFrame">
 
-        <FrameLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:id="@+id/leftScoreView"
-            android:foregroundGravity="center">
+            android:id="@+id/scoreViewContainer"
+            android:layout_above="@+id/submit_button_frame"
+            android:layout_alignParentTop="true">
 
-        </FrameLayout>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:id="@+id/leftScoreView"
+                android:foregroundGravity="center">
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_weight="1"
-            android:id="@+id/rightScoreView"
-            android:foregroundGravity="center">
-        </FrameLayout>
-    </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="1"
+                android:id="@+id/rightScoreView"
+                android:foregroundGravity="center">
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
