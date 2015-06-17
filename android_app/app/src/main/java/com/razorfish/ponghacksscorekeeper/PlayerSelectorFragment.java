@@ -1,5 +1,6 @@
 package com.razorfish.ponghacksscorekeeper;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -40,6 +41,12 @@ public class PlayerSelectorFragment extends Fragment {
 
         tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
+
+        tabs.setTextColor(getResources().getColor(android.R.color.white));
+        tabs.setIndicatorColor(getResources().getColor(R.color.actionbar));
+
+        Typeface tabFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.fontRegular));
+        tabs.setTypeface(tabFont, 0);
 
         return v;
     }

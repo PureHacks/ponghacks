@@ -1,8 +1,9 @@
 package com.razorfish.ponghacksscorekeeper;
 
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,14 +12,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
-import com.razorfish.ponghacksscorekeeper.bus.events.SubmitParamsChanged;
-import com.razorfish.ponghacksscorekeeper.models.Player;
-import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
+import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelectorStateChanged;
 import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
+import com.razorfish.ponghacksscorekeeper.bus.events.SubmitParamsChanged;
+import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScoreResult;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScores;
+import com.razorfish.ponghacksscorekeeper.helpers.SpinnerFragment;
+import com.razorfish.ponghacksscorekeeper.models.Player;
+import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -31,21 +34,35 @@ public class MainActivity extends ActionBarActivity {
     OverlayFragment overlayFragment = new OverlayFragment();
     Boolean submittable = false;
     Button submitButton;
+    ScoreFragment leftScore;
+    ScoreFragment rightScore;
+    SpinnerFragment spinnerFragment = new SpinnerFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActionBar actionbar = getSupportActionBar();
+
+        actionbar.setCustomView(R.layout.actionbar_title);
+        actionbar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        TextView pong = (TextView) findViewById(R.id.pong);
+        TextView hacks = (TextView) findViewById(R.id.hacks);
+        Typeface titleFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontTitle));
+        pong.setTypeface(titleFont);
+        hacks.setTypeface(titleFont);
+
         TextView matchDetailsText = (TextView) findViewById(R.id.matchDetails);
         Typeface matchDetailsFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontMatchDetails));
         matchDetailsText.setTypeface(matchDetailsFont);
 
+        leftScore = ScoreFragment.newInstance("winner");
+        rightScore = ScoreFragment.newInstance("loser");
+
         winner.setScore(21);
         loser.setScore(15);
-
-        ScoreFragment leftScore = ScoreFragment.newInstance("winner");
-        ScoreFragment rightScore = ScoreFragment.newInstance("loser");
 
         getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
 
@@ -133,11 +150,29 @@ public class MainActivity extends ActionBarActivity {
         Log.d("onSubmitParamsChanged", Integer.toString(winner.getUserId()) + " " + Integer.toString(winner.getScore()) + " " + Integer.toString(loser.getUserId()) + " " + Integer.toString(loser.getScore()));
         if (winner.getUserId() != -1 && loser.getUserId() != -1 && winner.getUserId() != loser.getUserId() && winner.getScore() >= 21 && (winner.getScore() - loser.getScore()) >= 2) {
             submittable = true;
-            submitButton.setBackgroundColor(getResources().getColor(R.color.red));
+            submitButton.setBackgroundColor(getResources().getColor(R.color.submitRed));
         } else {
             submittable = false;
-            submitButton.setBackgroundColor(getResources().getColor(R.color.darkGrey));
+            submitButton.setBackgroundColor(getResources().getColor(R.color.submitGrey));
         }
+    }
+
+    @Subscribe
+    public void onSubmit(SubmitScores event) {
+        getSupportFragmentManager().beginTransaction().add(findViewById(R.id.scoreViewFrame).getId(), spinnerFragment, null).commit();
+        submitButton.setBackgroundColor(getResources().getColor(R.color.submitGrey));
+    }
+
+    @Subscribe
+    public void onSubmitScoreResult(SubmitScoreResult event) {
+        getSupportFragmentManager().beginTransaction().remove(spinnerFragment).commit();
+        if (event.getSuccess()) {
+            Toast.makeText(getApplicationContext(), "Match submitted!", Toast.LENGTH_SHORT).show();
+            ResetFragments();
+        } else {
+            Toast.makeText(getApplicationContext(), "Submitting match scores not successful, please try again.", Toast.LENGTH_SHORT).show();
+        }
+        mBus.post(new SubmitParamsChanged());
     }
 
     @Override
@@ -150,5 +185,19 @@ public class MainActivity extends ActionBarActivity {
     public void onPause() {
         super.onPause();
         mBus.unregister(this);
+    }
+
+    private void ResetFragments() {
+        getSupportFragmentManager().beginTransaction().remove(leftScore).remove(rightScore).commit();
+
+        winner = new Player();
+        loser = new Player();
+        winner.setScore(21);
+        loser.setScore(15);
+
+        ScoreFragment leftScore = ScoreFragment.newInstance("winner");
+        ScoreFragment rightScore = ScoreFragment.newInstance("loser");
+
+        getSupportFragmentManager().beginTransaction().add(R.id.leftScoreView, leftScore).add(R.id.rightScoreView, rightScore).commit();
     }
 }
