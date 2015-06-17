@@ -6,16 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.Retrofit.PlayerListAdapter;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.LoadPlayers;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayersListResponse;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 

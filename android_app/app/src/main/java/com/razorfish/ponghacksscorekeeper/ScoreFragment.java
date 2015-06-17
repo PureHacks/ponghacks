@@ -153,7 +153,7 @@ public class ScoreFragment extends Fragment {
             selectedPlayer = event.getPlayer();
             playerButton.setText(selectedPlayer.getName());
 
-            int borderColor = (getArguments().getString("playerType").equals("winner")) ? Color.GREEN : Color.RED;
+            int borderColor = (getArguments().getString("playerType").equals("winner")) ? Color.GRAY : Color.RED;
 
             Transformation circle = new RoundedTransformationBuilder().borderColor(borderColor).borderWidthDp(4).cornerRadiusDp(30).oval(false).build();
 

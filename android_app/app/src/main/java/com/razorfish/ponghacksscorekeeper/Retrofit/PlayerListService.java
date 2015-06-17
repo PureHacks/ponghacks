@@ -1,8 +1,8 @@
 package com.razorfish.ponghacksscorekeeper.Retrofit;
 
-import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.events.LoadPlayers;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayersListResponse;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
