@@ -16,11 +16,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
-import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.bus.BusProvider;
 import com.razorfish.ponghacksscorekeeper.bus.events.PlayerSelected;
 import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
 import com.razorfish.ponghacksscorekeeper.helpers.InputFilterMinMax;
+import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
@@ -36,6 +36,7 @@ public class ScoreFragment extends Fragment {
     int score;
     Bus mBus = BusProvider.getInstance();
     OverlayFragment overlayFragment = new OverlayFragment();
+    Target target = new PlayerIconTarget();
 
     public static ScoreFragment newInstance(String result) {
         ScoreFragment fragment = new ScoreFragment();
@@ -145,25 +146,12 @@ public class ScoreFragment extends Fragment {
         if (event.getType().equals(getArguments().getString("playerType"))) {
             selectedPlayer = event.getPlayer();
             playerButton.setText(selectedPlayer.getName());
-//            Transformation circle = new RoundedTransformationBuilder().borderColor(Color.WHITE).borderWidthDp(1).cornerRadiusDp(30).oval(false).build();
-            Picasso.with(getActivity()).load(selectedPlayer.getAvatarUrl()).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    Drawable playerIcon = new BitmapDrawable(getActivity().getResources(), bitmap);
-                    playerIcon.setBounds(0, 0, 100, 100);
-                    playerButton.setCompoundDrawables(playerIcon, null, null, null);
-                }
 
-                @Override
-                public void onBitmapFailed(Drawable errorDrawable) {
+            int borderColor = (getArguments().getString("playerType").equals("winner")) ? Color.GREEN : Color.RED;
 
-                }
+            Transformation circle = new RoundedTransformationBuilder().borderColor(borderColor).borderWidthDp(4).cornerRadiusDp(30).oval(false).build();
 
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                }
-            });
+            Picasso.with(getActivity()).load(selectedPlayer.getAvatarUrl()).resize(125,125).centerCrop().transform(circle).into(target);
 
             playerButton.setPadding(playerButton.getPaddingLeft(), playerButton.getPaddingTop(), playerButton.getPaddingRight(), playerButton.getPaddingBottom());
         } else {
@@ -181,5 +169,24 @@ public class ScoreFragment extends Fragment {
     public void onPause() {
         super.onPause();
         mBus.unregister(this);
+    }
+
+    private class PlayerIconTarget implements Target {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            Drawable playerIcon = new BitmapDrawable(getActivity().getResources(), bitmap);
+            playerIcon.setBounds(0, 0, 70, 70);
+            playerButton.setCompoundDrawables(playerIcon, null, null, null);
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+        }
     }
 }
