@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical|center_horizontal">
+    android:gravity="center_horizontal">
 
     <include
-        android:layout_width="250dp"
-        android:layout_height="48dp"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
         layout="@layout/player_selector_button"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" />
+        android:id="@+id/include_player"
+        android:layout_above="@+id/include_horizontal"
+        android:layout_marginBottom="40dp"
+        android:layout_alignLeft="@+id/include_horizontal"
+        android:layout_alignParentRight="false" />
 
     <include
-        android:layout_width="250dp"
-        android:layout_height="48dp"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
         layout="@layout/horizontal_num_picker"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/include_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="160dp"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false" />
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/playerLabel"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:layout_alignLeft="@+id/include_player"
+        android:layout_above="@+id/include_player"
+        android:text="test"
+        android:layout_marginBottom="5dp" />
+
+</RelativeLayout>

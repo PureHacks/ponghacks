@@ -6,4 +6,5 @@
     <item name="titleText" type="color">#FF5B6871</item>
     <item name="submitGrey" type="color">#FFC0C0C0</item>
     <item name="actionbar" type="color">#FF374046</item>
+    <item name="winnerGrey" type="color">#FF696969</item>
 </resources>

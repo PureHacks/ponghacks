@@ -48,12 +48,6 @@ public class MainActivity extends ActionBarActivity {
         actionbar.setCustomView(R.layout.actionbar_title);
         actionbar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
-        TextView pong = (TextView) findViewById(R.id.pong);
-        TextView hacks = (TextView) findViewById(R.id.hacks);
-        Typeface titleFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontTitle));
-        pong.setTypeface(titleFont);
-        hacks.setTypeface(titleFont);
-
         TextView matchDetailsText = (TextView) findViewById(R.id.matchDetails);
         Typeface matchDetailsFont = Typeface.createFromAsset(getAssets(), getString(R.string.fontMatchDetails));
         matchDetailsText.setTypeface(matchDetailsFont);

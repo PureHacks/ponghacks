@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"
         android:textColor="@color/titleText"
-        android:textSize="20sp" />
+        android:textSize="40sp" />
 
     <include layout="@layout/score_entry" />
 

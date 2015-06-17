@@ -43,10 +43,12 @@ public class PlayerSelectorFragment extends Fragment {
         tabs.setViewPager(viewPager);
 
         tabs.setTextColor(getResources().getColor(android.R.color.white));
-        tabs.setIndicatorColor(getResources().getColor(R.color.actionbar));
+        tabs.setIndicatorColor(getResources().getColor(R.color.submitRed));
+        tabs.setIndicatorHeight(8);
 
         Typeface tabFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.fontRegular));
         tabs.setTypeface(tabFont, 0);
+        tabs.setTextSize(45);
 
         return v;
     }
