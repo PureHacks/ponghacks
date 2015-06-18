@@ -17,7 +17,7 @@ exports.gameUpdate = function(winnerUserId, loserUserId, winnerScore, loserScore
         var loserMention = "@" + rows[0].loserMention;
 
 		var options = {
-		  uri: "https://hipchat.tor.razorfish.com/v2/room/134/notification?auth_token=" + key.hc_auth_token_room,
+		  uri: "https://hipchat.tor.razorfish.com/v2/room/148/notification?auth_token=" + key.hc_auth_token_room,
 		  method: "POST",
 		  json: {
 			    "message": winnerMention + " beat " + loserMention + " " + winnerScore + " - " + loserScore + " (pingpong)",
