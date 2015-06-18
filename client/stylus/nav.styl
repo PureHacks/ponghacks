@@ -14,16 +14,56 @@
 			padding 0
 			list-style-type none
 			li
-				padding 40px 20px 10px 35px
+				transition 0.5s ease
+				&:hover
+					background-color white
+					a
+						color $font-dark-blue
+					svg
+						path, rect, circle, line
+							fill $font-dark-blue
+							stroke $font-dark-blue
+				position relative
+				padding 45px 35px 0 35px
 				height 75px
 				display inline-block
-				border-left 1px solid $nav-border-divider
+				border-left 1px solid $nav-font
 				&:last-child
-					padding 40px 35px 10px 35px
-					border-right 1px solid $nav-border-divider
+					border-right 1px solid $nav-font
 				text-align center
 				&.selected
 					background-color $header-bg-grey
 					color $nav-bg-blue
 				a
 					color $white
+				svg
+					position absolute
+					pointer-events none
+					path, rect, circle, line
+						fill $nav-font
+				.dashboard
+					top -103px
+					left -69px
+					width 350px
+					height 350px
+
+				.game-history
+					transform rotate(-53deg)
+					top 5px
+					left 28px
+
+				.player-stats
+					top -96px
+					left -5px
+					width 250px
+					height 250px
+					circle
+						stroke $nav-font
+
+				.add-game
+					width 225px
+					height 225px
+					top -85px
+					left -30px
+					line
+						stroke $nav-font

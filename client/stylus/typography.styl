@@ -10,13 +10,15 @@ a
 	color inherit
 	transition 0.5s ease
 	border-bottom none
+svg
+	path, rect, circle, line
+		transition 0.5s ease
 
 a:visited
 	color inherit
 
 a:hover
 	color $accent-red
-	border-bottom 1px solid $accent-red
 	transition: 0.5 ease;
 
 @font-face
@@ -69,6 +71,13 @@ a:hover
 .name-large
 	font-family Bold
 	font-size 24px
+
+.top-nav
+	li
+		.nav-link a
+			font-family Regular
+			font-size 14px
+
 	
 .section-header
 	text-align left
