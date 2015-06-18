@@ -4,7 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="endpoint">http://10.15.64.83:8888</string>
+    <string name="serviceEndpoint">http://10.15.64.83:8888</string>
+    <string name="dashboardEndpoint">https://www.google.ca</string>
 
     <string name="playerTypeName">playerType</string>
     <string name="defaultScoreName">defaultScore</string>
@@ -16,4 +17,5 @@
     <string name="fontRegular">Uniform-Regular.otf</string>
     <string name="fontTitle">Uniform-Bold.otf</string>
     <string name="fontPlayerList">Uniform-Regular.otf</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
 </resources>
