@@ -1,14 +1,15 @@
 "use strict";
 
 var mysql = require("mysql");
+var key = require("../key");
 var exports = module.exports = {};
 
 var pool = mysql.createPool({
 	connectionLimit : 80,
 	host     : "localhost",
-	user     : "root",
-	password : "root",
-	port: 8889,
+	user     : key.db_user,
+	password : key.db_password,
+	port: key.db_port,
 	database: "PongHacks",
 	multipleStatements: true
 	//,debug: true
