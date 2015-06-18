@@ -87,7 +87,7 @@ angular.module("filters", [])
 			if (isNaN(number)) {
 				return 0;
 			} else {
-				return number;
+				return parseFloat(number).toFixed(1);
 			}
 		};
 	})

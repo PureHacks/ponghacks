@@ -16,21 +16,21 @@
 			</div>
 			<div class="row split clearfix uppercase">
 				<div class="block top left">
-					<p class="number">{{stats.gameCount}}</p>
-					<p class="bottom-text">Total games</p>
-				</div>
-				<div class="block top right">
 					<p class="number">{{stats.wins}}</p>
 					<p class="bottom-text">Total wins</p>
+				</div>
+				<div class="block top right">
+					<p class="number">{{stats.losses}}</p>
+					<p class="bottom-text">Total losses</p>
 				</div>
 			</div>
 			<div class="row split bottom-row clearfix uppercase">
 				<div class="block bottom left">
-					<p class="number">{{stats.losses}}</p>
-					<p class="bottom-text">Total losses</p>
+					<p class="number small">{{stats.avgPointsPerGame | realNumber}}</p>
+					<p class="bottom-text">Avg PPG</p>
 				</div>
 				<div class="block bottom right">
-					<p class="number">{{stats.winRate | winRate}}</p>
+					<p class="number small">{{stats.winRate | winRate}}</p>
 					<p class="bottom-text">Win Rate</p>
 				</div>
 			</div>

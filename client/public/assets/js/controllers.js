@@ -199,6 +199,9 @@ pongAppControllers.controller("playerStatsCtrl", ["$scope", "$http", "$filter",
 			$scope.leftCompare = $filter("filter")($scope.allPlayerStats, function(player) {return (player.id === playerOneId);})[0];
 			$scope.rightCompare = $filter("filter")($scope.allPlayerStats, function(player) {return (player.id === playerTwoId);})[0];
 
+			$scope.leftCompare.id = playerOneId;
+			$scope.rightCompare.id = playerTwoId;
+
 			$scope.leftCompare.avgPoints = ((compareStats.winningPoints + compareStats.losingPoints) / totalGames).toFixed(1);
 			$scope.rightCompare.avgPoints = ((compareStats.opponentWinningPoints + compareStats.opponentLosingPoints) / totalGames).toFixed(1);
 
