@@ -33,12 +33,12 @@ public class PlayerListApplication extends Application {
     }
 
     private PlayerListQuery.PlayerListInterface buidUserListQuery() {
-        return new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListQuery.PlayerListInterface.class);
+        return new RestAdapter.Builder().setEndpoint(getString(R.string.serviceEndpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListQuery.PlayerListInterface.class);
 //        return new RestAdapter.Builder().setClient(new MockClient()).setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(PlayerListQuery.PlayerListInterface.class);
     }
 
     private SubmitScoreQuery.SubmitScoreInterface buildSubmitScoreQuery() {
-        return new RestAdapter.Builder().setEndpoint(getString(R.string.endpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(SubmitScoreQuery.SubmitScoreInterface.class);
+        return new RestAdapter.Builder().setEndpoint(getString(R.string.serviceEndpoint)).setLogLevel(RestAdapter.LogLevel.FULL).build().create(SubmitScoreQuery.SubmitScoreInterface.class);
     }
 
     public String getPlayerTypeString() {

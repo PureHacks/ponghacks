@@ -1,9 +1,14 @@
 package com.razorfish.ponghacksscorekeeper;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +24,7 @@ import com.razorfish.ponghacksscorekeeper.bus.events.ScoreChanged;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitParamsChanged;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScoreResult;
 import com.razorfish.ponghacksscorekeeper.bus.events.SubmitScores;
+import com.razorfish.ponghacksscorekeeper.dashboard.DashboardActivity;
 import com.razorfish.ponghacksscorekeeper.helpers.SpinnerFragment;
 import com.razorfish.ponghacksscorekeeper.models.Player;
 import com.razorfish.ponghacksscorekeeper.models.SubmitScoreModel;
@@ -95,12 +101,16 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        switch(id) {
 
-        return super.onOptionsItemSelected(item);
+            case R.id.action_dashboard:
+                Intent intent = new Intent(this, DashboardActivity.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Subscribe
