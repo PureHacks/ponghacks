@@ -106,20 +106,23 @@ angular.module("filters", [])
 	.filter("ogDate", function() {
 		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 		return function(date) {
-			var date = new Date(date);
-			var day = date.getDate();
-			if (day === 1 || day === 21 || day === 31) {
-				day =  day + "st";
-			} else if (day === 2 || day === 22){
-				day =  day + "nd";
-			} else if (day === 3 || day === 23){
-				day =  day + "rd";
+			if (date){
+				var date = new Date(date);
+				var day = date.getDate();
+				if (day === 1 || day === 21 || day === 31) {
+					day =  day + "st";
+				} else if (day === 2 || day === 22){
+					day =  day + "nd";
+				} else if (day === 3 || day === 23){
+					day =  day + "rd";
+				} else {
+					day =  day + "th";
+				}
+				var output = months[date.getMonth()] + " " + day + ", " + date.getUTCFullYear();
+				return output;
 			} else {
-				day =  day + "th";
+				return "";
 			}
-			var output = months[date.getMonth()] + " " + day + ", " + date.getUTCFullYear();
-			console.log(output, months.length);
-			return output;
 		};
 	})
 	.filter("smartDate", function() {
@@ -133,8 +136,19 @@ angular.module("filters", [])
 				var date = new Date(date),
 					dateDay = date.getDate(),
 					dateMonth = date.getMonth(),
-					time = date.toLocaleTimeString().split(":");
-					time = time[0] + ":" + time[1] + time[2].substr(time[2].length-2, 2).toLowerCase();
+					hours = date.getHours(),
+					minutes = date.getMinutes(),
+					meridian = "am";
+
+				if(hours >= 12) {
+					hours = (hours - 12);
+					meridian = "pm";
+				}
+				if(hours === 0) {
+					hours = 12;
+				}
+				minutes = minutes < 10 ? "0" + minutes : minutes;
+				var time = hours + ":" + minutes + meridian;
 
 				if (day === dateDay && month === dateMonth) {
 					return "Today at " + time;
