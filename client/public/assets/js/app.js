@@ -103,6 +103,25 @@ angular.module("filters", [])
 			}
 		};
 	})
+	.filter("ogDate", function() {
+		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		return function(date) {
+			var date = new Date(date);
+			var day = date.getDate();
+			if (day === 1 || day === 21 || day === 31) {
+				day =  day + "st";
+			} else if (day === 2 || day === 22){
+				day =  day + "nd";
+			} else if (day === 3 || day === 23){
+				day =  day + "rd";
+			} else {
+				day =  day + "th";
+			}
+			var output = months[date.getMonth()] + " " + day + ", " + date.getUTCFullYear();
+			console.log(output, months.length);
+			return output;
+		};
+	})
 	.filter("smartDate", function() {
 		var today = new Date(),
 			day = today.getDate(),
