@@ -7,7 +7,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,7 +126,7 @@ public class ScoreFragment extends Fragment {
                 } else {
                     score--;
                 }
-                mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
+//                mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
                 editText.setText(Integer.toString(score));
             }
         });
@@ -139,8 +141,33 @@ public class ScoreFragment extends Fragment {
                 } else {
                     score++;
                 }
-                mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
+//                mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
                 editText.setText(Integer.toString(score));
+            }
+        });
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                int inputScore = (s.toString().equals("")) ? 0 : Integer.valueOf(s.toString());
+                if (inputScore < 0) {
+                    score = 0;
+                } else if (inputScore > 99) {
+                    score = 99;
+                } else {
+                    score = inputScore;
+                }
+                mBus.post(new ScoreChanged(score, getArguments().getString("playerType")));
             }
         });
 
