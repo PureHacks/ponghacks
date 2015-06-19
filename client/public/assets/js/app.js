@@ -17,10 +17,6 @@ app.config(["$routeProvider",
 				templateUrl: "partials/dashboard.html",
 				controller: "dashboardCtrl"
 			})
-			.when("/tv", {
-				templateUrl: "partials/dashboard.html",
-				controller: "dashboardCtrl"	
-			})
 			.when("/player-stats", {
 				templateUrl: "partials/playerStats.html",
 				controller: "playerStatsCtrl"
