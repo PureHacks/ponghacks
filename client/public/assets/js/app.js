@@ -58,6 +58,12 @@ app.config(["$routeProvider",
 	};
 });
 
+app.controller("navController", function($scope, $location) {
+	$scope.isActive = function(route) {
+		return route === $location.path();
+	};
+});
+
 angular.module("filters", [])
 	.filter("shortFullName", function() {
 		return function(fullName) {
