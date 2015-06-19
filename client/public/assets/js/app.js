@@ -17,6 +17,10 @@ app.config(["$routeProvider",
 				templateUrl: "partials/dashboard.html",
 				controller: "dashboardCtrl"
 			})
+			.when("/tv", {
+				templateUrl: "partials/dashboard.html",
+				controller: "dashboardCtrl"	
+			})
 			.when("/player-stats", {
 				templateUrl: "partials/playerStats.html",
 				controller: "playerStatsCtrl"
@@ -59,6 +63,12 @@ app.config(["$routeProvider",
 });
 
 app.controller("navController", function($scope, $location) {
+	$scope.navPath = "partials/nav.html";
+
+	$scope.init = function(){
+		$scope.navPath = ($location.path() === "/tv") ? "partials/tvNav.html" : "partials/nav.html";
+	};
+
 	$scope.isActive = function(route) {
 		return route === $location.path();
 	};
