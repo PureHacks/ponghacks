@@ -37,12 +37,13 @@
         android:layout_centerVertical="true"
         android:maxLength="2"
         android:layout_toLeftOf="@+id/button3"
-        android:editable="false"
-        android:digits="2"
+        android:editable="true"
+        android:digits="0123456789"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:textColor="@color/text"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        android:enabled="true" />
 
     <Button
         android:layout_width="wrap_content"
