@@ -14,6 +14,20 @@
 			padding 0
 			list-style-type none
 			li
+				.nav-link
+					width 100%
+					height 100%
+					display block
+					padding-top 28%
+
+				position relative
+				padding 0
+				height 75px
+				display inline-block
+				border-left 1px solid $nav-font
+				&:last-child
+					border-right 1px solid $nav-font
+				text-align center
 				transition 0.5s ease
 				&:hover, &.active
 					background-color white
@@ -23,17 +37,6 @@
 						path, rect, circle, line
 							fill $font-dark-blue
 							stroke $font-dark-blue
-				position relative
-				padding 45px 35px 0 35px
-				height 75px
-				display inline-block
-				border-left 1px solid $nav-font
-				&:last-child
-					border-right 1px solid $nav-font
-				text-align center
-				&.selected
-					background-color $header-bg-grey
-					color $nav-bg-blue
 				a
 					color $white
 				svg
@@ -42,28 +45,34 @@
 					path, rect, circle, line
 						fill $nav-font
 				.dashboard
-					top -103px
-					left -69px
-					width 350px
-					height 350px
+					svg
+						top -103px
+						left -69px
+						width 350px
+						height 350px
 
 				.game-history
-					transform rotate(-53deg)
-					top 5px
-					left 28px
+					svg
+						transform rotate(-53deg)
+						width 125px
+						height 125px
+						top -17px
+						left 13px
 
 				.player-stats
-					top -96px
-					left -8px
-					width 250px
-					height 250px
-					circle
-						stroke $nav-font
+					svg
+						top -96px
+						left -8px
+						width 250px
+						height 250px
+						circle
+							stroke $nav-font
 
 				.add-game
-					width 225px
-					height 225px
-					top -85px
-					left -30px
-					line
-						stroke $nav-font
+					svg
+						width 225px
+						height 225px
+						top -85px
+						left -30px
+						line
+							stroke $nav-font
