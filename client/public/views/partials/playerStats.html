@@ -122,9 +122,8 @@
 				<td class="rank">{{player.rank}}</td>
 				<td class="compare-check">
 					<div class="checkbox-container">
-						<label for="checkbox-{{$index}}" class="checkbox-label">
-							<input value="{{player.id}}" name="checkbox-{{$index}}" id="checkbox-{{$index}}"type="checkbox" ng-model="player.selected" ng-click="addPlayerToCompare(player.id)"/>
-						</label>
+						<input value="{{player.id}}" name="checkbox-{{$index}}" id="checkbox-{{$index}}"type="checkbox" ng-model="player.selected" ng-click="addPlayerToCompare(player.id)"/>
+						<label for="checkbox-{{$index}}" class="checkbox-label"></label>
 					</div>
 				</td>
 			</tr>
