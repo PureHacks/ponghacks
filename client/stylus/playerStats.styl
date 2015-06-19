@@ -88,15 +88,26 @@
 						vertical-align middle
 						
 					.checkbox-container
+						position relative
 						label
 							display block
 							width 100%
 							height 100%
-							position relative
-							input
-								position absolute
-								bottom 50%
-								right 40%
+							cursor pointer
+						input[type="checkbox"]
+							position absolute
+							opacity 0
+							top 0
+							left 0
+						input[type="checkbox"] + label
+							background url("/assets/img/checkbox-uncheck.png") no-repeat
+							background-position-x 66px
+							background-position-y 18px
+
+						input[type="checkbox"]:checked + label
+							background url("/assets/img/checkbox-check.png") no-repeat
+							background-position-x 66px
+							background-position-y 18px
 
 	.profile-img-name
 		img 
