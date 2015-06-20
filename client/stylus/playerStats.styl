@@ -8,16 +8,27 @@
 		postion relative
 		@import "compareOverlay"
 		form
-			label
-				display block
-				padding 13px 12px
+			.radio-container
 				position relative
-				height 45px
-				border 1px solid $font-dark-blue
+				label
+					display block
+					padding 13px 12px
+					height 45px
+					border 1px solid $font-dark-blue
+					cursor pointer
 				input[type=radio]
 					position absolute
 					right 14px
 					top 14px
+					opacity 0
+				input[type=radio] + label
+					background url("/assets/img/radio-uncheck.png") no-repeat
+					background-position-x 130px
+					background-position-y 10px
+				input[type=radio]:checked + label
+					background url("/assets/img/radio-checked.png") no-repeat
+					background-position-x 130px
+					background-position-y 10px
 		
 	.all-stats
 		margin-bottom 20px
