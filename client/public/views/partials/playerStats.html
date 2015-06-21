@@ -95,13 +95,13 @@
 	<section class="all-stats wgrid-12of12 wgrid-4of4 wgrid-8of8">
 		<table ts-wrapper>
 			<thead class="uppercase">
-				<th class="name" ts-criteria="name" ts-default>Player</th>
-				<th class="games" ts-criteria="gameCount">Total Games</th>
-				<th class="wins" ts-criteria="wins">Wins</th>
-				<th class="losses" ts-criteria="losses">Losses</th>
-				<th class="win-rate" ts-criteria="winRate">Win Rate</th>
-				<th class="rank" ts-criteria="rank">All-time Rank</th>
-				<th class="compare-check">Head to Head Stats</th>
+				<th class="name" ts-criteria="name" ts-default>Player<span class="arrow"></span></th>
+				<th class="games" ts-criteria="gameCount">Total Games<span class="arrow"></span></th>
+				<th class="wins" ts-criteria="wins">Wins<span class="arrow"></span></th>
+				<th class="losses" ts-criteria="losses">Losses<span class="arrow"></span></th>
+				<th class="win-rate" ts-criteria="winRate">Win Rate<span class="arrow"></span></th>
+				<th class="rank" ts-criteria="rank">All-time Rank<span class="arrow"></span></th>
+				<th class="compare-check">Head to Head Stats<span class="arrow"></span></th>
 			</thead>
 			<tr ng-repeat="player in allPlayerStats | tablesort" ts-repeat>
 				<td class="name">
