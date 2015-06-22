@@ -11,6 +11,8 @@ var handleRequest = function(req, res) {
 };
 
 router.get("/", handleRequest);
+router.get("/dashboard", handleRequest);
+router.get("/tv", handleRequest);
 router.get("/game-history", handleRequest);
 router.get("/player-stats", handleRequest);
 router.get("/input-score", handleRequest);
