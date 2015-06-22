@@ -10,7 +10,7 @@
 							<div class="avatar">
 								<img ng-src="{{leftCompare.avatarUrl}}" alt="player avatar">
 							</div>
-							<p class="name"><a href="#/user/{{leftCompare.id}}">{{leftCompare.name}}</a></p>
+							<p class="name"><a href="user/{{leftCompare.id}}">{{leftCompare.name}}</a></p>
 							<p class="player-since">Player Since: {{leftCompare.playerSince | ogDate}}</p>
 							<p class="player-rank uppercase">RANKING: {{leftCompare.rank}}</p>
 						</div>
@@ -40,7 +40,7 @@
 							<div class="avatar">
 								<img ng-src="{{rightCompare.avatarUrl}}" alt="player avatar">
 							</div>
-							<p class="name"><a href="#/user/{{rightCompare.id}}">{{rightCompare.name}}</a></p>
+							<p class="name"><a href="user/{{rightCompare.id}}">{{rightCompare.name}}</a></p>
 							<p class="player-since">Player Since: {{rightCompare.playerSince | ogDate}}</p>
 							<p class="player-rank uppercase">RANKING: {{rightCompare.rank}}</p>
 						</div>
@@ -106,7 +106,7 @@
 			<tr ng-repeat="player in allPlayerStats | tablesort" ts-repeat>
 				<td class="name">
 					<div class="name-bump">
-						<a href="#/user/{{player.id}}" class="profile-img-name">
+						<a href="user/{{player.id}}" class="profile-img-name">
 							<img ng-src="{{player.avatarUrl}}"/>
 							<span>{{player.name}}</span>
 						</a>
