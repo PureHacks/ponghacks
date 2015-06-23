@@ -10,7 +10,7 @@
 				</div>
 				<div class="row winner">
 					<div class="player-info">
-						<a href="#/user/{{game.winnerUserId}}"><img ng-src="{{game.winnerAvatarUrl}}" alt="avatar"/><span class="player-name">{{game.winnerName | shortFullName}}</span></a>
+						<a href="user/{{game.winnerUserId}}"><img ng-src="{{game.winnerAvatarUrl}}" alt="avatar"/><span class="player-name">{{game.winnerName | shortFullName}}</span></a>
 						<span class="star"></span>
 						<span class="player-score">
 							{{game.winnerScore}}
@@ -19,7 +19,7 @@
 				</div>
 				<div class="row loser">
 					<div class="player-info">
-						<a href="#/user/{{game.loserUserId}}"><img ng-src="{{game.loserAvatarUrl}}" alt="avatar"/><span class="player-name">{{game.loserName | shortFullName}}</span></a>
+						<a href="user/{{game.loserUserId}}"><img ng-src="{{game.loserAvatarUrl}}" alt="avatar"/><span class="player-name">{{game.loserName | shortFullName}}</span></a>
 						<span class="player-score">
 							{{game.loserScore}}
 						</span>

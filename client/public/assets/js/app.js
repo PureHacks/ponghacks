@@ -2,8 +2,8 @@
 
 var app = angular.module("pongApp", ["ngRoute", "pongAppControllers", "filters", "tableSort"]);
 
-app.config(["$routeProvider",
-	function($routeProvider) {
+app.config(["$routeProvider", "$locationProvider",
+	function($routeProvider, $locationProvider) {
 		$routeProvider
 			.when("/", {
 				templateUrl: "partials/dashboard.html",
@@ -36,6 +36,7 @@ app.config(["$routeProvider",
 			.otherwise({
 				redirectTo: "/",
 			});
+		$locationProvider.html5Mode(true);
 	}
 ])
 .factory("socket", function ($rootScope) {

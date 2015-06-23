@@ -1,7 +1,7 @@
 <div class="profile row clearfix" ng-init="init()">
 	<div class="row">
 		<div class="back-link wgrid-12of12">
-			<a class="link" href="#/player-stats">&#8249; Back to <span>All Player Stats</span></a>
+			<a class="link" href="player-stats">&#8249; Back to <span>All Player Stats</span></a>
 		</div>
 	</div>
 	<div class="row">
@@ -79,7 +79,7 @@
 							<div class="recent-game clearfix">
 								<div class="game-info">
 									<p>{{game.date | smartDate}}</p>
-									<p><span class="winner-name"><a href="#/user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="#/user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
+									<p><span class="winner-name"><a href="user/{{game.winnerUserId}}">{{game.winnerName | shortFullName}}</a></span> won against <span class="loser-name"><a href="user/{{game.loserUserId}}">{{game.loserName | shortFullName}}</a></span></p>
 								</div>
 								<div class="game-score">
 									<span>{{game.winnerScore}} - {{game.loserScore}}</span>
