@@ -1,3 +1,15 @@
+/*=======================================================================================================
+ | WARNING!!!
+ |
+ | By defualt, HipChat's API is rate limited to 100 requests per 5 minutes. If there are more than 
+ | 100 employees the script will need to be executed multiple times every 5 minutes.  This can be 
+ | handled by modifying the 'start-index' and 'max-results' query string params. By default the script
+ | inserts/updates the first 99 employees.
+ |
+ | Note: there is a script 'updateUsers-cron.js' that is designed to be run as a cron job that has 
+ | built in rate limiting handling.
+ *======================================================================================================*/
+
 "use strict";
 
 var request = require("request");
@@ -16,7 +28,7 @@ var fetchUserDetails = function(url, callback){
 	});
 };
 
-request("https://hipchat.tor.razorfish.com/v2/user?max-results=1000&auth_token=" + key.hc_auth_token_user, function (error, response, body) {
+request("https://hipchat.tor.razorfish.com/v2/user?start-index=0&max-results=99&auth_token=" + key.hc_auth_token_user, function (error, response, body) {
 	var users = JSON.parse(body).items;
 	var userDetailURLs = users.map(function(user) {
 	  	return user.links.self + "?auth_token=" + key.hc_auth_token_user;

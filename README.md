@@ -57,7 +57,10 @@
 	```
 	module.exports = {
 	    hc_auth_token_user: "XXXXXXXX-HipChat-User-API-Token",
-	    hc_auth_token_room: "XXXXXXXX-HipChat-Room-API-Token"
+	    hc_auth_token_room: "XXXXXXXX-HipChat-Room-API-Token",
+	    db_user: "MySQL-User-Name",
+		db_password: "MySQL-Password",
+		db_port: "MySQL-Port"
     };
 	```
 
@@ -85,3 +88,12 @@
 	auth_token				XXXXXXXXX-PongHacksAPIkey
 	personal_auth_token		XXXXXXXXX-PersonalAPIkey
 	```
+	
+### Cron job setup
+Add cron job to execute `scripts/updateUsers-cron.sh` at desired frequency
+
+Ex:
+```
+0 */6 * * * /path/to/ponghacks/scripts/updateUsers-cron.sh
+```
+
