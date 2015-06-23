@@ -36,6 +36,10 @@ app.use("/api/stats", require("./controllers/api/stats"));
 
 app.use("/", require("./controllers/static"));
 
+app.use(function(req, res, next) {
+  res.status(404).render("404.html");
+});
+
 http.listen(port, function(){
 	var msg = "Ping Ponging on Port:" + port;
   	console.log(msg.bgRed);
