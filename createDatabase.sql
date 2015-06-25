@@ -92,10 +92,10 @@ BEGIN
             ELSE
               IF streakCounter > maxStreak THEN
                 SET maxStreak = streakCounter;
-                SET streakCounter = 0;
-          END IF;
+              END IF;
+              SET streakCounter = 0;
+            END IF;  
         END IF;  
-      END IF;  
     END WHILE;
  
     CLOSE curWinnerIds;
@@ -103,7 +103,7 @@ BEGIN
     IF streakCounter > maxStreak THEN
       SET maxStreak = streakCounter;
       SET streakCounter = 0;
-  END IF;
+    END IF;
 
     SET streak = maxStreak;
  
@@ -131,10 +131,10 @@ BEGIN
             ELSE
               IF streakCounter > maxStreak THEN
                 SET maxStreak = streakCounter;
-                SET streakCounter = 0;
-          END IF;
+              END IF;
+              SET streakCounter = 0;
+            END IF;  
         END IF;  
-      END IF;  
     END WHILE;
  
     CLOSE curLoserIds;
@@ -142,7 +142,7 @@ BEGIN
     IF streakCounter > maxStreak THEN
       SET maxStreak = streakCounter;
       SET streakCounter = 0;
-  END IF;
+    END IF;
 
     SET streak = maxStreak;
  
