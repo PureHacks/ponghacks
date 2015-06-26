@@ -9,6 +9,7 @@
 
 ### Tools & Libraries
 
+* [Hipchat](https://hipchat.tor.razorfish.com/docs/apiv2)
 * [GulpJS](https://github.com/gulpjs/gulp)
 * [Socket.io](https://github.com/Automattic/socket.io)
 * [AsyncJS](https://github.com/caolan/async)
