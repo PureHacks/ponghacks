@@ -5,6 +5,7 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	fs = require("fs"),
 	multer = require("multer"),
+	favicon = require("serve-favicon"),
 	app = express();
 
 require("colors");
@@ -18,6 +19,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(expressValidator());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multer()); // for parsing multipart/form-data
+app.use(favicon(__dirname + "/../client/public/assets/favicon.ico"));
 
 app.use(express.static(__dirname + "/../client/public"));
 app.use(express.static(__dirname + "/../client/public/views"));
